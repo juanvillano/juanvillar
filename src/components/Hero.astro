@@ -147,7 +147,10 @@ const connections = [
 
     <div class="hero__map-panel" aria-label="Interactive map of Juan's design focus">
       <div class="map-heading">
-        <p data-i18n="mapLabel">Drag the nodes. Reset the map when it gets messy.</p>
+        <p>
+          <span data-i18n="mapLabelStart">Drag the nodes.</span>
+          <span data-i18n="mapLabelEnd">Reset the map when it gets messy.</span>
+        </p>
         <button class="map-reset" type="button" data-reset-map>
           <span data-i18n="resetMap">Reset map</span>
         </button>
@@ -451,7 +454,7 @@ const connections = [
 
   .map-heading {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     gap: 1rem;
     margin: 0 auto 0.85rem;
@@ -464,7 +467,15 @@ const connections = [
   }
 
   .map-heading p {
+    display: grid;
+    gap: 0.18rem;
     margin: 0;
+    max-width: 14rem;
+    line-height: 1.45;
+  }
+
+  .map-heading span {
+    display: block;
   }
 
   .map-reset {
@@ -514,6 +525,8 @@ const connections = [
   }
 
   .flow-node {
+    --node-glow: rgb(17 24 39 / 10%);
+    --node-glow-soft: rgb(17 24 39 / 8%);
     position: absolute;
     left: calc(var(--x) * 1%);
     top: calc(var(--y) * 1%);
@@ -527,7 +540,7 @@ const connections = [
     border: 1px solid var(--color-soft);
     border-radius: 0.95rem;
     background: rgb(255 255 255 / 72%);
-    box-shadow: var(--shadow-node);
+    box-shadow: 0 18px 50px var(--node-glow), 0 2px 8px var(--node-glow-soft);
     cursor: grab;
     touch-action: none;
     user-select: none;
@@ -536,7 +549,33 @@ const connections = [
 
   .flow-node:hover {
     border-color: #a7b4bf;
+    box-shadow: 0 22px 56px var(--node-glow), 0 4px 14px var(--node-glow-soft);
     transform: translateY(-2px);
+  }
+
+  .flow-node[data-node='flows'] {
+    --node-glow: rgb(0 174 180 / 18%);
+    --node-glow-soft: rgb(0 174 180 / 10%);
+  }
+
+  .flow-node[data-node='systems'] {
+    --node-glow: rgb(255 184 0 / 18%);
+    --node-glow-soft: rgb(255 184 0 / 10%);
+  }
+
+  .flow-node[data-node='interfaces'] {
+    --node-glow: rgb(255 91 128 / 16%);
+    --node-glow-soft: rgb(255 91 128 / 9%);
+  }
+
+  .flow-node[data-node='trust'] {
+    --node-glow: rgb(120 95 255 / 17%);
+    --node-glow-soft: rgb(120 95 255 / 9%);
+  }
+
+  .flow-node[data-node='factory'] {
+    --node-glow: rgb(29 185 84 / 17%);
+    --node-glow-soft: rgb(29 185 84 / 9%);
   }
 
   .flow-node.is-dragging {

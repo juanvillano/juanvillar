@@ -8,6 +8,8 @@ type Translation = {
   workCta: string;
   emailCta: string;
   mapLabel: string;
+  mapLabelStart: string;
+  mapLabelEnd: string;
   resetMap: string;
 };
 
@@ -20,6 +22,8 @@ const translations: Record<Language, Translation> = {
     workCta: 'View selected work',
     emailCta: 'Email me',
     mapLabel: 'Drag the nodes. Reset the map when it gets messy.',
+    mapLabelStart: 'Drag the nodes.',
+    mapLabelEnd: 'Reset the map when it gets messy.',
     resetMap: 'Reset map',
   },
   es: {
@@ -30,6 +34,8 @@ const translations: Record<Language, Translation> = {
     workCta: 'Ver trabajo seleccionado',
     emailCta: 'Escríbeme',
     mapLabel: 'Mueve los nodos. Reinicia el mapa cuando se desordene.',
+    mapLabelStart: 'Mueve los nodos.',
+    mapLabelEnd: 'Reinicia el mapa cuando se desordene.',
     resetMap: 'Reiniciar mapa',
   },
 };
