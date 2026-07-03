@@ -1,0 +1,692 @@
+---
+const chips = [
+  ['Banking', 'Banca'],
+  ['Fintech', 'Fintech'],
+  ['Design systems', 'Sistemas de diseño'],
+  ['KYC / Onboarding', 'KYC / Onboarding'],
+];
+
+const navItems = [
+  ['Work', '#work', 'Trabajo'],
+  ['About', '#about', 'Sobre mi'],
+  ['Writing', '#writing', 'Escritura'],
+  ['Contact', '#contact', 'Contacto'],
+];
+
+const nodes = [
+  {
+    id: 'flows',
+    title: 'Flows',
+    titleEs: 'Flujos',
+    body: 'Make paths clear.',
+    bodyEs: 'Hacer claros los caminos.',
+    x: 8,
+    y: 12,
+  },
+  {
+    id: 'systems',
+    title: 'Systems',
+    titleEs: 'Sistemas',
+    body: 'Design scalable structure.',
+    bodyEs: 'Diseñar estructura escalable.',
+    x: 43,
+    y: 12,
+  },
+  {
+    id: 'interfaces',
+    title: 'Interfaces',
+    titleEs: 'Interfaces',
+    body: 'Create confident steps.',
+    bodyEs: 'Crear pasos con confianza.',
+    x: 74,
+    y: 15,
+  },
+  {
+    id: 'banking',
+    title: 'Banking',
+    titleEs: 'Banca',
+    body: 'Build trust at every step.',
+    bodyEs: 'Construir confianza en cada paso.',
+    x: 63,
+    y: 48,
+    active: true,
+  },
+  {
+    id: 'trust',
+    title: 'Trust',
+    titleEs: 'Confianza',
+    body: 'Reduce doubt.',
+    bodyEs: 'Reducir la duda.',
+    x: 34,
+    y: 72,
+  },
+  {
+    id: 'factory',
+    title: 'La Fábrica',
+    titleEs: 'La Fábrica',
+    body: 'Experiment and learn.',
+    bodyEs: 'Experimentar y aprender.',
+    x: 4,
+    y: 58,
+  },
+];
+
+const connections = [
+  ['flows', 'systems'],
+  ['systems', 'interfaces'],
+  ['interfaces', 'banking'],
+  ['flows', 'banking'],
+  ['banking', 'trust'],
+  ['flows', 'factory'],
+  ['factory', 'trust'],
+];
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <header class="hero__nav" aria-label="Primary">
+    <a class="hero__brand" href="/" aria-label="Juan Villar home">Juan Villar</a>
+    <div class="hero__nav-group">
+      <nav class="hero__links">
+        {navItems.map(([label, href, labelEs]) => (
+          <a href={href} data-i18n={`nav.${label.toLowerCase()}`} data-en={label} data-es={labelEs}>
+            {label}
+          </a>
+        ))}
+      </nav>
+      <div class="language-toggle" aria-label="Language">
+        <button type="button" data-lang-option="en" aria-pressed="true">EN</button>
+        <span aria-hidden="true">/</span>
+        <button type="button" data-lang-option="es" aria-pressed="false">ES</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="hero__content">
+    <div class="hero__copy">
+      <p class="hero__role" data-i18n="role">Product designer</p>
+      <h1 id="hero-title" class="hero__name">
+        <span>JUAN</span>
+        <span>VILLAR</span>
+      </h1>
+
+      <p class="hero__headline">
+        <span data-i18n="headline">I design flows, systems, and interfaces where clarity and trust matter.</span>
+        <svg class="mark mark--clarity" viewBox="0 0 160 22" aria-hidden="true">
+          <path d="M4 15c28-8 57-10 86-9 22 1 43 4 66 1" />
+          <path d="M26 20c36-8 69-11 107-9" />
+        </svg>
+      </p>
+
+      <p class="hero__support" data-i18n="support">
+        I partner with teams in banking and fintech to turn complexity into simple, confident experiences.
+      </p>
+
+      <ul class="hero__chips" aria-label="Focus areas">
+        {chips.map(([label, labelEs]) => (
+          <li data-en={label} data-es={labelEs}>{label}</li>
+        ))}
+      </ul>
+
+      <div class="hero__actions" aria-label="Hero actions">
+        <a class="button button--primary" href="#work">
+          <span data-i18n="workCta">View selected work</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 17 17 7" />
+            <path d="M9 7h8v8" />
+          </svg>
+        </a>
+        <a class="button button--secondary" href="#contact">
+          <span data-i18n="emailCta">Email me</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 6h16v12H4z" />
+            <path d="m4 7 8 6 8-6" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero__map-panel" aria-label="Interactive map of Juan's design focus">
+      <div class="map-heading">
+        <p data-i18n="mapLabel">Drag the nodes. Reset the map when it gets messy.</p>
+        <button class="map-reset" type="button" data-reset-map>
+          <span data-i18n="resetMap">Reset map</span>
+        </button>
+      </div>
+
+      <div class="flow-map" data-flow-map>
+        <svg class="flow-map__lines" aria-hidden="true">
+          {connections.map(([from, to]) => (
+            <path data-connection data-from={from} data-to={to}></path>
+          ))}
+        </svg>
+
+        {nodes.map((node) => (
+          <article
+            class:list={['flow-node', { 'flow-node--active': node.active }]}
+            data-node={node.id}
+            data-x={node.x}
+            data-y={node.y}
+            style={`--x: ${node.x}; --y: ${node.y};`}
+          >
+            <div class="flow-node__copy">
+              <h2 data-node-title data-en={node.title} data-es={node.titleEs}>{node.title}</h2>
+              <p data-node-body data-en={node.body} data-es={node.bodyEs}>{node.body}</p>
+            </div>
+            <div class="flow-node__handle" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import '../scripts/hero-canvas.ts';
+  </script>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    overflow: clip;
+    padding: clamp(1.25rem, 2.2vw, 2.5rem);
+  }
+
+  .hero::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    content: '';
+    background-image:
+      linear-gradient(rgb(16 20 23 / 2%) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(16 20 23 / 2%) 1px, transparent 1px);
+    background-size: 46px 46px;
+    mask-image: linear-gradient(90deg, transparent 0%, black 22%, black 86%, transparent 100%);
+  }
+
+  .hero__nav {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 2.75rem;
+    color: var(--color-muted);
+    font-size: 0.78rem;
+    font-weight: 760;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .hero__brand {
+    color: var(--color-ink);
+    font-size: 0.86rem;
+    font-weight: 850;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  .hero__nav-group,
+  .hero__links,
+  .language-toggle {
+    display: flex;
+    align-items: center;
+  }
+
+  .hero__nav-group {
+    gap: clamp(1rem, 2vw, 2rem);
+  }
+
+  .hero__links {
+    gap: clamp(0.8rem, 1.6vw, 1.45rem);
+  }
+
+  .hero__links a,
+  .language-toggle button,
+  .hero__brand {
+    transition: color 180ms ease, transform 180ms ease;
+  }
+
+  .hero__links a:hover,
+  .language-toggle button:hover,
+  .hero__brand:hover {
+    color: var(--color-blue);
+  }
+
+  .language-toggle {
+    gap: 0.35rem;
+    color: var(--color-muted);
+  }
+
+  .language-toggle button {
+    min-width: 2rem;
+    min-height: 2rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+  }
+
+  .language-toggle button[aria-pressed='true'] {
+    color: var(--color-blue);
+  }
+
+  .hero__content {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(35rem, 1.1fr);
+    gap: clamp(2rem, 4vw, 5.25rem);
+    align-items: center;
+    min-height: calc(100svh - 5.25rem);
+    padding-top: clamp(1.5rem, 4vw, 4rem);
+  }
+
+  .hero__copy {
+    max-width: 52rem;
+  }
+
+  .hero__role {
+    margin: 0 0 clamp(1.15rem, 2vw, 1.7rem);
+    color: var(--color-blue);
+    font-size: clamp(0.96rem, 1.6vw, 1.45rem);
+    font-weight: 840;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  .hero__name {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.05em 0.18em;
+    margin: 0 0 clamp(1rem, 2vw, 1.65rem);
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: clamp(5.25rem, 9.1vw, 10.75rem);
+    font-stretch: condensed;
+    font-weight: 900;
+    letter-spacing: -0.045em;
+    line-height: 0.82;
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+
+  .hero__headline {
+    position: relative;
+    max-width: 44rem;
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: clamp(2.05rem, 3.25vw, 3.95rem);
+    font-variation-settings: 'SOFT' 55, 'WONK' 1, 'opsz' 70;
+    font-weight: 720;
+    letter-spacing: -0.03em;
+    line-height: 1.02;
+  }
+
+  .hero__headline > span {
+    position: relative;
+    z-index: 1;
+  }
+
+  .mark {
+    position: absolute;
+    z-index: 0;
+    width: clamp(5.4rem, 12vw, 9.5rem);
+    height: auto;
+    overflow: visible;
+  }
+
+  .mark path {
+    fill: none;
+    stroke: var(--color-blue);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 4;
+  }
+
+  .mark--clarity {
+    right: 5.5%;
+    bottom: -0.18em;
+    rotate: -3deg;
+  }
+
+  .hero__support {
+    max-width: 40rem;
+    margin: clamp(1.2rem, 2vw, 1.65rem) 0 0;
+    color: var(--color-muted);
+    font-size: clamp(1rem, 1.28vw, 1.18rem);
+    font-weight: 540;
+    line-height: 1.55;
+  }
+
+  .hero__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: clamp(1.25rem, 2vw, 1.75rem) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .hero__chips li {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0.2rem 1.05rem;
+    border: 1px solid var(--color-soft);
+    border-radius: 999px;
+    background: rgb(255 255 255 / 58%);
+    color: #29333c;
+    box-shadow: 0 1px 4px rgb(17 24 39 / 4%);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 720;
+  }
+
+  .hero__actions {
+    display: none;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: clamp(1.45rem, 2.4vw, 2.1rem);
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    min-height: 4rem;
+    padding: 0.35rem 1.75rem;
+    border: 2px solid transparent;
+    border-radius: 999px;
+    font-size: 1.02rem;
+    font-weight: 780;
+    transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease, transform 180ms ease;
+  }
+
+  .button:hover {
+    transform: translateY(-2px);
+  }
+
+  .button svg {
+    width: 1.35rem;
+    height: 1.35rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2.2;
+  }
+
+  .button--primary {
+    background: var(--color-blue);
+    color: white;
+    box-shadow: 0 20px 40px rgb(15 92 255 / 20%);
+  }
+
+  .button--primary:hover {
+    background: var(--color-blue-dark);
+  }
+
+  .button--secondary {
+    border-color: #70808c;
+    background: rgb(255 255 255 / 54%);
+    color: #17202a;
+  }
+
+  .button--secondary:hover {
+    border-color: var(--color-blue);
+    color: var(--color-blue);
+  }
+
+  .hero__map-panel {
+    align-self: stretch;
+    min-height: 39rem;
+    padding-top: clamp(1.75rem, 5vh, 4rem);
+  }
+
+  .map-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 0 auto 0.85rem;
+    max-width: 56rem;
+    color: rgb(102 113 124 / 58%);
+    font-family: 'Bradley Hand', 'Segoe Print', 'Comic Sans MS', cursive;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+
+  .map-heading p {
+    margin: 0;
+  }
+
+  .map-reset {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.4rem;
+    padding: 0.25rem 0.9rem;
+    border: 1px solid var(--color-soft);
+    border-radius: 999px;
+    background: rgb(255 255 255 / 72%);
+    color: rgb(52 65 76 / 62%);
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+
+  .map-reset:hover {
+    border-color: var(--color-blue);
+    color: var(--color-blue);
+  }
+
+  .flow-map {
+    position: relative;
+    min-height: clamp(29rem, 56vh, 39rem);
+    isolation: isolate;
+  }
+
+  .flow-map__lines {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .flow-map__lines path {
+    fill: none;
+    stroke: #aeb9c1;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2.2;
+  }
+
+  .flow-node {
+    position: absolute;
+    left: calc(var(--x) * 1%);
+    top: calc(var(--y) * 1%);
+    z-index: 2;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.7rem;
+    width: clamp(12.6rem, 16vw, 15.5rem);
+    min-height: 5.85rem;
+    padding: 0.78rem 1rem 0.72rem;
+    border: 1px solid var(--color-soft);
+    border-radius: 0.95rem;
+    background: rgb(255 255 255 / 72%);
+    box-shadow: var(--shadow-node);
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+  }
+
+  .flow-node:hover {
+    border-color: #a7b4bf;
+    transform: translateY(-2px);
+  }
+
+  .flow-node.is-dragging {
+    z-index: 5;
+    cursor: grabbing;
+    transform: scale(1.025);
+  }
+
+  .flow-node--active {
+    border: 2px solid var(--color-blue);
+    box-shadow: 0 24px 60px rgb(15 92 255 / 18%), 0 4px 14px rgb(17 24 39 / 8%);
+  }
+
+  .flow-node__handle {
+    display: grid;
+    grid-template-columns: repeat(2, 0.18rem);
+    gap: 0.24rem;
+    align-content: start;
+    padding-top: 0.25rem;
+  }
+
+  .flow-node__handle span {
+    width: 0.18rem;
+    height: 0.18rem;
+    border-radius: 50%;
+    background: #a8b3bc;
+  }
+
+  .flow-node__copy {
+    min-width: 0;
+    text-align: left;
+  }
+
+  .flow-node h2 {
+    margin: 0.1rem 0 0.32rem;
+    color: #1b252e;
+    font-size: clamp(0.98rem, 1.18vw, 1.12rem);
+    font-weight: 850;
+    letter-spacing: -0.015em;
+  }
+
+  .flow-node p {
+    margin: 0;
+    color: #55626d;
+    font-size: clamp(0.8rem, 0.94vw, 0.92rem);
+    font-weight: 610;
+    line-height: 1.45;
+  }
+
+  @media (max-width: 1180px) {
+    .hero__content {
+      grid-template-columns: 1fr;
+      gap: 0;
+      align-items: start;
+    }
+
+    .hero__copy {
+      max-width: 58rem;
+      padding-top: clamp(1rem, 2vw, 2rem);
+    }
+
+    .hero__map-panel {
+      display: none;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .hero {
+      padding: 1rem;
+    }
+
+    .hero__nav {
+      align-items: flex-start;
+      font-size: 0.7rem;
+    }
+
+    .hero__nav-group {
+      align-items: flex-end;
+      flex-direction: column-reverse;
+      gap: 0.45rem;
+    }
+
+    .hero__links {
+      gap: 0.65rem;
+    }
+
+    .hero__links a:nth-child(3) {
+      display: none;
+    }
+
+    .hero__content {
+      min-height: auto;
+      padding-top: 1.25rem;
+    }
+
+    .hero__name {
+      font-size: clamp(4.5rem, 23vw, 8.5rem);
+      line-height: 0.82;
+    }
+
+    .hero__headline {
+      font-size: clamp(2rem, 11vw, 3.75rem);
+    }
+
+    .hero__support {
+      font-size: 1rem;
+    }
+
+    .hero__chips li {
+      min-height: 2.45rem;
+      padding-inline: 0.85rem;
+      font-size: 0.86rem;
+    }
+
+    .button {
+      width: 100%;
+      min-height: 3.55rem;
+    }
+
+    .hero__map-panel {
+      min-height: 30rem;
+      padding-top: 2.25rem;
+    }
+
+    .map-heading {
+      align-items: flex-start;
+      flex-direction: column;
+      margin-bottom: 1.25rem;
+      font-size: 0.68rem;
+    }
+
+    .flow-map {
+      min-height: 28rem;
+      overflow: hidden;
+    }
+
+    .flow-node {
+      width: 10.3rem;
+      min-height: 7.9rem;
+      padding: 0.95rem 0.75rem 0.85rem;
+      border-radius: 0.95rem;
+    }
+
+    .flow-node[data-node='interfaces'] {
+      display: none;
+    }
+
+    .flow-node[data-node='factory'] {
+      display: none;
+    }
+
+  }
+</style>

@@ -1,0 +1,21 @@
+{
+  "name": "juan-villar-portfolio",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "check": "astro check",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@fontsource-variable/fraunces": "^5.2.8",
+    "@fontsource-variable/inter": "^5.2.8",
+    "astro": "^5.0.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "typescript": "^5.6.3"
+  }
+}

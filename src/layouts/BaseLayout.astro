@@ -1,0 +1,25 @@
+---
+import '@fontsource-variable/inter/index.css';
+import '@fontsource-variable/fraunces/index.css';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" data-lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Juan Villar is a product designer focused on flows, systems, and interfaces where clarity and trust matter." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
