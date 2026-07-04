@@ -1,0 +1,212 @@
+---
+const services = [
+  {
+    title: 'Product flows',
+    body: 'I map journeys, states, edge cases, and handoffs so complex product moments become easier to understand and build.',
+  },
+  {
+    title: 'Systems thinking',
+    body: 'I turn repeated requests into reusable patterns, decisions, and interface logic that help teams move with less confusion.',
+  },
+  {
+    title: 'Interface clarity',
+    body: 'I shape screens, messages, form behavior, and interaction details around what users need to do next.',
+  },
+  {
+    title: 'Business translation',
+    body: 'I connect non-designer perspectives, business constraints, development realities, and customer needs into practical design decisions.',
+  },
+];
+---
+
+<section class="what-i-do" id="about" aria-labelledby="what-i-do-title">
+  <div class="what-i-do__intro">
+    <p class="what-i-do__eyebrow">About / What I do</p>
+    <h2 id="what-i-do-title">What I do</h2>
+    <p>
+      I work where product complexity needs to become a clearer path: flows, systems, interfaces,
+      and the business context around them.
+    </p>
+  </div>
+
+  <div class="what-i-do__wall" aria-label="Ways Juan can help">
+    {services.map((service, index) => (
+      <article class="what-i-do__item">
+        <span class="what-i-do__number">{String(index + 1).padStart(2, '0')}</span>
+        <div class="what-i-do__copy">
+          <h3>{service.title}</h3>
+          <p>{service.body}</p>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .what-i-do {
+    position: relative;
+    overflow: clip;
+    padding: clamp(4rem, 8vw, 8rem) clamp(1.25rem, 2.2vw, 2.5rem);
+    background:
+      linear-gradient(rgb(16 20 23 / 2.8%) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(16 20 23 / 2.8%) 1px, transparent 1px),
+      linear-gradient(180deg, var(--color-paper), var(--color-canvas));
+    background-size: 46px 46px, 46px 46px, auto;
+    border-top: 1px solid var(--color-soft);
+  }
+
+  .what-i-do__intro {
+    display: grid;
+    grid-template-columns: minmax(14rem, 0.32fr) minmax(0, 0.42fr) minmax(18rem, 0.26fr);
+    gap: clamp(1.5rem, 3vw, 3rem);
+    align-items: end;
+    margin-bottom: clamp(2.5rem, 5vw, 5rem);
+  }
+
+  .what-i-do__eyebrow {
+    margin: 0;
+    color: var(--color-blue);
+    font-size: 0.76rem;
+    font-weight: 850;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .what-i-do h2 {
+    margin: 0;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: clamp(5.5rem, 13vw, 15rem);
+    line-height: 0.78;
+    letter-spacing: -0.065em;
+    text-transform: uppercase;
+  }
+
+  .what-i-do__intro > p:last-child {
+    max-width: 31rem;
+    margin: 0;
+    color: var(--color-muted);
+    font-size: clamp(1rem, 1.35vw, 1.28rem);
+    font-weight: 600;
+    line-height: 1.45;
+  }
+
+  .what-i-do__wall {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    min-height: clamp(25rem, 38vw, 35rem);
+    border: 1px solid var(--color-line);
+    background: rgb(255 255 255 / 54%);
+    box-shadow: 0 24px 80px rgb(17 24 39 / 6%);
+  }
+
+  .what-i-do__item {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    min-width: 0;
+    min-height: clamp(23rem, 34vw, 32rem);
+    padding: clamp(1rem, 1.6vw, 1.5rem);
+    border-right: 1px solid var(--color-line);
+  }
+
+  .what-i-do__item:last-child {
+    border-right: 0;
+  }
+
+  .what-i-do__number {
+    justify-self: end;
+    display: grid;
+    place-items: center;
+    width: 3.35rem;
+    min-height: 3.35rem;
+    border: 1px solid var(--color-line);
+    color: var(--color-blue);
+    font-size: 0.86rem;
+    font-weight: 850;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.04em;
+  }
+
+  .what-i-do__copy {
+    align-self: end;
+    display: grid;
+    gap: 0.95rem;
+  }
+
+  .what-i-do__copy h3 {
+    max-width: 13rem;
+    margin: 0;
+    color: var(--color-ink);
+    font-size: clamp(1.55rem, 2.45vw, 3.2rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+  }
+
+  .what-i-do__copy p {
+    max-width: 24rem;
+    margin: 0;
+    color: var(--color-muted);
+    font-size: clamp(0.96rem, 1.05vw, 1.1rem);
+    font-weight: 580;
+    line-height: 1.45;
+  }
+
+  .what-i-do__item:nth-child(1) {
+    background: linear-gradient(180deg, transparent, rgb(15 92 255 / 5%));
+  }
+
+  .what-i-do__item:nth-child(2) {
+    background: linear-gradient(180deg, transparent, rgb(255 184 0 / 7%));
+  }
+
+  .what-i-do__item:nth-child(3) {
+    background: linear-gradient(180deg, transparent, rgb(255 91 128 / 5%));
+  }
+
+  .what-i-do__item:nth-child(4) {
+    background: linear-gradient(180deg, transparent, rgb(29 185 84 / 5%));
+  }
+
+  @media (max-width: 980px) {
+    .what-i-do__intro {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+
+    .what-i-do__wall {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .what-i-do__item:nth-child(2) {
+      border-right: 0;
+    }
+
+    .what-i-do__item:nth-child(n + 3) {
+      border-top: 1px solid var(--color-line);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .what-i-do {
+      padding-inline: 1rem;
+    }
+
+    .what-i-do h2 {
+      font-size: clamp(4.4rem, 25vw, 7.5rem);
+    }
+
+    .what-i-do__wall {
+      grid-template-columns: 1fr;
+    }
+
+    .what-i-do__item {
+      min-height: 18rem;
+      border-right: 0;
+      border-top: 1px solid var(--color-line);
+    }
+
+    .what-i-do__item:first-child {
+      border-top: 0;
+    }
+  }
+</style>
