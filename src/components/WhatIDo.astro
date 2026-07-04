@@ -1,44 +1,47 @@
 ---
 const services = [
   {
-    title: 'Product flows',
-    body: 'I map journeys, states, edge cases, and handoffs so complex product moments become easier to understand and build.',
+    title: "Product flows",
+    body: "I map journeys, states, edge cases, and handoffs so complex product moments become easier to understand and build.",
   },
   {
-    title: 'Systems thinking',
-    body: 'I turn repeated requests into reusable patterns, decisions, and interface logic that help teams move with less confusion.',
+    title: "Systems thinking",
+    body: "I turn repeated requests into reusable patterns, decisions, and interface logic that help teams move with less confusion.",
   },
   {
-    title: 'Interface clarity',
-    body: 'I shape screens, messages, form behavior, and interaction details around what users need to do next.',
+    title: "Interface clarity",
+    body: "I shape screens, messages, form behavior, and interaction details around what users need to do next.",
   },
   {
-    title: 'Business translation',
-    body: 'I connect non-designer perspectives, business constraints, development realities, and customer needs into practical design decisions.',
+    title: "Business translation",
+    body: "I connect non-designer perspectives, business constraints, development realities, and customer needs into practical design decisions.",
   },
 ];
 ---
 
 <section class="what-i-do" id="about" aria-labelledby="what-i-do-title">
   <div class="what-i-do__intro">
-    <p class="what-i-do__eyebrow">About / What I do</p>
     <h2 id="what-i-do-title">What I do</h2>
     <p>
-      I work where product complexity needs to become a clearer path: flows, systems, interfaces,
-      and the business context around them.
+      I work where product complexity needs to become a clearer path: flows,
+      systems, interfaces, and the business context around them.
     </p>
   </div>
 
   <div class="what-i-do__wall" aria-label="Ways Juan can help">
-    {services.map((service, index) => (
-      <article class="what-i-do__item">
-        <span class="what-i-do__number">{String(index + 1).padStart(2, '0')}</span>
-        <div class="what-i-do__copy">
-          <h3>{service.title}</h3>
-          <p>{service.body}</p>
-        </div>
-      </article>
-    ))}
+    {
+      services.map((service, index) => (
+        <article class="what-i-do__item">
+          <span class="what-i-do__number">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <div class="what-i-do__copy">
+            <h3>{service.title}</h3>
+            <p>{service.body}</p>
+          </div>
+        </article>
+      ))
+    }
   </div>
 </section>
 
@@ -51,25 +54,22 @@ const services = [
       linear-gradient(rgb(16 20 23 / 2.8%) 1px, transparent 1px),
       linear-gradient(90deg, rgb(16 20 23 / 2.8%) 1px, transparent 1px),
       linear-gradient(180deg, var(--color-paper), var(--color-canvas));
-    background-size: 46px 46px, 46px 46px, auto;
+    background-size:
+      46px 46px,
+      46px 46px,
+      auto;
     border-top: 1px solid var(--color-soft);
   }
 
   .what-i-do__intro {
     display: grid;
-    grid-template-columns: minmax(14rem, 0.32fr) minmax(0, 0.42fr) minmax(18rem, 0.26fr);
+    grid-template-columns: minmax(14rem, 0.32fr) minmax(0, 0.42fr) minmax(
+        18rem,
+        0.26fr
+      );
     gap: clamp(1.5rem, 3vw, 3rem);
-    align-items: end;
+    align-items: start;
     margin-bottom: clamp(2.5rem, 5vw, 5rem);
-  }
-
-  .what-i-do__eyebrow {
-    margin: 0;
-    color: var(--color-blue);
-    font-size: 0.76rem;
-    font-weight: 850;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
   }
 
   .what-i-do h2 {
