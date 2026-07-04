@@ -346,13 +346,13 @@ const connections = [
     z-index: 1;
   }
 
-  .headline-mark-word {
+  :global(.headline-mark-word) {
     position: relative;
     display: inline-block;
     white-space: nowrap;
   }
 
-  .mark {
+  :global(.mark) {
     position: absolute;
     z-index: 0;
     width: clamp(5.4rem, 12vw, 9.5rem);
@@ -360,7 +360,7 @@ const connections = [
     overflow: visible;
   }
 
-  .mark path {
+  :global(.mark path) {
     fill: none;
     stroke: var(--color-blue);
     stroke-linecap: round;
@@ -368,7 +368,7 @@ const connections = [
     stroke-width: 4;
   }
 
-  .mark--clarity {
+  :global(.mark--clarity) {
     left: -0.08em;
     bottom: -0.2em;
     rotate: -3deg;

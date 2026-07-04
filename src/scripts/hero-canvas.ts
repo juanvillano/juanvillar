@@ -91,6 +91,13 @@ const createHeadline = (language: Language) => {
   svg.setAttribute('aria-hidden', 'true');
   firstPath.setAttribute('d', 'M4 15c28-8 57-10 86-9 22 1 43 4 66 1');
   secondPath.setAttribute('d', 'M26 20c36-8 69-11 107-9');
+  [firstPath, secondPath].forEach((path) => {
+    path.setAttribute('fill', 'none');
+    path.setAttribute('stroke', 'var(--color-blue)');
+    path.setAttribute('stroke-linecap', 'round');
+    path.setAttribute('stroke-linejoin', 'round');
+    path.setAttribute('stroke-width', '4');
+  });
   svg.append(firstPath, secondPath);
   word.append(svg);
   fragment.append(prefix, word);
