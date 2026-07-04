@@ -132,6 +132,25 @@ const setupFlowMap = () => {
     node.style.setProperty('--y', `${y}`);
   });
 
+  const pathConnectsToNode = (path: SVGPathElement, id: string) => path.dataset.from === id || path.dataset.to === id;
+
+  const setHighlightedConnections = (id?: string) => {
+    paths.forEach((path) => {
+      const isConnected = id ? pathConnectsToNode(path, id) : false;
+      path.classList.toggle('is-connected', isConnected);
+      path.classList.toggle('is-dimmed', Boolean(id) && !isConnected);
+    });
+  };
+
+  const setActiveConnections = () => {
+    const activeNode = nodes.find((node) => node.classList.contains('flow-node--active'));
+    const activeId = activeNode?.dataset.node;
+
+    paths.forEach((path) => {
+      path.classList.toggle('is-active-connection', activeId ? pathConnectsToNode(path, activeId) : false);
+    });
+  };
+
   const getNodeBox = (id: string) => {
     const node = nodes.find((item) => item.dataset.node === id);
     if (!node) return null;
@@ -264,6 +283,15 @@ const setupFlowMap = () => {
 
   const enableDragging = () => {
     nodes.forEach((node) => {
+      const id = node.dataset.node;
+
+      node.addEventListener('pointerenter', () => setHighlightedConnections(id));
+      node.addEventListener('pointerleave', () => {
+        if (!node.classList.contains('is-dragging')) setHighlightedConnections();
+      });
+      node.addEventListener('focus', () => setHighlightedConnections(id));
+      node.addEventListener('blur', () => setHighlightedConnections());
+
       node.addEventListener('pointerdown', (event) => {
         if (mobilePointer.matches) return;
 
@@ -276,6 +304,7 @@ const setupFlowMap = () => {
         const offsetY = event.clientY - nodeRect.top;
 
         node.classList.add('is-dragging');
+        setHighlightedConnections(id);
         node.setPointerCapture(event.pointerId);
 
         const moveNode = (moveEvent: PointerEvent) => {
@@ -287,6 +316,7 @@ const setupFlowMap = () => {
 
         const stopDrag = () => {
           node.classList.remove('is-dragging');
+          setHighlightedConnections();
           node.removeEventListener('pointermove', moveNode);
           node.removeEventListener('pointerup', stopDrag);
           node.removeEventListener('pointercancel', stopDrag);
@@ -303,6 +333,7 @@ const setupFlowMap = () => {
   window.addEventListener('resize', updateConnections);
   reducedMotion.addEventListener('change', updateConnections);
   enableDragging();
+  setActiveConnections();
   updateConnections();
 };
 
