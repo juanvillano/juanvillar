@@ -73,6 +73,7 @@ const services = [
   }
 
   .what-i-do h2 {
+    grid-column: 1 / 2;
     margin: 0;
     color: var(--color-ink);
     font-family: var(--font-display);
@@ -83,6 +84,7 @@ const services = [
   }
 
   .what-i-do__intro > p:last-child {
+    grid-column: 2 / 4;
     max-width: 31rem;
     margin: 0;
     color: var(--color-muted);
@@ -171,6 +173,11 @@ const services = [
     .what-i-do__intro {
       grid-template-columns: 1fr;
       align-items: start;
+    }
+
+    .what-i-do h2,
+    .what-i-do__intro > p:last-child {
+      grid-column: auto;
     }
 
     .what-i-do__wall {
