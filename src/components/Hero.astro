@@ -250,6 +250,10 @@ const connections = [
     gap: clamp(0.8rem, 1.6vw, 1.45rem);
   }
 
+  .hero__links a[data-i18n='nav.writing'] {
+    display: none;
+  }
+
   .hero__links a,
   .language-toggle button,
   .hero__brand {
@@ -296,9 +300,9 @@ const connections = [
   }
 
   .hero__role {
-    margin: 0 0 clamp(1.15rem, 2vw, 1.7rem);
+    margin: 0 0 clamp(0.75rem, 1.5vw, 1rem);
     color: var(--color-blue);
-    font-size: clamp(0.96rem, 1.6vw, 1.45rem);
+    font-size: clamp(0.75rem, 1vw, 1rem);
     font-weight: 840;
     letter-spacing: 0.11em;
     text-transform: uppercase;
@@ -369,7 +373,7 @@ const connections = [
   }
 
   .hero__chips {
-    display: flex;
+    display: none;
     flex-wrap: wrap;
     gap: 0.75rem;
     margin: clamp(1.25rem, 2vw, 1.75rem) 0 0;
@@ -549,6 +553,8 @@ const connections = [
   .flow-node {
     --node-glow: rgb(17 24 39 / 8%);
     --node-glow-soft: rgb(17 24 39 / 5%);
+    --node-interaction-glow: rgb(17 24 39 / 12%);
+    --node-interaction-glow-soft: rgb(17 24 39 / 8%);
     position: absolute;
     left: calc(var(--x) * 1%);
     top: calc(var(--y) * 1%);
@@ -572,44 +578,45 @@ const connections = [
   .flow-node:hover,
   .flow-node:focus-visible {
     border-color: #a7b4bf;
-    box-shadow: 0 22px 56px var(--node-glow), 0 4px 14px var(--node-glow-soft);
+    box-shadow: 0 22px 56px var(--node-interaction-glow), 0 4px 14px var(--node-interaction-glow-soft);
     transform: translateY(-2px);
   }
 
   .flow-node[data-node='flows'] {
-    --node-glow: rgb(0 174 180 / 12%);
-    --node-glow-soft: rgb(0 174 180 / 7%);
+    --node-interaction-glow: rgb(0 174 180 / 18%);
+    --node-interaction-glow-soft: rgb(0 174 180 / 10%);
   }
 
   .flow-node[data-node='systems'] {
-    --node-glow: rgb(255 184 0 / 12%);
-    --node-glow-soft: rgb(255 184 0 / 7%);
+    --node-interaction-glow: rgb(255 184 0 / 18%);
+    --node-interaction-glow-soft: rgb(255 184 0 / 10%);
   }
 
   .flow-node[data-node='interfaces'] {
-    --node-glow: rgb(255 91 128 / 11%);
-    --node-glow-soft: rgb(255 91 128 / 6%);
+    --node-interaction-glow: rgb(255 91 128 / 16%);
+    --node-interaction-glow-soft: rgb(255 91 128 / 9%);
   }
 
   .flow-node[data-node='trust'] {
-    --node-glow: rgb(120 95 255 / 11%);
-    --node-glow-soft: rgb(120 95 255 / 6%);
+    --node-interaction-glow: rgb(120 95 255 / 17%);
+    --node-interaction-glow-soft: rgb(120 95 255 / 9%);
   }
 
   .flow-node[data-node='factory'] {
-    --node-glow: rgb(29 185 84 / 11%);
-    --node-glow-soft: rgb(29 185 84 / 6%);
+    --node-interaction-glow: rgb(29 185 84 / 17%);
+    --node-interaction-glow-soft: rgb(29 185 84 / 9%);
   }
 
   .flow-node.is-dragging {
     z-index: 5;
+    box-shadow: 0 26px 62px var(--node-interaction-glow), 0 4px 16px var(--node-interaction-glow-soft);
     cursor: grabbing;
     transform: scale(1.025);
   }
 
   .flow-node--active {
     border: 2px solid var(--color-blue);
-    box-shadow: 0 24px 60px rgb(15 92 255 / 16%), 0 4px 14px rgb(17 24 39 / 7%);
+    box-shadow: 0 18px 50px var(--node-glow), 0 2px 8px var(--node-glow-soft);
   }
 
   .flow-node__handle {
