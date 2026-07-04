@@ -71,12 +71,43 @@ const setText = (selector: string, text: string) => {
   });
 };
 
+const createHeadline = (language: Language) => {
+  const fragment = document.createDocumentFragment();
+  const prefix =
+    language === 'es'
+      ? 'Diseño flujos, sistemas e interfaces donde la claridad y la confianza '
+      : 'I design flows, systems, and interfaces where clarity and trust ';
+  const markedWord = language === 'es' ? 'importan.' : 'matter.';
+  const word = document.createElement('span');
+  const svgNamespace = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(svgNamespace, 'svg');
+  const firstPath = document.createElementNS(svgNamespace, 'path');
+  const secondPath = document.createElementNS(svgNamespace, 'path');
+
+  word.className = 'headline-mark-word';
+  word.textContent = markedWord;
+  svg.classList.add('mark', 'mark--clarity');
+  svg.setAttribute('viewBox', '0 0 160 22');
+  svg.setAttribute('aria-hidden', 'true');
+  firstPath.setAttribute('d', 'M4 15c28-8 57-10 86-9 22 1 43 4 66 1');
+  secondPath.setAttribute('d', 'M26 20c36-8 69-11 107-9');
+  svg.append(firstPath, secondPath);
+  word.append(svg);
+  fragment.append(prefix, word);
+
+  return fragment;
+};
+
 const applyLanguage = (language: Language) => {
   document.documentElement.lang = language;
   document.documentElement.dataset.lang = language;
 
   const dictionary = translations[language];
   Object.entries(dictionary).forEach(([key, value]) => setText(`[data-i18n="${key}"]`, value));
+
+  document.querySelectorAll<HTMLElement>('[data-i18n="headline"]').forEach((element) => {
+    element.replaceChildren(createHeadline(language));
+  });
 
   Object.entries(navTranslations).forEach(([key, value]) => {
     setText(`[data-i18n="${key}"]`, value[language]);

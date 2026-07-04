@@ -18,8 +18,8 @@ const nodes = [
     id: 'flows',
     title: 'Flows',
     titleEs: 'Flujos',
-    body: 'Designing journeys that reduce friction and guide users with clarity.',
-    bodyEs: 'Diseñando recorridos que reducen fricción y guían con claridad.',
+    body: 'Reduce friction, guide with clarity.',
+    bodyEs: 'Reducir fricción, guiar con claridad.',
     x: 8,
     y: 12,
     active: true,
@@ -28,8 +28,8 @@ const nodes = [
     id: 'systems',
     title: 'Systems',
     titleEs: 'Sistemas',
-    body: 'Building scalable design structures that support consistency and growth.',
-    bodyEs: 'Construyendo estructuras de diseño escalables para consistencia y crecimiento.',
+    body: 'Scalable structures for consistent growth.',
+    bodyEs: 'Estructuras escalables para crecimiento consistente.',
     x: 43,
     y: 12,
   },
@@ -37,8 +37,8 @@ const nodes = [
     id: 'interfaces',
     title: 'Interfaces',
     titleEs: 'Interfaces',
-    body: 'Crafting clear, confident experiences across states, actions, and edge cases.',
-    bodyEs: 'Creando experiencias claras y confiables entre estados, acciones y casos límite.',
+    body: 'Clear experiences, states and edge cases.',
+    bodyEs: 'Experiencias claras, estados y casos límite.',
     x: 74,
     y: 15,
   },
@@ -46,8 +46,8 @@ const nodes = [
     id: 'banking',
     title: 'Banking',
     titleEs: 'Banca',
-    body: 'Designing financial products where clarity, security, and trust matter most.',
-    bodyEs: 'Diseñando productos financieros donde claridad, seguridad y confianza importan.',
+    body: 'Clarity, security and trust.',
+    bodyEs: 'Claridad, seguridad y confianza.',
     x: 63,
     y: 48,
   },
@@ -55,8 +55,8 @@ const nodes = [
     id: 'trust',
     title: 'Trust',
     titleEs: 'Confianza',
-    body: 'Reducing uncertainty through transparent interactions and thoughtful UX.',
-    bodyEs: 'Reduciendo incertidumbre con interacciones transparentes y UX cuidadosa.',
+    body: 'Transparent interaction and thoughtful UX.',
+    bodyEs: 'Interacción transparente y UX cuidadosa.',
     x: 34,
     y: 72,
   },
@@ -64,8 +64,8 @@ const nodes = [
     id: 'factory',
     title: 'Business',
     titleEs: 'Negocio',
-    body: 'Connecting user needs, product strategy, and measurable outcomes.',
-    bodyEs: 'Conectando necesidades de usuarios, estrategia de producto y resultados medibles.',
+    body: 'Strategy, user needs, and measurable outcomes.',
+    bodyEs: 'Estrategia, necesidades de usuarios y resultados medibles.',
     x: 4,
     y: 58,
   },
@@ -110,11 +110,16 @@ const connections = [
       </h1>
 
       <p class="hero__headline">
-        <span data-i18n="headline">I design flows, systems, and interfaces where clarity and trust matter.</span>
-        <svg class="mark mark--clarity" viewBox="0 0 160 22" aria-hidden="true">
-          <path d="M4 15c28-8 57-10 86-9 22 1 43 4 66 1" />
-          <path d="M26 20c36-8 69-11 107-9" />
-        </svg>
+        <span data-i18n="headline">
+          I design flows, systems, and interfaces where clarity and trust
+          <span class="headline-mark-word">
+            matter.
+            <svg class="mark mark--clarity" viewBox="0 0 160 22" aria-hidden="true">
+              <path d="M4 15c28-8 57-10 86-9 22 1 43 4 66 1" />
+              <path d="M26 20c36-8 69-11 107-9" />
+            </svg>
+          </span>
+        </span>
       </p>
 
       <p class="hero__support" data-i18n="support">
@@ -341,6 +346,12 @@ const connections = [
     z-index: 1;
   }
 
+  .headline-mark-word {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+  }
+
   .mark {
     position: absolute;
     z-index: 0;
@@ -358,8 +369,8 @@ const connections = [
   }
 
   .mark--clarity {
-    right: -3.5%;
-    bottom: -0.25em;
+    left: -0.08em;
+    bottom: -0.2em;
     rotate: -3deg;
   }
 
