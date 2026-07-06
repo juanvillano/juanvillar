@@ -43,11 +43,8 @@ const testimonials = [
 
   <div class="testimonials__grid" aria-label="Coworker testimonials">
     {
-      testimonials.map((testimonial, index) => (
+      testimonials.map((testimonial) => (
         <figure class="testimonial-card">
-          <span class="testimonial-card__number" aria-hidden="true">
-            {String(index + 1).padStart(2, "0")}
-          </span>
           <blockquote>
             <p>{testimonial.quote}</p>
           </blockquote>
@@ -118,7 +115,7 @@ const testimonials = [
   .testimonial-card {
     position: relative;
     display: grid;
-    grid-template-rows: auto 1fr auto auto;
+    grid-template-rows: 1fr auto auto;
     min-height: clamp(20rem, 27vw, 29rem);
     gap: clamp(1rem, 2vw, 1.6rem);
     margin: 0;
@@ -133,20 +130,6 @@ const testimonials = [
 
   .testimonial-card:nth-last-child(-n + 2) {
     border-bottom: 0;
-  }
-
-  .testimonial-card__number {
-    justify-self: end;
-    display: grid;
-    place-items: center;
-    width: 3.35rem;
-    min-height: 3.35rem;
-    border: 1px solid var(--color-line);
-    color: var(--color-blue);
-    font-size: 0.86rem;
-    font-weight: 850;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.04em;
   }
 
   .testimonial-card blockquote {
