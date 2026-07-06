@@ -16,27 +16,63 @@ const contactLinks = [
 
 <section class="contact-close" id="contact" aria-labelledby="contact-title">
   <div class="contact-close__inner">
-    <h2 id="contact-title">
-      Bring the messy
-      <span>
-        flow.
-        <svg class="contact-close__mark" viewBox="0 0 160 22" aria-hidden="true">
-          <path d="M4 15c28-8 57-10 86-9 22 1 43 4 66 1" />
-          <path d="M26 20c36-8 69-11 107-9" />
-        </svg>
-      </span>
-    </h2>
+    <div class="contact-close__intro">
+      <h2 id="contact-title">
+        Bring the messy
+        <span>
+          flow.
+          <svg class="contact-close__mark" viewBox="0 0 160 22" aria-hidden="true">
+            <path d="M4 15c28-8 57-10 86-9 22 1 43 4 66 1" />
+            <path d="M26 20c36-8 69-11 107-9" />
+          </svg>
+        </span>
+      </h2>
 
-    <div class="contact-close__copy">
       <p>
         If you are working through an unclear product path, a trust-sensitive
         experience, or a design problem that needs structure, send the context.
       </p>
+    </div>
 
-      <div class="contact-close__links" aria-label="Contact links">
-        <a href={emailHref}>Email me</a>
-        <a href={linkedinHref} target="_blank" rel="noreferrer">LinkedIn</a>
-      </div>
+    <div class="contact-switchboard" aria-label="Contact links">
+      <a class="contact-action contact-action--email" href={emailHref}>
+        <span class="contact-action__icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32">
+            <path d="M5 8h22v16H5z" />
+            <path d="m6.5 9.5 9.5 8 9.5-8" />
+          </svg>
+        </span>
+        <span class="contact-action__content">
+          <strong>Email me</strong>
+          <span>imjuanvillar@gmail.com</span>
+        </span>
+        <span class="contact-action__arrow" aria-hidden="true">
+          <svg viewBox="0 0 28 28">
+            <path d="M7 21 21 7" />
+            <path d="M9 7h12v12" />
+          </svg>
+        </span>
+      </a>
+
+      <a class="contact-action" href={linkedinHref} target="_blank" rel="noreferrer">
+        <span class="contact-action__icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32">
+            <path d="M7 12h5v13H7z" />
+            <path d="M20.8 12c-2.1 0-3.4 1.1-4 2.1V12H12v13h5v-6.8c0-1.8.9-2.8 2.4-2.8 1.4 0 2.3 1 2.3 2.8V25h5v-7.7c0-3.3-1.9-5.3-4.9-5.3z" />
+            <path d="M9.5 10a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+          </svg>
+        </span>
+        <span class="contact-action__content">
+          <strong>LinkedIn</strong>
+          <span>Profile / connect</span>
+        </span>
+        <span class="contact-action__arrow" aria-hidden="true">
+          <svg viewBox="0 0 28 28">
+            <path d="M7 21 21 7" />
+            <path d="M9 7h12v12" />
+          </svg>
+        </span>
+      </a>
     </div>
   </div>
 </section>
@@ -44,35 +80,48 @@ const contactLinks = [
 <footer class="site-footer">
   <div class="site-footer__brand">
     <strong>Juan Villar</strong>
-    <p>Product designer growing into design engineering.</p>
   </div>
 
   <nav class="site-footer__nav" aria-label="Footer navigation">
     {
-      navLinks.map(([label, href]) => (
-        <a href={href}>{label}</a>
+      navLinks.map(([label, href], index) => (
+        <>
+          <a href={href}>{label}</a>
+          {index < navLinks.length - 1 && <span aria-hidden="true">/</span>}
+        </>
       ))
     }
   </nav>
 
   <nav class="site-footer__nav" aria-label="Footer contact links">
     {
-      contactLinks.map(([label, href]) => (
-        <a href={href} target={label === "LinkedIn" ? "_blank" : undefined} rel={label === "LinkedIn" ? "noreferrer" : undefined}>
-          {label}
-        </a>
+      contactLinks.map(([label, href], index) => (
+        <>
+          <a href={href} target={label === "LinkedIn" ? "_blank" : undefined} rel={label === "LinkedIn" ? "noreferrer" : undefined}>
+            {label}
+          </a>
+          {index < contactLinks.length - 1 && <span aria-hidden="true">/</span>}
+        </>
       ))
     }
   </nav>
 
   <p class="site-footer__note">Built with Astro. 2026.</p>
+
+  <a class="site-footer__top" href="#top" aria-label="Back to top">
+    Back to top
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7 17 17 7" />
+      <path d="M8 7h9v9" />
+    </svg>
+  </a>
 </footer>
 
 <style>
   .contact-close {
     position: relative;
     overflow: clip;
-    padding: clamp(4rem, 8vw, 8rem) clamp(1.25rem, 2.2vw, 2.5rem);
+    padding: clamp(4.5rem, 8vw, 8rem) clamp(1.25rem, 2.2vw, 2.5rem);
     background:
       linear-gradient(rgb(16 20 23 / 2.4%) 1px, transparent 1px),
       linear-gradient(90deg, rgb(16 20 23 / 2.4%) 1px, transparent 1px),
@@ -86,10 +135,16 @@ const contactLinks = [
 
   .contact-close__inner {
     display: grid;
-    grid-template-columns: minmax(18rem, 0.55fr) minmax(18rem, 0.45fr);
-    gap: clamp(2rem, 6vw, 7rem);
+    grid-template-rows: auto 1fr;
+    gap: clamp(3.5rem, 8vw, 7rem);
+    min-height: clamp(36rem, 76svh, 52rem);
+  }
+
+  .contact-close__intro {
+    display: grid;
+    grid-template-columns: minmax(20rem, 0.48fr) minmax(18rem, 0.52fr);
+    gap: clamp(2rem, 7vw, 8rem);
     align-items: start;
-    min-height: clamp(26rem, 42vw, 36rem);
   }
 
   .contact-close h2 {
@@ -127,13 +182,7 @@ const contactLinks = [
     stroke-width: 5;
   }
 
-  .contact-close__copy {
-    display: grid;
-    gap: clamp(1.5rem, 3vw, 2.5rem);
-    padding-top: 0.25rem;
-  }
-
-  .contact-close__copy p {
+  .contact-close__intro p {
     max-width: 40rem;
     margin: 0;
     color: var(--color-muted);
@@ -143,106 +192,206 @@ const contactLinks = [
     letter-spacing: -0.018em;
   }
 
-  .contact-close__links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0;
-    border-top: 1px solid var(--color-line);
+  .contact-switchboard {
+    align-self: end;
+    display: grid;
+    width: 100%;
+    border: 1px solid var(--color-line);
+    background: rgb(255 255 255 / 50%);
+    box-shadow: 0 24px 80px rgb(17 24 39 / 5%);
   }
 
-  .contact-close__links a {
-    display: inline-flex;
+  .contact-action {
+    display: grid;
+    grid-template-columns: clamp(3.2rem, 5vw, 5rem) minmax(10rem, 0.28fr) minmax(12rem, 1fr) auto;
+    gap: clamp(1rem, 3vw, 3.5rem);
     align-items: center;
-    min-height: 3.8rem;
-    padding: 0.6rem clamp(1rem, 2vw, 1.4rem);
-    border-right: 1px solid var(--color-line);
+    min-height: clamp(7.25rem, 11vw, 10.5rem);
+    padding: clamp(1.1rem, 2.4vw, 2rem) clamp(1.25rem, 3vw, 2.75rem);
+    border-bottom: 1px solid var(--color-line);
     color: var(--color-ink);
-    font-size: clamp(1rem, 1.2vw, 1.16rem);
-    font-weight: 800;
     transition:
-      color 180ms cubic-bezier(0.23, 1, 0.32, 1),
-      background-color 180ms cubic-bezier(0.23, 1, 0.32, 1);
+      border-color 180ms cubic-bezier(0.23, 1, 0.32, 1),
+      background-color 180ms cubic-bezier(0.23, 1, 0.32, 1),
+      color 180ms cubic-bezier(0.23, 1, 0.32, 1);
   }
 
-  .contact-close__links a:first-child {
-    padding-left: 0;
+  .contact-action:last-child {
+    border-bottom: 0;
   }
 
-  .contact-close__links a:last-child {
-    border-right: 0;
-  }
-
-  .contact-close__links a:hover {
+  .contact-action:hover,
+  .contact-action:focus-visible {
+    background: rgb(15 92 255 / 3.5%);
     color: var(--color-blue);
+  }
+
+  .contact-action:focus-visible {
+    outline-offset: -4px;
+  }
+
+  .contact-action__icon,
+  .contact-action__arrow {
+    display: grid;
+    place-items: center;
+    color: currentColor;
+  }
+
+  .contact-action__icon svg {
+    width: clamp(2.2rem, 3vw, 3.35rem);
+    height: clamp(2.2rem, 3vw, 3.35rem);
+  }
+
+  .contact-action__arrow svg {
+    width: clamp(2.4rem, 3.4vw, 3.9rem);
+    height: clamp(2.4rem, 3.4vw, 3.9rem);
+  }
+
+  .contact-action__icon svg,
+  .contact-action__arrow svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2.1;
+  }
+
+  .contact-action__icon svg path:nth-child(n + 2) {
+    fill: none;
+  }
+
+  .contact-action__content {
+    display: contents;
+  }
+
+  .contact-action__content strong {
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: clamp(2.15rem, 3.6vw, 4.6rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.07em;
+  }
+
+  .contact-action__content span {
+    color: var(--color-muted);
+    font-size: clamp(1rem, 1.35vw, 1.38rem);
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .contact-action--email {
+    border-color: rgb(15 92 255 / 48%);
+  }
+
+  .contact-action--email .contact-action__arrow {
+    color: var(--color-blue);
+  }
+
+  .contact-action--email:hover,
+  .contact-action--email:focus-visible {
+    border-color: var(--color-blue);
+  }
+
+  .contact-action--email + .contact-action {
+    border-top: 0;
   }
 
   .site-footer {
     display: grid;
-    grid-template-columns: minmax(16rem, 1.15fr) repeat(3, minmax(8rem, 0.35fr));
-    gap: clamp(1.5rem, 4vw, 4rem);
+    grid-template-columns:
+      minmax(10rem, 0.9fr)
+      minmax(13rem, 0.8fr)
+      minmax(10rem, 0.6fr)
+      minmax(9rem, 0.5fr)
+      minmax(8rem, 0.5fr);
+    gap: clamp(1rem, 3vw, 3rem);
     align-items: start;
-    padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.25rem, 2.2vw, 2.5rem);
+    padding: clamp(1.6rem, 3vw, 2.5rem) clamp(1.25rem, 2.2vw, 2.5rem);
     border-top: 1px solid var(--color-line);
-    background: var(--color-canvas);
+    background:
+      linear-gradient(rgb(16 20 23 / 2.2%) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(16 20 23 / 2.2%) 1px, transparent 1px),
+      var(--color-canvas);
+    background-size:
+      46px 46px,
+      46px 46px,
+      auto;
     color: var(--color-muted);
-  }
-
-  .site-footer__brand {
-    display: grid;
-    gap: 0.45rem;
   }
 
   .site-footer__brand strong {
     color: var(--color-ink);
-    font-size: clamp(1rem, 1.3vw, 1.2rem);
+    font-size: clamp(1rem, 1.15vw, 1.12rem);
     font-weight: 880;
     letter-spacing: 0.04em;
     text-transform: uppercase;
   }
 
-  .site-footer__brand p,
-  .site-footer__note {
-    margin: 0;
-    font-size: 0.92rem;
-    font-weight: 620;
-    line-height: 1.35;
-  }
-
   .site-footer__nav {
-    display: grid;
-    gap: 0.55rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem clamp(0.8rem, 1.8vw, 1.8rem);
+    align-items: center;
   }
 
-  .site-footer__nav a {
+  .site-footer__nav a,
+  .site-footer__top {
     width: fit-content;
-    color: var(--color-muted);
-    font-size: 0.9rem;
-    font-weight: 760;
-    transition: color 180ms cubic-bezier(0.23, 1, 0.32, 1);
+    color: var(--color-ink);
+    font-size: 0.96rem;
+    font-weight: 720;
+    transition:
+      color 180ms cubic-bezier(0.23, 1, 0.32, 1),
+      border-color 180ms cubic-bezier(0.23, 1, 0.32, 1);
   }
 
-  .site-footer__nav a:hover {
+  .site-footer__nav a:hover,
+  .site-footer__top:hover {
     color: var(--color-blue);
   }
 
   .site-footer__note {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 0.96rem;
+    font-weight: 620;
+    line-height: 1.45;
+  }
+
+  .site-footer__nav span {
+    color: var(--color-muted);
+  }
+
+  .site-footer__top {
     justify-self: end;
-    text-align: right;
+    display: inline-flex;
+    gap: 0.6rem;
+    align-items: center;
+  }
+
+  .site-footer__top svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2.2;
   }
 
   @media (max-width: 900px) {
-    .contact-close__inner,
+    .contact-close__intro,
     .site-footer {
       grid-template-columns: 1fr;
     }
 
     .contact-close__inner {
-      min-height: auto;
+      min-height: clamp(34rem, 70svh, 46rem);
     }
 
-    .site-footer__note {
+    .site-footer__top {
       justify-self: start;
-      text-align: left;
     }
   }
 
@@ -252,18 +401,22 @@ const contactLinks = [
       padding-inline: 1rem;
     }
 
-    .contact-close__links {
+    .contact-action {
       display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 1rem;
+      min-height: 8.75rem;
+      padding: 1.25rem;
     }
 
-    .contact-close__links a {
-      border-right: 0;
-      border-bottom: 1px solid var(--color-line);
-      padding-left: 0;
+    .contact-action__content {
+      display: grid;
+      gap: 0.45rem;
     }
 
-    .contact-close__links a:last-child {
-      border-bottom: 0;
+    .contact-action__content strong,
+    .contact-action__content span {
+      grid-column: auto;
     }
   }
 </style>
