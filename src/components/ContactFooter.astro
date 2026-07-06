@@ -21,9 +21,13 @@ const contactLinks = [
         Bring the messy
         <span>
           flow.
-          <svg class="contact-close__mark" viewBox="0 0 160 22" aria-hidden="true">
-            <path d="M4 15c28-8 57-10 86-9 22 1 43 4 66 1" />
-            <path d="M26 20c36-8 69-11 107-9" />
+          <svg
+            class="contact-close__mark"
+            viewBox="0 0 160 22"
+            aria-hidden="true"
+          >
+            <path d="M4 15c28-8 57-10 86-9 22 1 43 4 66 1"></path>
+            <path d="M26 20c36-8 69-11 107-9"></path>
           </svg>
         </span>
       </h2>
@@ -38,8 +42,8 @@ const contactLinks = [
       <a class="contact-action contact-action--email" href={emailHref}>
         <span class="contact-action__icon" aria-hidden="true">
           <svg viewBox="0 0 32 32">
-            <path d="M5 8h22v16H5z" />
-            <path d="m6.5 9.5 9.5 8 9.5-8" />
+            <path d="M5 8h22v16H5z"></path>
+            <path d="m6.5 9.5 9.5 8 9.5-8"></path>
           </svg>
         </span>
         <span class="contact-action__content">
@@ -48,18 +52,25 @@ const contactLinks = [
         </span>
         <span class="contact-action__arrow" aria-hidden="true">
           <svg viewBox="0 0 28 28">
-            <path d="M7 21 21 7" />
-            <path d="M9 7h12v12" />
+            <path d="M7 21 21 7"></path>
+            <path d="M9 7h12v12"></path>
           </svg>
         </span>
       </a>
 
-      <a class="contact-action" href={linkedinHref} target="_blank" rel="noreferrer">
+      <a
+        class="contact-action"
+        href={linkedinHref}
+        target="_blank"
+        rel="noreferrer"
+      >
         <span class="contact-action__icon" aria-hidden="true">
           <svg viewBox="0 0 32 32">
-            <path d="M7 12h5v13H7z" />
-            <path d="M20.8 12c-2.1 0-3.4 1.1-4 2.1V12H12v13h5v-6.8c0-1.8.9-2.8 2.4-2.8 1.4 0 2.3 1 2.3 2.8V25h5v-7.7c0-3.3-1.9-5.3-4.9-5.3z" />
-            <path d="M9.5 10a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+            <path d="M7 12h5v13H7z"></path>
+            <path
+              d="M20.8 12c-2.1 0-3.4 1.1-4 2.1V12H12v13h5v-6.8c0-1.8.9-2.8 2.4-2.8 1.4 0 2.3 1 2.3 2.8V25h5v-7.7c0-3.3-1.9-5.3-4.9-5.3z"
+            ></path>
+            <path d="M9.5 10a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"></path>
           </svg>
         </span>
         <span class="contact-action__content">
@@ -68,8 +79,8 @@ const contactLinks = [
         </span>
         <span class="contact-action__arrow" aria-hidden="true">
           <svg viewBox="0 0 28 28">
-            <path d="M7 21 21 7" />
-            <path d="M9 7h12v12" />
+            <path d="M7 21 21 7"></path>
+            <path d="M9 7h12v12"></path>
           </svg>
         </span>
       </a>
@@ -97,7 +108,11 @@ const contactLinks = [
     {
       contactLinks.map(([label, href], index) => (
         <>
-          <a href={href} target={label === "LinkedIn" ? "_blank" : undefined} rel={label === "LinkedIn" ? "noreferrer" : undefined}>
+          <a
+            href={href}
+            target={label === "LinkedIn" ? "_blank" : undefined}
+            rel={label === "LinkedIn" ? "noreferrer" : undefined}
+          >
             {label}
           </a>
           {index < contactLinks.length - 1 && <span aria-hidden="true">/</span>}
@@ -111,8 +126,8 @@ const contactLinks = [
   <a class="site-footer__top" href="#top" aria-label="Back to top">
     Back to top
     <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M7 17 17 7" />
-      <path d="M8 7h9v9" />
+      <path d="M12 19V5"></path>
+      <path d="m6 11 6-6 6 6"></path>
     </svg>
   </a>
 </footer>
@@ -203,7 +218,9 @@ const contactLinks = [
 
   .contact-action {
     display: grid;
-    grid-template-columns: clamp(3.2rem, 5vw, 5rem) minmax(10rem, 0.28fr) minmax(12rem, 1fr) auto;
+    grid-template-columns:
+      clamp(3.2rem, 5vw, 5rem) minmax(10rem, 0.28fr)
+      minmax(12rem, 1fr) auto;
     gap: clamp(1rem, 3vw, 3.5rem);
     align-items: center;
     min-height: clamp(7.25rem, 11vw, 10.5rem);
@@ -270,7 +287,6 @@ const contactLinks = [
     font-size: clamp(2.15rem, 3.6vw, 4.6rem);
     font-weight: 900;
     line-height: 0.9;
-    letter-spacing: -0.07em;
   }
 
   .contact-action__content span {
@@ -340,7 +356,7 @@ const contactLinks = [
     width: fit-content;
     color: var(--color-ink);
     font-size: 0.96rem;
-    font-weight: 720;
+    font-weight: 500;
     transition:
       color 180ms cubic-bezier(0.23, 1, 0.32, 1),
       border-color 180ms cubic-bezier(0.23, 1, 0.32, 1);
