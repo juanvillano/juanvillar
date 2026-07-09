@@ -1,43 +1,87 @@
 ---
 const services = [
   {
-    title: "Flows",
-    body: "I untangle journeys, states, edge cases, and handoffs so people can move through a product with less doubt.",
+    title: "End-to-end Product Design",
+    titleEs: "Diseño de producto end-to-end",
+    body: "I work across discovery, structure, interaction, and delivery - turning unclear problems into usable product experiences.",
+    bodyEs:
+      "Trabajo desde el descubrimiento, la estructura, la interacción y la entrega para convertir problemas poco claros en experiencias de producto usables.",
+    accent: "15 92 255",
   },
   {
-    title: "Systems",
-    body: "I turn repeated decisions into patterns, structures, and shared rules that make products easier to scale.",
+    title: "Systems Thinking",
+    titleEs: "Pensamiento sistémico",
+    body: "I connect flows, components, states, and business rules so products feel consistent, scalable, and easier to maintain.",
+    bodyEs:
+      "Conecto flujos, componentes, estados y reglas de negocio para que los productos se sientan consistentes, escalables y más fáciles de mantener.",
+    accent: "255 184 0",
   },
   {
-    title: "Interfaces",
-    body: "I craft screens, forms, messages, and interactions that make the next step feel obvious.",
+    title: "AI-assisted Workflow",
+    titleEs: "Flujo de trabajo asistido por IA",
+    body: "I use AI to explore directions, prototype faster, refine content, analyze patterns, and move from ambiguity to clearer decisions.",
+    bodyEs:
+      "Uso IA para explorar direcciones, prototipar más rápido, refinar contenido, analizar patrones y pasar de la ambigüedad a decisiones más claras.",
+    accent: "255 91 128",
   },
   {
-    title: "Business",
-    body: "I connect user needs, product goals, technical constraints, and stakeholder perspectives into practical design decisions teams can align around.",
+    title: "Complex Product Flows",
+    titleEs: "Flujos complejos de producto",
+    body: "I design onboarding, KYC, account, payment, and operational flows where clarity, trust, and error prevention matter.",
+    bodyEs:
+      "Diseño flujos de onboarding, KYC, cuentas, pagos y operaciones donde importan la claridad, la confianza y la prevención de errores.",
+    accent: "29 185 84",
+  },
+  {
+    title: "Product Strategy & Clarity",
+    titleEs: "Estrategia de producto y claridad",
+    body: "I help teams define what matters, simplify decisions, and align user needs with business goals.",
+    bodyEs:
+      "Ayudo a los equipos a definir lo importante, simplificar decisiones y alinear las necesidades de los usuarios con los objetivos del negocio.",
+    accent: "126 87 194",
+  },
+  {
+    title: "Prototyping & Handoff",
+    titleEs: "Prototipado y handoff",
+    body: "I create prototypes, interaction logic, specs, and design details that help developers understand how the product should behave.",
+    bodyEs:
+      "Creo prototipos, lógica de interacción, especificaciones y detalles de diseño que ayudan a los desarrolladores a entender cómo debe comportarse el producto.",
+    accent: "255 122 24",
   },
 ];
 ---
 
 <section class="what-i-do" id="about" aria-labelledby="what-i-do-title">
   <div class="what-i-do__intro">
-    <h2 id="what-i-do-title">How I think through product design</h2>
-    <p>
-      I work across flows, systems, interfaces, and business context to turn
-      ambiguity into product experiences people can understand, trust, and use.
+    <h2 id="what-i-do-title" data-en="What I Do" data-es="Qué hago">
+      What I Do
+    </h2>
+    <p
+      data-en="I work where product complexity needs to become a clearer path: flows, systems, interfaces, and the business context around them."
+      data-es="Trabajo donde la complejidad del producto necesita convertirse en un camino más claro: flujos, sistemas, interfaces y el contexto de negocio que los rodea."
+    >
+      I work where product complexity needs to become a clearer path: flows,
+      systems, interfaces, and the business context around them.
     </p>
   </div>
 
   <div class="what-i-do__wall" aria-label="Ways Juan can help">
     {
       services.map((service, index) => (
-        <article class="what-i-do__item">
+        <article
+          class="what-i-do__item"
+          style={`--item-accent: ${service.accent};`}
+        >
           <span class="what-i-do__number">
             {String(index + 1).padStart(2, "0")}
           </span>
           <div class="what-i-do__copy">
-            <h3>{service.title}</h3>
-            <p>{service.body}</p>
+            <h3 data-en={service.title} data-es={service.titleEs}>
+              {service.title}
+            </h3>
+            <p data-en={service.body} data-es={service.bodyEs}>
+              {service.body}
+            </p>
           </div>
         </article>
       ))
@@ -94,8 +138,7 @@ const services = [
 
   .what-i-do__wall {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    min-height: clamp(25rem, 38vw, 35rem);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     border: 1px solid var(--color-line);
     background: rgb(255 255 255 / 54%);
     box-shadow: 0 24px 80px rgb(17 24 39 / 6%);
@@ -105,13 +148,47 @@ const services = [
     display: grid;
     grid-template-rows: auto 1fr;
     min-width: 0;
-    min-height: clamp(23rem, 34vw, 32rem);
-    padding: clamp(1rem, 1.6vw, 1.5rem);
+    min-height: clamp(21rem, 27vw, 28rem);
+    padding: clamp(1rem, 1.7vw, 1.65rem);
     border-right: 1px solid var(--color-line);
+    background: linear-gradient(
+      180deg,
+      transparent,
+      rgb(var(--item-accent) / 4.5%)
+    );
+    outline: 1px solid transparent;
+    outline-offset: -1px;
+    transition:
+      border-color 180ms cubic-bezier(0.23, 1, 0.32, 1),
+      box-shadow 180ms cubic-bezier(0.23, 1, 0.32, 1),
+      outline-color 180ms cubic-bezier(0.23, 1, 0.32, 1),
+      transform 180ms cubic-bezier(0.23, 1, 0.32, 1);
   }
 
-  .what-i-do__item:last-child {
+  .what-i-do__item:nth-child(3n) {
     border-right: 0;
+  }
+
+  .what-i-do__item:nth-child(n + 4) {
+    border-top: 1px solid var(--color-line);
+  }
+
+  @media (hover: hover) {
+    .what-i-do__item:hover {
+      z-index: 1;
+      border-color: rgb(var(--item-accent) / 54%);
+      outline-color: rgb(var(--item-accent) / 72%);
+      box-shadow:
+        0 24px 70px rgb(var(--item-accent) / 18%),
+        0 10px 28px rgb(17 24 39 / 8%);
+      transform: translateY(-0.28rem);
+    }
+
+    .what-i-do__item:hover .what-i-do__number {
+      border-color: rgb(var(--item-accent) / 48%);
+      background: rgb(var(--item-accent) / 8%);
+      color: rgb(var(--item-accent));
+    }
   }
 
   .what-i-do__number {
@@ -126,6 +203,10 @@ const services = [
     font-weight: 850;
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.04em;
+    transition:
+      background-color 180ms cubic-bezier(0.23, 1, 0.32, 1),
+      border-color 180ms cubic-bezier(0.23, 1, 0.32, 1),
+      color 180ms cubic-bezier(0.23, 1, 0.32, 1);
   }
 
   .what-i-do__copy {
@@ -135,7 +216,7 @@ const services = [
   }
 
   .what-i-do__copy h3 {
-    max-width: 13rem;
+    max-width: 18rem;
     margin: 0;
     color: var(--color-ink);
     font-size: clamp(1.55rem, 2.45vw, 3.2rem);
@@ -150,22 +231,6 @@ const services = [
     font-size: clamp(0.96rem, 1.05vw, 1.1rem);
     font-weight: 580;
     line-height: 1.45;
-  }
-
-  .what-i-do__item:nth-child(1) {
-    background: linear-gradient(180deg, transparent, rgb(15 92 255 / 5%));
-  }
-
-  .what-i-do__item:nth-child(2) {
-    background: linear-gradient(180deg, transparent, rgb(255 184 0 / 7%));
-  }
-
-  .what-i-do__item:nth-child(3) {
-    background: linear-gradient(180deg, transparent, rgb(255 91 128 / 5%));
-  }
-
-  .what-i-do__item:nth-child(4) {
-    background: linear-gradient(180deg, transparent, rgb(29 185 84 / 5%));
   }
 
   @media (max-width: 980px) {
@@ -183,11 +248,17 @@ const services = [
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .what-i-do__item:nth-child(2) {
+    .what-i-do__item,
+    .what-i-do__item:nth-child(3n) {
+      border-right: 1px solid var(--color-line);
+    }
+
+    .what-i-do__item:nth-child(2n) {
       border-right: 0;
     }
 
-    .what-i-do__item:nth-child(n + 3) {
+    .what-i-do__item:nth-child(n + 3),
+    .what-i-do__item:nth-child(n + 4) {
       border-top: 1px solid var(--color-line);
     }
   }
@@ -205,6 +276,11 @@ const services = [
       min-height: 18rem;
       border-right: 0;
       border-top: 1px solid var(--color-line);
+    }
+
+    .what-i-do__item:nth-child(2n),
+    .what-i-do__item:nth-child(3n) {
+      border-right: 0;
     }
 
     .what-i-do__item:first-child {
