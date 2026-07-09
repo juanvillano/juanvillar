@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import WhatIDo from '../components/WhatIDo.astro';
+import SelectedWork from '../components/SelectedWork.astro';
 import AboutSummary from '../components/AboutSummary.astro';
 import Testimonials from '../components/Testimonials.astro';
 import ContactFooter from '../components/ContactFooter.astro';
@@ -10,11 +11,11 @@ import ContactFooter from '../components/ContactFooter.astro';
 <BaseLayout title="Juan Villar - Product Designer">
   <Hero />
   <WhatIDo />
+  <SelectedWork />
   <AboutSummary />
   <Testimonials />
   <ContactFooter />
   <main class="page-placeholders" aria-label="Future portfolio sections">
-    <section id="work" aria-label="Selected work"></section>
     <section id="writing" aria-label="Writing"></section>
   </main>
 </BaseLayout>
