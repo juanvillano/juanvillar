@@ -187,20 +187,10 @@ const projects = [
   .work-story {
     --story-accent: 15 92 255;
     display: grid;
-    grid-template-columns: minmax(18rem, 0.48fr) minmax(18rem, 0.52fr);
-    gap: clamp(2rem, 6vw, 7rem);
+    grid-template-columns: minmax(17rem, 0.42fr) minmax(20rem, 0.58fr);
+    gap: clamp(2.5rem, 7vw, 8rem);
     align-items: center;
-    min-height: clamp(34rem, 82svh, 52rem);
-    padding: clamp(1.25rem, 2vw, 2rem);
-    border: 1px solid var(--color-line);
-    background:
-      radial-gradient(
-        circle at 18% 18%,
-        rgb(var(--story-accent) / 8%),
-        transparent 18rem
-      ),
-      rgb(255 255 255 / 56%);
-    box-shadow: 0 24px 80px rgb(17 24 39 / 5%);
+    min-height: clamp(34rem, 86svh, 54rem);
   }
 
   .work-story--reverse .work-story__visual {
@@ -223,11 +213,12 @@ const projects = [
     display: grid;
     place-items: center;
     min-width: 0;
+    min-height: clamp(31rem, 76svh, 49rem);
   }
 
   .phone-prototype {
     position: relative;
-    width: min(100%, 25rem);
+    width: min(100%, 27rem);
     aspect-ratio: 0.52;
     filter: drop-shadow(0 34px 50px rgb(17 24 39 / 18%));
     transform: translateY(0);
@@ -240,11 +231,11 @@ const projects = [
 
   .phone-prototype::before {
     position: absolute;
-    inset: -1.2rem;
+    inset: -2rem;
     z-index: -1;
     border-radius: 2.75rem;
-    background: rgb(var(--story-accent) / 12%);
-    filter: blur(26px);
+    background: rgb(var(--story-accent) / 13%);
+    filter: blur(32px);
     content: "";
   }
 
@@ -423,7 +414,17 @@ const projects = [
     align-content: center;
     justify-items: start;
     min-width: 0;
-    max-width: 45rem;
+    min-height: clamp(31rem, 76svh, 49rem);
+    padding: clamp(2rem, 5.4vw, 5.6rem);
+    border: 1px solid var(--color-line);
+    background:
+      radial-gradient(
+        circle at 18% 14%,
+        rgb(var(--story-accent) / 6%),
+        transparent 19rem
+      ),
+      rgb(255 255 255 / 52%);
+    box-shadow: 0 24px 80px rgb(17 24 39 / 4%);
   }
 
   .work-story__meta {
@@ -531,6 +532,11 @@ const projects = [
       min-height: auto;
     }
 
+    .work-story__visual,
+    .work-story__content {
+      min-height: auto;
+    }
+
     .work-story--reverse .work-story__visual {
       order: initial;
     }
@@ -550,7 +556,11 @@ const projects = [
     }
 
     .work-story {
-      padding: 1rem;
+      gap: 2rem;
+    }
+
+    .work-story__content {
+      padding: 1.35rem;
     }
 
     .phone-prototype {
