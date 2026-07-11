@@ -16,25 +16,25 @@ type Translation = {
 const translations: Record<Language, Translation> = {
   en: {
     role: 'Product designer',
-    headline: 'I design flows, systems, and interfaces where clarity and trust matter.',
-    support: 'I partner with teams in banking and fintech to turn complexity into simple, confident experiences.',
+    headline: 'I design products, systems, and flows where clarity and trust matter.',
+    support: '- I partner with teams to turn complexity into simple, confident experiences.',
     location: 'Santo Domingo, Dominican Republic',
     workCta: 'View selected work',
     emailCta: 'Email me',
-    mapLabel: 'Drag the nodes. Reset the map when it gets messy.',
-    mapLabelStart: 'Drag the nodes.',
+    mapLabel: 'Drag the nodes to interact. Reset the map when it gets messy.',
+    mapLabelStart: 'Drag the nodes to interact.',
     mapLabelEnd: 'Reset the map when it gets messy.',
     resetMap: 'Reset map',
   },
   es: {
     role: 'Diseñador de producto',
-    headline: 'Diseño flujos, sistemas e interfaces donde la claridad y la confianza importan.',
-    support: 'Colaboro con equipos de banca y fintech para convertir la complejidad en experiencias simples y seguras.',
+    headline: 'Diseño productos, sistemas y flujos donde la claridad y la confianza importan.',
+    support: '- Colaboro con equipos para convertir la complejidad en experiencias simples y seguras.',
     location: 'Santo Domingo, República Dominicana',
     workCta: 'Ver trabajo seleccionado',
     emailCta: 'Escríbeme',
-    mapLabel: 'Mueve los nodos. Reinicia el mapa cuando se desordene.',
-    mapLabelStart: 'Mueve los nodos.',
+    mapLabel: 'Mueve los nodos para interactuar. Reinicia el mapa cuando se desordene.',
+    mapLabelStart: 'Mueve los nodos para interactuar.',
     mapLabelEnd: 'Reinicia el mapa cuando se desordene.',
     resetMap: 'Reiniciar mapa',
   },
@@ -75,8 +75,8 @@ const createHeadline = (language: Language) => {
   const fragment = document.createDocumentFragment();
   const prefix =
     language === 'es'
-      ? 'Diseño flujos, sistemas e interfaces donde la claridad y la confianza '
-      : 'I design flows, systems, and interfaces where clarity and trust ';
+      ? 'Diseño productos, sistemas y flujos donde la claridad y la confianza '
+      : 'I design products, systems, and flows where clarity and trust ';
   const markedWord = language === 'es' ? 'importan.' : 'matter.';
   const word = document.createElement('span');
   const svgNamespace = 'http://www.w3.org/2000/svg';

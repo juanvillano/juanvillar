@@ -3,140 +3,293 @@ const projects = [
   {
     number: "01",
     tag: "Banking Onboarding & KYC",
-    title: "Designing Trust",
+    title: "KYC Update Flow",
     summary:
-      "Designing an onboarding experience for regulated financial products, focused on trust, clarity, validation, and user confidence across complex flows.",
-    role: "Product Design / UX Strategy / Interaction Design",
-    focus: ["Trust", "Onboarding", "Research", "Conversion"],
+      "A regulated customer-information update flow designed to reduce confusion, support compliance, and help users complete sensitive steps with confidence.",
+    type: "Banking UX",
+    year: "Live",
+    status: "Process-led case file",
+    tags: ["KYC", "Trust", "Mobile flow", "NDA"],
+    proof: [
+      { value: "NDA", label: "Anonymized" },
+      { value: "Live", label: "Banking flow" },
+      { value: "0->1", label: "Flow structure" },
+    ],
     variant: "trust",
+    previewLabel: "FLOW // VERIFY_BEFORE_SUBMIT",
+    previewNote:
+      "Validation, review, and recovery states for a trust-sensitive update path.",
   },
   {
     number: "02",
-    tag: "Information Architecture",
-    title: "Structuring Complexity",
+    tag: "Security & Authentication",
+    title: "Digital Token",
     summary:
-      "Creating product structure before designing interfaces. Organizing navigation, flows, mental models, and information so complex products become easier to understand.",
-    role: "Product Structure / Information Architecture",
-    focus: ["Systems Thinking", "Mental Models", "Navigation"],
-    variant: "systems",
-    reverse: true,
+      "A mobile security feature that helped move verification from physical/code-card behavior into a clearer in-app activation and usage flow.",
+    type: "Mobile Product",
+    year: "Live",
+    status: "Case study planned",
+    tags: ["Security", "Trust", "Activation", "Edge cases"],
+    proof: [
+      { value: "Live", label: "Feature" },
+      { value: "Risk", label: "Sensitive flow" },
+      { value: "UX", label: "Activation" },
+    ],
+    variant: "token",
+    previewLabel: "STATE // SECURITY_ACTIVATION",
+    previewNote:
+      "A focused activation sequence for authentication, confirmation, and error recovery.",
   },
   {
     number: "03",
     tag: "Continuous Mobile Product Improvements",
-    title: "Evolving Products",
+    title: "Core Banking Improvements",
     summary:
-      "Improving an established mobile banking experience through continuous product evolution, refining flows, reducing friction, and supporting long-term product growth.",
-    role: "Product Design / Mobile UX / Collaboration",
-    focus: ["Iteration", "Mobile UX", "Product Evolution"],
+      "Continuous improvements to established banking features, reducing friction, clarifying edge cases, and supporting development requests across the product.",
+    type: "Product Evolution",
+    year: "Ongoing",
+    status: "Process-led case file",
+    tags: ["Mobile app", "Handoff", "Legacy systems", "Support"],
+    proof: [
+      { value: "5+", label: "Years in banking" },
+      { value: "Dev", label: "Handoff support" },
+      { value: "Ops", label: "Maintenance" },
+    ],
     variant: "evolution",
+    previewLabel: "SYSTEM // MAINTAIN_AND_IMPROVE",
+    previewNote:
+      "Small product decisions that keep core flows understandable and easier to maintain.",
   },
   {
     number: "04",
     tag: "AI-assisted Product Exploration",
     title: "Exploring What's Next",
     summary:
-      "A collection of experiments exploring how AI can accelerate product thinking, prototyping, and decision making while keeping human judgment at the center.",
-    role: "AI Workflow / Prototyping / Product Exploration",
-    focus: ["AI Workflow", "Rapid Prototypes", "Future Thinking"],
+      "A set of experiments using AI to explore product directions, prototype faster, analyze patterns, and move from ambiguity to clearer decisions.",
+    type: "Design Engineering",
+    year: "Lab",
+    status: "Prototype-led study",
+    tags: ["AI workflow", "Prototype", "Creative coding", "Lab"],
+    proof: [
+      { value: "AI", label: "Workflow" },
+      { value: "Lab", label: "Experiments" },
+      { value: "Build", label: "Learning" },
+    ],
     variant: "ai",
-    reverse: true,
+    previewLabel: "LAB // HUMAN_JUDGMENT",
+    previewNote:
+      "Explorations where AI speeds up the work, but design judgment stays in control.",
   },
 ];
 ---
 
-<section class="selected-work" id="work" aria-labelledby="selected-work-title">
+<section
+  class="selected-work"
+  id="work"
+  aria-labelledby="selected-work-title"
+  data-selected-work
+>
   <div class="selected-work__intro">
     <h2 id="selected-work-title">Selected Work</h2>
     <p>
-      Product stories across trust, systems, product evolution, and
-      AI-assisted design.
+      A project index for product work across banking UX, trust-sensitive flows,
+      systems, and design engineering. Some financial product work is anonymized;
+      the case studies will focus on process, decisions, and product thinking.
     </p>
   </div>
 
-  <div class="selected-work__list" aria-label="Selected product design stories">
-    {
-      projects.map((project) => (
-        <article
-          class:list={[
-            "work-story",
-            `work-story--${project.variant}`,
-            { "work-story--reverse": project.reverse },
-          ]}
-        >
-          <div class="work-story__visual" aria-hidden="true">
-            <div class="phone-prototype">
-              <div class="phone-prototype__screen">
-                <div class="prototype-ui">
-                  <div class="prototype-ui__status">
-                    <span></span>
-                    <span></span>
+  <div class="work-index">
+    <div class="work-index__rows" aria-label="Selected product design stories">
+      {
+        projects.map((project, index) => (
+          <article
+            class:list={[
+              "project-row",
+              `project-row--${project.variant}`,
+              { "is-active": index === 0 },
+            ]}
+            data-project-row={project.variant}
+            tabindex="0"
+          >
+            <div class="project-row__number" aria-hidden="true">
+              {project.number}
+            </div>
+
+            <div class="project-row__body">
+              <ul class="project-row__tags" aria-label={`${project.title} tags`}>
+                {project.tags.map((tag) => (
+                  <li>{tag}</li>
+                ))}
+              </ul>
+
+              <div class="project-row__heading">
+                <h3>{project.title}</h3>
+                <p>{project.type} · {project.year}</p>
+              </div>
+
+              <p class="project-row__summary">{project.summary}</p>
+
+              <dl class="project-row__proof" aria-label={`${project.title} proof points`}>
+                {project.proof.map((item) => (
+                  <div>
+                    <dt>{item.value}</dt>
+                    <dd>{item.label}</dd>
                   </div>
-                  <div class="prototype-ui__header">
-                    <span></span>
-                    <strong>{project.number}</strong>
-                  </div>
-                  <div class="prototype-ui__body">
-                    <span class="prototype-ui__title"></span>
-                    <span class="prototype-ui__line"></span>
-                    <span class="prototype-ui__line"></span>
-                    <div class="prototype-ui__module prototype-ui__module--main">
-                      <span></span>
-                      <span></span>
-                      <span></span>
+                ))}
+              </dl>
+
+              <span class="project-row__status">
+                {project.status}
+                <span aria-hidden="true">-&gt;</span>
+              </span>
+            </div>
+
+            <div class="project-row__mobile-preview" aria-hidden="true">
+              <div class:list={["artifact-preview", `artifact-preview--${project.variant}`, "is-active"]}>
+                <div class="artifact-preview__label">{project.previewLabel}</div>
+                <div class="artifact-preview__visual">
+                  <div class="artifact-preview__glow"></div>
+                  <div class="phone-prototype">
+                    <div class="phone-prototype__screen">
+                      <div class="prototype-ui">
+                        <div class="prototype-ui__status">
+                          <span></span>
+                          <span></span>
+                        </div>
+                        <div class="prototype-ui__header">
+                          <span></span>
+                          <strong>{project.number}</strong>
+                        </div>
+                        <div class="prototype-ui__body">
+                          <span class="prototype-ui__title"></span>
+                          <span class="prototype-ui__line"></span>
+                          <span class="prototype-ui__line"></span>
+                          <div class="prototype-ui__module">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                          </div>
+                          <div class="prototype-ui__flow">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                          </div>
+                        </div>
+                        <div class="prototype-ui__footer">
+                          <span></span>
+                        </div>
+                      </div>
                     </div>
-                    <div class="prototype-ui__flow">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
+                    <img
+                      class="phone-prototype__frame"
+                      src="/images/apple-iphone-15-black-frame.png"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </div>
-                  <div class="prototype-ui__footer">
-                    <span></span>
+                  <div class="artifact-note">
+                    <strong>{project.previewLabel}</strong>
+                    <p>{project.previewNote}</p>
                   </div>
                 </div>
               </div>
-              <img
-                class="phone-prototype__frame"
-                src="/images/apple-iphone-15-black-frame.png"
-                alt=""
-                loading="lazy"
-                decoding="async"
-              />
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="work-index__stage" aria-hidden="true">
+      {
+        projects.map((project, index) => (
+          <div
+            class:list={[
+              "artifact-preview",
+              `artifact-preview--${project.variant}`,
+              { "is-active": index === 0 },
+            ]}
+            data-project-preview={project.variant}
+          >
+            <div class="artifact-preview__label">{project.previewLabel}</div>
+            <div class="artifact-preview__visual">
+              <div class="artifact-preview__glow"></div>
+              <div class="phone-prototype">
+                <div class="phone-prototype__screen">
+                  <div class="prototype-ui">
+                    <div class="prototype-ui__status">
+                      <span></span>
+                      <span></span>
+                    </div>
+                    <div class="prototype-ui__header">
+                      <span></span>
+                      <strong>{project.number}</strong>
+                    </div>
+                    <div class="prototype-ui__body">
+                      <span class="prototype-ui__title"></span>
+                      <span class="prototype-ui__line"></span>
+                      <span class="prototype-ui__line"></span>
+                      <div class="prototype-ui__module">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                      <div class="prototype-ui__flow">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                    </div>
+                    <div class="prototype-ui__footer">
+                      <span></span>
+                    </div>
+                  </div>
+                </div>
+                <img
+                  class="phone-prototype__frame"
+                  src="/images/apple-iphone-15-black-frame.png"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="artifact-note">
+                <strong>{project.previewLabel}</strong>
+                <p>{project.previewNote}</p>
+              </div>
             </div>
           </div>
-
-          <div class="work-story__content">
-            <div class="work-story__meta">
-              <span>{project.tag}</span>
-              <span aria-hidden="true">/</span>
-              <span>{project.number}</span>
-            </div>
-
-            <h3>{project.title}</h3>
-            <p>{project.summary}</p>
-
-            <dl class="work-story__details">
-              <div>
-                <dt>Role</dt>
-                <dd>{project.role}</dd>
-              </div>
-              <div>
-                <dt>Focus</dt>
-                <dd>{project.focus.join(", ")}</dd>
-              </div>
-            </dl>
-
-            <span class="work-story__status">
-              Case study coming soon
-              <span aria-hidden="true">-&gt;</span>
-            </span>
-          </div>
-        </article>
-      ))
-    }
+        ))
+      }
+    </div>
   </div>
 </section>
+
+<script>
+  const selectedWorkSections = document.querySelectorAll<HTMLElement>('[data-selected-work]');
+
+  selectedWorkSections.forEach((section) => {
+    const rows = Array.from(section.querySelectorAll<HTMLElement>('[data-project-row]'));
+    const previews = Array.from(section.querySelectorAll<HTMLElement>('[data-project-preview]'));
+
+    const setActiveProject = (id: string | undefined) => {
+      if (!id) return;
+
+      rows.forEach((row) => {
+        row.classList.toggle('is-active', row.dataset.projectRow === id);
+      });
+
+      previews.forEach((preview) => {
+        preview.classList.toggle('is-active', preview.dataset.projectPreview === id);
+      });
+    };
+
+    rows.forEach((row) => {
+      row.addEventListener('pointerenter', () => setActiveProject(row.dataset.projectRow));
+      row.addEventListener('focusin', () => setActiveProject(row.dataset.projectRow));
+    });
+  });
+</script>
 
 <style>
   .selected-work {
@@ -159,7 +312,7 @@ const projects = [
     grid-template-columns: minmax(18rem, 0.42fr) minmax(18rem, 0.58fr);
     gap: clamp(2rem, 6vw, 7rem);
     align-items: start;
-    margin-bottom: clamp(3rem, 6vw, 6rem);
+    margin-bottom: clamp(3.5rem, 7vw, 7rem);
   }
 
   .selected-work h2 {
@@ -174,7 +327,7 @@ const projects = [
   }
 
   .selected-work__intro p {
-    max-width: 38rem;
+    max-width: 52rem;
     margin: 0;
     color: var(--color-muted);
     font-size: clamp(1rem, 1.35vw, 1.28rem);
@@ -183,68 +336,290 @@ const projects = [
     letter-spacing: -0.015em;
   }
 
-  .selected-work__list {
+  .work-index {
     display: grid;
-    gap: clamp(3rem, 7vw, 7rem);
+    grid-template-columns: minmax(0, 0.6fr) minmax(19rem, 0.4fr);
+    gap: clamp(2rem, 5vw, 6rem);
+    align-items: start;
   }
 
-  .work-story {
+  .work-index__rows {
+    display: grid;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .project-row {
     --story-accent: 15 92 255;
     display: grid;
-    grid-template-columns: minmax(17rem, 0.42fr) minmax(20rem, 0.58fr);
-    gap: clamp(2.5rem, 7vw, 8rem);
-    align-items: center;
-    min-height: clamp(34rem, 86svh, 54rem);
+    grid-template-columns: 3.2rem minmax(0, 1fr);
+    gap: clamp(1rem, 2vw, 2rem);
+    min-width: 0;
+    padding: clamp(1.45rem, 2.8vw, 2.35rem) 0;
+    border-top: 1px solid var(--color-line);
+    outline: none;
+    transition:
+      background-color 220ms ease,
+      border-color 220ms ease,
+      opacity 220ms ease,
+      padding 220ms ease;
   }
 
-  .work-story--reverse .work-story__visual {
-    order: 2;
-  }
-
-  .work-story--reverse {
-    grid-template-columns: minmax(20rem, 0.58fr) minmax(17rem, 0.42fr);
-  }
-
-  .work-story--systems {
+  .project-row--token {
     --story-accent: 255 184 0;
   }
 
-  .work-story--evolution {
+  .project-row--evolution {
     --story-accent: 29 185 84;
   }
 
-  .work-story--ai {
+  .project-row--ai {
     --story-accent: 126 87 194;
   }
 
-  .work-story__visual {
+  .project-row:hover,
+  .project-row:focus-visible,
+  .project-row.is-active {
+    padding-inline: clamp(0.75rem, 1.4vw, 1.2rem);
+    border-color: rgb(var(--story-accent) / 32%);
+    background:
+      radial-gradient(circle at 8% 20%, rgb(var(--story-accent) / 7%), transparent 16rem),
+      rgb(255 255 255 / 52%);
+  }
+
+  .project-row:focus-visible {
+    box-shadow: inset 0 0 0 2px rgb(var(--story-accent) / 55%);
+  }
+
+  .project-row__number {
+    color: rgb(var(--story-accent));
+    font-family: var(--font-mono);
+    font-size: clamp(0.92rem, 1vw, 1rem);
+    font-weight: 750;
+    letter-spacing: 0.04em;
+    line-height: 2.5;
+  }
+
+  .project-row__body {
     display: grid;
-    place-items: center;
+    gap: clamp(0.85rem, 1.4vw, 1.1rem);
     min-width: 0;
-    min-height: clamp(31rem, 76svh, 49rem);
+  }
+
+  .project-row__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .project-row__tags li {
+    min-height: 1.9rem;
+    padding: 0.34rem 0.72rem;
+    border: 1px solid rgb(var(--story-accent) / 28%);
+    border-radius: 999px;
+    color: rgb(var(--story-accent));
+    background: rgb(var(--story-accent) / 5%);
+    font-family: var(--font-mono);
+    font-size: clamp(0.75rem, 0.88vw, 0.86rem);
+    font-weight: 750;
+    line-height: 1;
+  }
+
+  .project-row__heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: clamp(1rem, 3vw, 3rem);
+    align-items: end;
+  }
+
+  .project-row h3 {
+    margin: 0;
+    color: var(--color-ink);
+    font-family: var(--font-fraunces);
+    font-size: clamp(2.25rem, 4.6vw, 5.25rem);
+    font-variation-settings: "SOFT" 0, "WONK" 1;
+    font-weight: 780;
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+  }
+
+  .project-row__heading p {
+    margin: 0 0 0.35rem;
+    color: var(--color-muted);
+    font-family: var(--font-mono);
+    font-size: clamp(0.82rem, 1vw, 0.95rem);
+    font-weight: 600;
+    line-height: 1.25;
+    white-space: nowrap;
+  }
+
+  .project-row__summary {
+    max-width: 46rem;
+    max-height: 0;
+    margin: 0;
+    overflow: hidden;
+    color: var(--color-muted);
+    font-size: clamp(1rem, 1.25vw, 1.18rem);
+    font-weight: 420;
+    line-height: 1.5;
+    letter-spacing: -0.012em;
+    opacity: 0;
+    transition:
+      max-height 240ms ease,
+      opacity 180ms ease;
+  }
+
+  .project-row:hover .project-row__summary,
+  .project-row:focus-visible .project-row__summary,
+  .project-row.is-active .project-row__summary {
+    max-height: 12rem;
+    opacity: 1;
+  }
+
+  .project-row__proof {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    max-width: 38rem;
+    max-height: 0;
+    margin: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition:
+      max-height 240ms ease,
+      opacity 180ms ease;
+  }
+
+  .project-row:hover .project-row__proof,
+  .project-row:focus-visible .project-row__proof,
+  .project-row.is-active .project-row__proof {
+    max-height: 7rem;
+    opacity: 1;
+  }
+
+  .project-row__proof div {
+    min-width: 0;
+  }
+
+  .project-row__proof dt {
+    margin: 0;
+    color: var(--color-ink);
+    font-family: var(--font-fraunces);
+    font-size: clamp(1.3rem, 2.2vw, 2.2rem);
+    font-weight: 850;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+  }
+
+  .project-row__proof dd {
+    margin: 0.25rem 0 0;
+    color: var(--color-muted);
+    font-family: var(--font-mono);
+    font-size: clamp(0.72rem, 0.85vw, 0.84rem);
+    line-height: 1.25;
+  }
+
+  .project-row__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: max-content;
+    color: var(--color-ink);
+    font-size: clamp(0.92rem, 1vw, 1rem);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+
+  .project-row__status span {
+    color: rgb(var(--story-accent));
+  }
+
+  .project-row__mobile-preview {
+    display: none;
+  }
+
+  .work-index__stage {
+    position: sticky;
+    top: clamp(3rem, 7vw, 6rem);
+    min-height: clamp(34rem, 74svh, 48rem);
+  }
+
+  .artifact-preview {
+    --story-accent: 15 92 255;
+    position: absolute;
+    inset: 0;
+    display: grid;
+    align-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(1rem) scale(0.98);
+    transition:
+      opacity 240ms ease,
+      transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .artifact-preview--token {
+    --story-accent: 255 184 0;
+  }
+
+  .artifact-preview--evolution {
+    --story-accent: 29 185 84;
+  }
+
+  .artifact-preview--ai {
+    --story-accent: 126 87 194;
+  }
+
+  .artifact-preview.is-active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .artifact-preview__label {
+    width: max-content;
+    margin: 0 0 1rem 0.35rem;
+    padding: 0.2rem 0.55rem;
+    border: 1px solid var(--color-line);
+    color: rgb(var(--story-accent));
+    background: rgb(255 255 255 / 68%);
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+
+  .artifact-preview__visual {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(10rem, 0.56fr) minmax(10rem, 0.44fr);
+    gap: clamp(1rem, 3vw, 2rem);
+    align-items: center;
+    min-height: 32rem;
+  }
+
+  .artifact-preview__glow {
+    position: absolute;
+    inset: 14% 8% 8% 0;
+    z-index: 0;
+    border-radius: 999px;
+    background: rgb(var(--story-accent) / 13%);
+    filter: blur(44px);
   }
 
   .phone-prototype {
     position: relative;
-    width: min(100%, 27rem);
+    z-index: 1;
+    width: min(100%, 18.5rem);
     aspect-ratio: 1419 / 2796;
     filter: drop-shadow(0 34px 50px rgb(17 24 39 / 18%));
-    transform: translateY(0);
-    transition: transform 260ms cubic-bezier(0.23, 1, 0.32, 1);
+    transform: rotate(-2deg);
   }
 
-  .work-story:hover .phone-prototype {
-    transform: translateY(-0.45rem) scale(1.012);
-  }
-
-  .phone-prototype::before {
-    position: absolute;
-    inset: -2rem;
-    z-index: -1;
-    border-radius: 2.75rem;
-    background: rgb(var(--story-accent) / 13%);
-    filter: blur(32px);
-    content: "";
+  .artifact-preview--token .phone-prototype,
+  .artifact-preview--ai .phone-prototype {
+    transform: rotate(2.5deg);
   }
 
   .phone-prototype__frame {
@@ -309,8 +684,8 @@ const projects = [
     display: grid;
     grid-template-rows: auto auto 1fr auto;
     min-height: 100%;
-    padding: clamp(3.4rem, 9vw, 4.8rem) clamp(0.9rem, 3vw, 1.2rem)
-      clamp(0.9rem, 3vw, 1.2rem);
+    padding: clamp(3.2rem, 8vw, 4.4rem) clamp(0.85rem, 3vw, 1.1rem)
+      clamp(0.85rem, 3vw, 1.1rem);
     color: var(--color-ink);
   }
 
@@ -329,20 +704,20 @@ const projects = [
 
   .prototype-ui__status span {
     display: block;
-    width: 3rem;
-    height: 0.42rem;
+    width: 2.6rem;
+    height: 0.38rem;
     border-radius: 999px;
     background: rgb(16 20 23 / 16%);
   }
 
   .prototype-ui__status span:last-child {
-    width: 1.4rem;
+    width: 1.3rem;
   }
 
   .prototype-ui__header {
     justify-content: space-between;
     gap: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.8rem;
   }
 
   .prototype-ui__header span,
@@ -355,19 +730,19 @@ const projects = [
   }
 
   .prototype-ui__header span {
-    width: 6.4rem;
-    height: 0.8rem;
+    width: 6rem;
+    height: 0.75rem;
   }
 
   .prototype-ui__header strong {
     display: grid;
     place-items: center;
-    width: 2.4rem;
-    min-height: 2.4rem;
+    width: 2.25rem;
+    min-height: 2.25rem;
     border: 1px solid rgb(var(--story-accent) / 46%);
     border-radius: 999px;
     color: rgb(var(--story-accent));
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     font-weight: 850;
     font-variant-numeric: tabular-nums;
   }
@@ -375,18 +750,18 @@ const projects = [
   .prototype-ui__body {
     display: grid;
     align-content: start;
-    gap: 0.8rem;
+    gap: 0.72rem;
   }
 
   .prototype-ui__title {
     width: 72%;
-    height: 1.15rem;
+    height: 1.05rem;
     background: var(--color-ink);
   }
 
   .prototype-ui__line {
     width: 88%;
-    height: 0.65rem;
+    height: 0.62rem;
   }
 
   .prototype-ui__line:nth-child(3) {
@@ -395,206 +770,179 @@ const projects = [
 
   .prototype-ui__module {
     display: grid;
-    gap: 0.7rem;
-    margin-top: 1.2rem;
-    padding: 1rem;
+    gap: 0.65rem;
+    margin-top: 1.05rem;
+    padding: 0.9rem;
     border: 1px solid rgb(16 20 23 / 12%);
-    border-radius: 1.1rem;
+    border-radius: 1rem;
     background: rgb(var(--story-accent) / 8%);
   }
 
   .prototype-ui__module span {
     display: block;
-    height: 2.2rem;
-    border-radius: 0.85rem;
+    height: 2rem;
+    border-radius: 0.78rem;
     background: rgb(255 255 255 / 82%);
     box-shadow: inset 0 0 0 1px rgb(16 20 23 / 8%);
   }
 
   .prototype-ui__flow {
     justify-content: space-between;
-    gap: 0.55rem;
-    margin-top: 1rem;
+    gap: 0.48rem;
+    margin-top: 0.9rem;
   }
 
   .prototype-ui__flow span {
     flex: 1;
-    height: 3.2rem;
+    height: 2.8rem;
     border: 1px solid rgb(var(--story-accent) / 28%);
-    border-radius: 1rem;
+    border-radius: 0.92rem;
     background: rgb(255 255 255 / 72%);
   }
 
   .prototype-ui__footer {
-    margin-top: 1.2rem;
+    margin-top: 1.05rem;
   }
 
   .prototype-ui__footer span {
     width: 100%;
-    height: 2.7rem;
+    height: 2.5rem;
     background: rgb(var(--story-accent) / 18%);
   }
 
-  .work-story__content {
-    display: grid;
-    align-content: center;
-    justify-items: start;
-    min-width: 0;
-    min-height: clamp(31rem, 76svh, 49rem);
-    padding: clamp(2rem, 5.4vw, 5.6rem);
+  .artifact-note {
+    position: relative;
+    z-index: 2;
+    align-self: center;
+    max-width: 22rem;
+    padding: clamp(1rem, 2vw, 1.3rem);
     border: 1px solid var(--color-line);
-    background:
-      radial-gradient(
-        circle at 18% 14%,
-        rgb(var(--story-accent) / 6%),
-        transparent 19rem
-      ),
-      rgb(255 255 255 / 52%);
-    box-shadow: 0 24px 80px rgb(17 24 39 / 4%);
+    background: rgb(255 255 255 / 76%);
+    box-shadow: 0 22px 60px rgb(17 24 39 / 10%);
   }
 
-  .work-story__meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem;
-    margin-bottom: clamp(1.25rem, 2.2vw, 2rem);
-    color: var(--color-blue);
-    font-size: clamp(0.78rem, 0.95vw, 0.92rem);
+  .artifact-note strong {
+    display: block;
+    margin-bottom: 0.45rem;
+    color: rgb(var(--story-accent));
+    font-family: var(--font-mono);
+    font-size: clamp(0.8rem, 0.95vw, 0.9rem);
     font-weight: 850;
-    letter-spacing: 0.06em;
-    line-height: 1.2;
-    text-transform: uppercase;
+    letter-spacing: 0.08em;
   }
 
-  .work-story__content h3 {
-    max-width: 42rem;
+  .artifact-note p {
     margin: 0;
     color: var(--color-ink);
-    font-family: var(--font-display);
-    font-size: clamp(3.3rem, 8vw, 8rem);
-    line-height: 0.86;
-    letter-spacing: -0.07em;
-    text-transform: uppercase;
-  }
-
-  .work-story__content > p {
-    max-width: 39rem;
-    margin: clamp(1.25rem, 2vw, 2rem) 0 0;
-    color: var(--color-muted);
-    font-size: clamp(1rem, 1.28vw, 1.22rem);
-    font-weight: 500;
-    line-height: 1.48;
-    letter-spacing: -0.012em;
-  }
-
-  .work-story__details {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(1rem, 2vw, 2rem);
-    width: 100%;
-    margin: clamp(1.6rem, 2.6vw, 2.6rem) 0 0;
-    padding: clamp(1rem, 1.6vw, 1.3rem) 0 0;
-    border-top: 1px solid var(--color-line);
-  }
-
-  .work-story__details div,
-  .work-story__details dd {
-    min-width: 0;
-  }
-
-  .work-story__details dt {
-    margin: 0 0 0.4rem;
-    color: var(--color-blue);
-    font-size: 0.76rem;
-    font-weight: 850;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-  }
-
-  .work-story__details dd {
-    margin: 0;
-    color: var(--color-ink);
-    font-size: clamp(0.92rem, 1vw, 1rem);
+    font-size: clamp(0.94rem, 1.08vw, 1.05rem);
     font-weight: 680;
-    line-height: 1.35;
-  }
-
-  .work-story__status {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
-    min-height: 2.75rem;
-    margin-top: clamp(1.6rem, 2.8vw, 2.8rem);
-    color: var(--color-ink);
-    font-size: clamp(0.95rem, 1vw, 1.08rem);
-    font-weight: 850;
+    line-height: 1.4;
     letter-spacing: -0.012em;
-  }
-
-  .work-story__status span {
-    color: var(--color-blue);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .phone-prototype,
-    .work-story__status,
-    .work-story__status span {
+    .project-row,
+    .project-row__summary,
+    .project-row__proof,
+    .artifact-preview {
       transition: none;
-    }
-
-    .work-story:hover .phone-prototype {
-      transform: none;
     }
   }
 
-  @media (max-width: 980px) {
-    .selected-work__intro,
-    .work-story,
-    .work-story__details {
+  @media (max-width: 1080px) {
+    .work-index {
       grid-template-columns: 1fr;
     }
 
-    .work-story {
-      min-height: auto;
+    .work-index__stage {
+      display: none;
     }
 
-    .work-story__visual,
-    .work-story__content {
-      min-height: auto;
+    .project-row {
+      grid-template-columns: 2.7rem minmax(0, 1fr);
     }
 
-    .work-story--reverse .work-story__visual {
-      order: initial;
+    .project-row__mobile-preview {
+      display: block;
+      grid-column: 2;
+      min-height: 28rem;
+      margin-top: 1rem;
     }
 
-    .phone-prototype {
-      width: min(100%, 20rem);
+    .project-row__mobile-preview .artifact-preview {
+      position: relative;
+      opacity: 1;
+      transform: none;
     }
 
-    .work-story__content h3 {
-      font-size: clamp(3rem, 14vw, 6.5rem);
+    .artifact-preview__visual {
+      min-height: 28rem;
     }
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 760px) {
     .selected-work {
       padding-inline: 1rem;
     }
 
-    .work-story {
-      gap: 2rem;
+    .selected-work__intro {
+      grid-template-columns: 1fr;
     }
 
-    .work-story__content {
-      padding: 1.35rem;
+    .project-row,
+    .project-row:hover,
+    .project-row:focus-visible,
+    .project-row.is-active {
+      grid-template-columns: 1fr;
+      padding-inline: 0;
+    }
+
+    .project-row__number,
+    .project-row__mobile-preview {
+      grid-column: 1;
+    }
+
+    .project-row__heading {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+
+    .project-row__heading p {
+      white-space: normal;
+    }
+
+    .project-row__summary,
+    .project-row__proof {
+      max-height: none;
+      opacity: 1;
+    }
+
+    .project-row__proof {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .artifact-preview__visual {
+      grid-template-columns: 1fr;
+      min-height: auto;
     }
 
     .phone-prototype {
-      width: min(100%, 17rem);
+      justify-self: center;
+      width: min(100%, 15rem);
     }
 
-    .work-story__content h3 {
-      letter-spacing: -0.06em;
+    .artifact-note {
+      max-width: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .project-row__proof {
+      grid-template-columns: 1fr;
+    }
+
+    .phone-prototype {
+      width: min(100%, 13rem);
     }
   }
 </style>

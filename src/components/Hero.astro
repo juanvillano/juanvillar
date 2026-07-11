@@ -16,57 +16,66 @@ const navItems = [
 const nodes = [
   {
     id: 'flows',
-    title: 'Flows',
-    titleEs: 'Flujos',
-    body: 'Reduce friction, guide with clarity.',
-    bodyEs: 'Reducir fricción, guiar con claridad.',
-    x: 8,
-    y: 12,
+    title: 'Strategic Thinking',
+    titleEs: 'Pensamiento estratégico',
+    body: 'Frame the problem before shaping the interface.',
+    bodyEs: 'Definir el problema antes de diseñar la interfaz.',
+    x: 12,
+    y: 24,
     active: true,
   },
   {
     id: 'systems',
-    title: 'Systems',
-    titleEs: 'Sistemas',
-    body: 'Scalable structures for consistent growth.',
-    bodyEs: 'Estructuras escalables para crecimiento consistente.',
-    x: 43,
-    y: 12,
+    title: 'Interaction Design',
+    titleEs: 'Diseño de interacción',
+    body: 'Shape behavior across states, actions, and feedback.',
+    bodyEs: 'Diseñar comportamiento entre estados, acciones y feedback.',
+    x: 52,
+    y: 10,
   },
   {
     id: 'interfaces',
-    title: 'Interfaces',
-    titleEs: 'Interfaces',
-    body: 'Clear experiences, states and edge cases.',
-    bodyEs: 'Experiencias claras, estados y casos límite.',
-    x: 74,
-    y: 15,
+    title: 'AI Prototyping',
+    titleEs: 'Prototipado con IA',
+    body: 'Explore directions faster without losing judgment.',
+    bodyEs: 'Explorar direcciones más rápido sin perder criterio.',
+    x: 80,
+    y: 24,
   },
   {
     id: 'banking',
-    title: 'Banking',
-    titleEs: 'Banca',
-    body: 'Clarity, security and trust.',
-    bodyEs: 'Claridad, seguridad y confianza.',
-    x: 63,
-    y: 48,
+    title: 'UI Design',
+    titleEs: 'Diseño UI',
+    body: 'Make flows clear, usable, and consistent.',
+    bodyEs: 'Hacer los flujos claros, usables y consistentes.',
+    x: 80,
+    y: 46,
   },
   {
     id: 'trust',
-    title: 'Trust',
-    titleEs: 'Confianza',
-    body: 'Transparent interaction and thoughtful UX.',
-    bodyEs: 'Interacción transparente y UX cuidadosa.',
-    x: 34,
-    y: 72,
+    title: 'UX Research',
+    titleEs: 'Investigación UX',
+    body: 'Understand needs, constraints, and uncertainty.',
+    bodyEs: 'Entender necesidades, restricciones e incertidumbre.',
+    x: 78,
+    y: 66,
   },
   {
     id: 'factory',
-    title: 'Business',
-    titleEs: 'Negocio',
-    body: 'Strategy, user needs, and measurable outcomes.',
-    bodyEs: 'Estrategia, necesidades de usuarios y resultados medibles.',
-    x: 4,
+    title: 'Business Constraints',
+    titleEs: 'Restricciones de negocio',
+    body: 'Connect user needs with product realities.',
+    bodyEs: 'Conectar necesidades de usuario con realidades del producto.',
+    x: 38,
+    y: 74,
+  },
+  {
+    id: 'thinking',
+    title: 'Systems Thinking',
+    titleEs: 'Pensamiento sistémico',
+    body: 'See how flows, rules, and teams connect.',
+    bodyEs: 'Ver cómo se conectan flujos, reglas y equipos.',
+    x: 12,
     y: 58,
   },
 ];
@@ -75,10 +84,11 @@ const connections = [
   ['flows', 'systems'],
   ['systems', 'interfaces'],
   ['interfaces', 'banking'],
-  ['flows', 'banking'],
+  ['flows', 'thinking'],
   ['banking', 'trust'],
-  ['flows', 'factory'],
+  ['systems', 'factory'],
   ['factory', 'trust'],
+  ['thinking', 'factory'],
 ];
 ---
 
@@ -105,13 +115,12 @@ const connections = [
     <div class="hero__copy">
       <p class="hero__role" data-i18n="role">Product designer</p>
       <h1 id="hero-title" class="hero__name">
-        <span>JUAN</span>
-        <span>VILLAR</span>
+        <span data-en="HI, I'M JUAN" data-es="HOLA, SOY JUAN">HI, I'M JUAN</span>
       </h1>
 
       <p class="hero__headline">
         <span data-i18n="headline">
-          I design flows, systems, and interfaces where clarity and trust
+          I design products, systems, and flows where clarity and trust
           <span class="headline-mark-word">
             matter.
             <svg class="mark mark--clarity" viewBox="0 0 160 22" aria-hidden="true">
@@ -123,7 +132,7 @@ const connections = [
       </p>
 
       <p class="hero__support" data-i18n="support">
-        I partner with teams in banking and fintech to turn complexity into simple, confident experiences.
+        - I partner with teams to turn complexity into simple, confident experiences.
       </p>
 
       <ul class="hero__chips" aria-label="Focus areas">
@@ -137,7 +146,7 @@ const connections = [
     <div class="hero__map-panel" aria-label="Interactive map of Juan's design focus">
       <div class="map-heading">
         <p>
-          <span data-i18n="mapLabelStart">Drag the nodes.</span>
+          <span data-i18n="mapLabelStart">Drag the nodes to interact.</span>
           <span data-i18n="mapLabelEnd">Reset the map when it gets messy.</span>
         </p>
         <button class="map-reset" type="button" data-reset-map>
