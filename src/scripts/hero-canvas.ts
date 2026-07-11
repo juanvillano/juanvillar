@@ -170,6 +170,14 @@ const setupMobileNavigation = () => {
     link.addEventListener('click', () => setOpen(false));
   });
 
+  document.addEventListener('click', (event) => {
+    if (!mobileViewport.matches || toggle.getAttribute('aria-expanded') !== 'true') return;
+    if (!(event.target instanceof Node)) return;
+    if (toggle.contains(event.target) || menu.contains(event.target)) return;
+
+    setOpen(false);
+  });
+
   document.addEventListener('keydown', (event) => {
     if (event.key !== 'Escape' || toggle.getAttribute('aria-expanded') !== 'true') return;
 

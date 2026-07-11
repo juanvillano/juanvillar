@@ -753,7 +753,6 @@ const connections = [
 
     .hero__nav {
       align-items: center;
-      flex-wrap: wrap;
       font-size: 0.7rem;
     }
 
@@ -773,22 +772,43 @@ const connections = [
     }
 
     .hero__nav-group {
-      flex-basis: 100%;
-      gap: 0;
-      max-height: 0;
+      position: absolute;
+      top: calc(100% + 0.85rem);
+      right: 0;
+      left: 0;
+      z-index: 8;
+      align-items: stretch;
+      flex-direction: column;
+      gap: clamp(2rem, 8vw, 3rem);
       overflow: hidden;
+      min-height: min(32rem, calc(100svh - 6rem));
+      padding: clamp(1.25rem, 5vw, 1.75rem);
+      border: 1px solid rgb(16 20 23 / 8%);
+      border-radius: 1.15rem;
+      background:
+        linear-gradient(rgb(16 20 23 / 2.5%) 1px, transparent 1px),
+        linear-gradient(90deg, rgb(16 20 23 / 2.5%) 1px, transparent 1px),
+        rgb(251 250 247 / 98%);
+      background-size:
+        34px 34px,
+        34px 34px,
+        auto;
+      box-shadow: 0 1.5rem 4rem rgb(16 20 23 / 14%);
       opacity: 0;
+      pointer-events: none;
+      transform: translateY(-0.55rem) scale(0.985);
+      transform-origin: top right;
       visibility: hidden;
       transition:
-        max-height 240ms ease,
         opacity 180ms ease,
+        transform 220ms ease,
         visibility 180ms ease;
     }
 
     .hero__nav-group.is-open {
-      max-height: 28rem;
-      padding-top: clamp(1.5rem, 8vw, 2.5rem);
       opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
       visibility: visible;
     }
 
@@ -796,16 +816,16 @@ const connections = [
       flex-direction: column;
       align-items: flex-start;
       gap: 0;
-      border-block: 1px solid rgb(16 20 23 / 7%);
+      border-top: 1px solid rgb(16 20 23 / 8%);
     }
 
     .hero__links a {
       width: 100%;
-      padding-block: clamp(1rem, 5vw, 1.45rem);
+      padding-block: clamp(1rem, 5vw, 1.4rem);
       color: var(--color-ink);
-      font-family: var(--font-serif);
-      font-size: clamp(2.5rem, 15vw, 4.25rem);
-      font-weight: 760;
+      font-family: var(--font-body);
+      font-size: clamp(2.2rem, 13vw, 3.75rem);
+      font-weight: 780;
       letter-spacing: 0;
       line-height: 0.95;
       text-transform: none;
@@ -821,9 +841,9 @@ const connections = [
 
     .language-toggle {
       justify-self: flex-start;
-      margin-top: 1rem;
+      margin-top: auto;
       padding-top: 0.85rem;
-      border-top: 1px solid rgb(16 20 23 / 7%);
+      border-top: 1px solid rgb(16 20 23 / 8%);
     }
 
     .hero__content {
