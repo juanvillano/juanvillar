@@ -94,7 +94,10 @@ const connections = [
 
 <section class="hero" aria-labelledby="hero-title">
   <header class="hero__nav" aria-label="Primary">
-    <a class="hero__brand" href="/" aria-label="Juan Villar home">Juan Villar</a>
+    <a class="hero__brand" href="/" aria-label="Juan Villar home">
+      <img src="/images/juan-villar-headshot.jpg" alt="" width="44" height="44" decoding="async" />
+      <span>Juan Villar</span>
+    </a>
     <div class="hero__nav-group">
       <nav class="hero__links">
         {navItems.map(([label, href, labelEs]) => (
@@ -233,11 +236,23 @@ const connections = [
   }
 
   .hero__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: clamp(0.55rem, 1vw, 0.8rem);
     color: var(--color-ink);
     font-size: 0.86rem;
     font-weight: 850;
     letter-spacing: 0.09em;
     text-transform: uppercase;
+  }
+
+  .hero__brand img {
+    width: clamp(2.15rem, 3vw, 2.75rem);
+    height: clamp(2.15rem, 3vw, 2.75rem);
+    flex: 0 0 auto;
+    border-radius: 999px;
+    object-fit: cover;
+    box-shadow: 0 0 0 1px rgb(16 20 23 / 8%);
   }
 
   .hero__nav-group,
