@@ -273,7 +273,6 @@ const connections = [
     height: 2.85rem;
     flex: 0 0 auto;
     place-items: center;
-    gap: 0.22rem;
     border: 1px solid rgb(16 20 23 / 12%);
     border-radius: 999px;
     background: var(--color-paper);
@@ -282,9 +281,10 @@ const connections = [
   }
 
   .hero__menu-toggle span {
+    grid-area: 1 / 1;
     display: block;
-    width: 1.05rem;
-    height: 2px;
+    width: 1.1rem;
+    height: 2.5px;
     border-radius: 999px;
     background: var(--color-ink);
     transition:
@@ -292,8 +292,16 @@ const connections = [
       transform 180ms ease;
   }
 
+  .hero__menu-toggle span:nth-child(1) {
+    transform: translateY(-5px);
+  }
+
+  .hero__menu-toggle span:nth-child(3) {
+    transform: translateY(5px);
+  }
+
   .hero__menu-toggle[aria-expanded='true'] span:nth-child(1) {
-    transform: translateY(6px) rotate(45deg);
+    transform: translateY(0) rotate(45deg);
   }
 
   .hero__menu-toggle[aria-expanded='true'] span:nth-child(2) {
@@ -301,7 +309,7 @@ const connections = [
   }
 
   .hero__menu-toggle[aria-expanded='true'] span:nth-child(3) {
-    transform: translateY(-6px) rotate(-45deg);
+    transform: translateY(0) rotate(-45deg);
   }
 
   .hero__nav-group,
