@@ -147,6 +147,39 @@ const setupLanguageToggle = () => {
   });
 };
 
+const setupMobileNavigation = () => {
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.querySelector<HTMLElement>('[data-mobile-menu]');
+  const mobileViewport = window.matchMedia('(max-width: 760px)');
+
+  if (!toggle || !menu) return;
+
+  const setOpen = (isOpen: boolean) => {
+    toggle.setAttribute('aria-expanded', `${isOpen}`);
+    toggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+    menu.classList.toggle('is-open', isOpen);
+  };
+
+  toggle.addEventListener('click', () => {
+    if (!mobileViewport.matches) return;
+
+    setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  menu.querySelectorAll<HTMLAnchorElement>('a').forEach((link) => {
+    link.addEventListener('click', () => setOpen(false));
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape' || toggle.getAttribute('aria-expanded') !== 'true') return;
+
+    setOpen(false);
+    toggle.focus();
+  });
+
+  mobileViewport.addEventListener('change', () => setOpen(false));
+};
+
 const setupFlowMap = () => {
   const map = document.querySelector<HTMLElement>('[data-flow-map]');
   if (!map) return;
@@ -376,4 +409,5 @@ const setupFlowMap = () => {
 };
 
 setupLanguageToggle();
+setupMobileNavigation();
 setupFlowMap();

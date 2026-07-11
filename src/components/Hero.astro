@@ -98,7 +98,19 @@ const connections = [
       <img src="/images/juan-villar-headshot.jpg" alt="" width="44" height="44" decoding="async" />
       <span>Juan Villar</span>
     </a>
-    <div class="hero__nav-group">
+    <button
+      class="hero__menu-toggle"
+      type="button"
+      aria-label="Open navigation"
+      aria-expanded="false"
+      aria-controls="hero-navigation-menu"
+      data-menu-toggle
+    >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
+    <div class="hero__nav-group" id="hero-navigation-menu" data-mobile-menu>
       <nav class="hero__links">
         {navItems.map(([label, href, labelEs]) => (
           <a href={href} data-i18n={`nav.${label.toLowerCase()}`} data-en={label} data-es={labelEs}>
@@ -255,6 +267,43 @@ const connections = [
     box-shadow: 0 0 0 1px rgb(16 20 23 / 8%);
   }
 
+  .hero__menu-toggle {
+    display: none;
+    width: 2.85rem;
+    height: 2.85rem;
+    flex: 0 0 auto;
+    place-items: center;
+    gap: 0.22rem;
+    border: 1px solid rgb(16 20 23 / 12%);
+    border-radius: 999px;
+    background: var(--color-paper);
+    box-shadow: 0 0.65rem 1.75rem rgb(16 20 23 / 8%);
+    cursor: pointer;
+  }
+
+  .hero__menu-toggle span {
+    display: block;
+    width: 1.05rem;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--color-ink);
+    transition:
+      opacity 180ms ease,
+      transform 180ms ease;
+  }
+
+  .hero__menu-toggle[aria-expanded='true'] span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .hero__menu-toggle[aria-expanded='true'] span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hero__menu-toggle[aria-expanded='true'] span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
   .hero__nav-group,
   .hero__links,
   .language-toggle {
@@ -276,7 +325,8 @@ const connections = [
 
   .hero__links a,
   .language-toggle button,
-  .hero__brand {
+  .hero__brand,
+  .hero__menu-toggle {
     transition: color 180ms ease, transform 180ms ease;
   }
 
@@ -702,7 +752,8 @@ const connections = [
     }
 
     .hero__nav {
-      align-items: flex-start;
+      align-items: center;
+      flex-wrap: wrap;
       font-size: 0.7rem;
     }
 
@@ -716,18 +767,63 @@ const connections = [
       height: 2rem;
     }
 
+    .hero__menu-toggle {
+      display: grid;
+      margin-left: auto;
+    }
+
     .hero__nav-group {
-      align-items: flex-end;
-      flex-direction: column-reverse;
-      gap: 0.45rem;
+      flex-basis: 100%;
+      gap: 0;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+      transition:
+        max-height 240ms ease,
+        opacity 180ms ease,
+        visibility 180ms ease;
+    }
+
+    .hero__nav-group.is-open {
+      max-height: 28rem;
+      padding-top: clamp(1.5rem, 8vw, 2.5rem);
+      opacity: 1;
+      visibility: visible;
     }
 
     .hero__links {
-      gap: 0.65rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      border-block: 1px solid rgb(16 20 23 / 7%);
+    }
+
+    .hero__links a {
+      width: 100%;
+      padding-block: clamp(1rem, 5vw, 1.45rem);
+      color: var(--color-ink);
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem, 15vw, 4.25rem);
+      font-weight: 760;
+      letter-spacing: 0;
+      line-height: 0.95;
+      text-transform: none;
+    }
+
+    .hero__links a + a {
+      border-top: 1px solid rgb(16 20 23 / 7%);
     }
 
     .hero__links a:nth-child(3) {
       display: none;
+    }
+
+    .language-toggle {
+      justify-self: flex-start;
+      margin-top: 1rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid rgb(16 20 23 / 7%);
     }
 
     .hero__content {
