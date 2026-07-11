@@ -764,6 +764,11 @@ const connections = [
       font-size: 0.7rem;
     }
 
+    .hero__nav.is-menu-open {
+      position: fixed;
+      inset: 1rem 1rem auto;
+    }
+
     .hero__brand {
       gap: 0.55rem;
       font-size: 0.76rem;
@@ -780,31 +785,29 @@ const connections = [
     }
 
     .hero__nav-group {
-      position: absolute;
-      top: calc(100% + 0.85rem);
-      right: 0;
-      left: 0;
-      z-index: 8;
+      position: fixed;
+      inset: 0;
+      z-index: -1;
       align-items: stretch;
       flex-direction: column;
       gap: clamp(2rem, 8vw, 3rem);
       overflow: hidden;
-      min-height: min(32rem, calc(100svh - 6rem));
-      padding: clamp(1.25rem, 5vw, 1.75rem);
-      border: 1px solid rgb(16 20 23 / 8%);
-      border-radius: 1.15rem;
+      min-height: 100svh;
+      padding: clamp(7.5rem, 18vw, 8.75rem) 1rem max(2rem, env(safe-area-inset-bottom));
+      border: 0;
+      border-radius: 0;
       background:
         linear-gradient(rgb(16 20 23 / 2.5%) 1px, transparent 1px),
         linear-gradient(90deg, rgb(16 20 23 / 2.5%) 1px, transparent 1px),
-        rgb(251 250 247 / 98%);
+        var(--color-canvas);
       background-size:
         34px 34px,
         34px 34px,
         auto;
-      box-shadow: 0 1.5rem 4rem rgb(16 20 23 / 14%);
+      box-shadow: none;
       opacity: 0;
       pointer-events: none;
-      transform: translateY(-0.55rem) scale(0.985);
+      transform: translateY(-0.75rem);
       transform-origin: top right;
       visibility: hidden;
       transition:
@@ -816,7 +819,7 @@ const connections = [
     .hero__nav-group.is-open {
       opacity: 1;
       pointer-events: auto;
-      transform: translateY(0) scale(1);
+      transform: translateY(0);
       visibility: visible;
     }
 

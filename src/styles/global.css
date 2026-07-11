@@ -40,6 +40,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+body.is-mobile-menu-open {
+  overflow: hidden;
+}
+
 button,
 a {
   font: inherit;

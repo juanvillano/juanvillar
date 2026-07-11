@@ -150,6 +150,7 @@ const setupLanguageToggle = () => {
 const setupMobileNavigation = () => {
   const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
   const menu = document.querySelector<HTMLElement>('[data-mobile-menu]');
+  const nav = toggle?.closest<HTMLElement>('.hero__nav');
   const mobileViewport = window.matchMedia('(max-width: 760px)');
 
   if (!toggle || !menu) return;
@@ -158,6 +159,8 @@ const setupMobileNavigation = () => {
     toggle.setAttribute('aria-expanded', `${isOpen}`);
     toggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
     menu.classList.toggle('is-open', isOpen);
+    nav?.classList.toggle('is-menu-open', isOpen);
+    document.body.classList.toggle('is-mobile-menu-open', isOpen);
   };
 
   toggle.addEventListener('click', () => {
