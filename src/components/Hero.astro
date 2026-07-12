@@ -1,72 +1,72 @@
 ---
 const chips = [
-  ['Banking', 'Banca'],
-  ['Fintech', 'Fintech'],
-  ['Design systems', 'Sistemas de diseño'],
-  ['KYC / Onboarding', 'KYC / Onboarding'],
+  ["Banking", "Banca"],
+  ["Fintech", "Fintech"],
+  ["Design systems", "Sistemas de diseño"],
+  ["KYC / Onboarding", "KYC / Onboarding"],
 ];
 
 const navItems = [
-  ['Work', '#work', 'Trabajo'],
-  ['About', '#about', 'Sobre mi'],
-  ['Writing', '#writing', 'Escritura'],
-  ['Contact', '#contact', 'Contacto'],
+  ["Work", "#work", "Trabajo"],
+  ["About", "#about", "Sobre mi"],
+  ["Writing", "#writing", "Escritura"],
+  ["Contact", "#contact", "Contacto"],
 ];
 
 const nodes = [
   {
-    id: 'strategic',
-    title: 'Strategic Thinking',
-    titleEs: 'Pensamiento estratégico',
+    id: "strategic",
+    title: "Strategic Thinking",
+    titleEs: "Pensamiento estratégico",
     x: 4,
     y: 30,
   },
   {
-    id: 'interaction',
-    title: 'Interaction Design',
-    titleEs: 'Diseño de interacción',
+    id: "interaction",
+    title: "Interaction Design",
+    titleEs: "Diseño de interacción",
     x: 44,
     y: 6,
   },
   {
-    id: 'ai',
-    title: 'AI Prototyping',
-    titleEs: 'Prototipado con IA',
+    id: "ai",
+    title: "AI Prototyping",
+    titleEs: "Prototipado con IA",
     x: 75,
     y: 27,
   },
   {
-    id: 'ui',
-    title: 'UI Design',
-    titleEs: 'Diseño UI',
+    id: "ui",
+    title: "UI Design",
+    titleEs: "Diseño UI",
     x: 81,
     y: 52,
   },
   {
-    id: 'ux',
-    title: 'UX Research',
-    titleEs: 'Investigación UX',
+    id: "ux",
+    title: "UX Research",
+    titleEs: "Investigación UX",
     x: 72,
     y: 72,
   },
   {
-    id: 'business',
-    title: 'Business Constraints',
-    titleEs: 'Restricciones de negocio',
+    id: "business",
+    title: "Business Constraints",
+    titleEs: "Restricciones de negocio",
     x: 35,
     y: 79,
   },
   {
-    id: 'systems',
-    title: 'Systems Thinking',
-    titleEs: 'Pensamiento sistémico',
+    id: "systems",
+    title: "Systems Thinking",
+    titleEs: "Pensamiento sistémico",
     x: 3,
     y: 58,
   },
   {
-    id: 'spotify',
-    title: 'Spotify',
-    titleEs: 'Spotify',
+    id: "spotify",
+    title: "Spotify",
+    titleEs: "Spotify",
     x: 39,
     y: 43,
     spotify: true,
@@ -74,20 +74,26 @@ const nodes = [
 ];
 
 const connections = [
-  ['spotify', 'strategic'],
-  ['spotify', 'interaction'],
-  ['spotify', 'ai'],
-  ['spotify', 'ui'],
-  ['spotify', 'ux'],
-  ['spotify', 'business'],
-  ['spotify', 'systems'],
+  ["spotify", "strategic"],
+  ["spotify", "interaction"],
+  ["spotify", "ai"],
+  ["spotify", "ui"],
+  ["spotify", "ux"],
+  ["spotify", "business"],
+  ["spotify", "systems"],
 ];
 ---
 
 <section class="hero" aria-labelledby="hero-title">
   <header class="hero__nav" aria-label="Primary">
     <a class="hero__brand" href="/" aria-label="Juan Villar home">
-      <img src="/images/juan-villar-headshot.jpg" alt="" width="44" height="44" decoding="async" />
+      <img
+        src="/images/juan-villar-headshot.jpg"
+        alt=""
+        width="44"
+        height="44"
+        decoding="async"
+      />
       <span>Juan Villar</span>
     </a>
     <button
@@ -104,16 +110,27 @@ const connections = [
     </button>
     <div class="hero__nav-group" id="hero-navigation-menu" data-mobile-menu>
       <nav class="hero__links">
-        {navItems.map(([label, href, labelEs]) => (
-          <a href={href} data-i18n={`nav.${label.toLowerCase()}`} data-en={label} data-es={labelEs}>
-            {label}
-          </a>
-        ))}
+        {
+          navItems.map(([label, href, labelEs]) => (
+            <a
+              href={href}
+              data-i18n={`nav.${label.toLowerCase()}`}
+              data-en={label}
+              data-es={labelEs}
+            >
+              {label}
+            </a>
+          ))
+        }
       </nav>
       <div class="language-toggle" aria-label="Language">
-        <button type="button" data-lang-option="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang-option="en" aria-pressed="true"
+          >EN</button
+        >
         <span aria-hidden="true">/</span>
-        <button type="button" data-lang-option="es" aria-pressed="false">ES</button>
+        <button type="button" data-lang-option="es" aria-pressed="false"
+          >ES</button
+        >
       </div>
     </div>
   </header>
@@ -122,7 +139,8 @@ const connections = [
     <div class="hero__copy">
       <p class="hero__role" data-i18n="role">Product designer</p>
       <h1 id="hero-title" class="hero__name">
-        <span data-en="HI, I'M JUAN" data-es="HOLA, SOY JUAN">HI, I'M JUAN</span>
+        <span data-en="HI, I'M JUAN" data-es="HOLA, SOY JUAN">HI, I'M JUAN</span
+        >
       </h1>
 
       <p class="hero__headline">
@@ -130,32 +148,48 @@ const connections = [
           I design products, systems, and flows where clarity and trust
           <span class="headline-mark-word">
             matter.
-            <svg class="mark mark--clarity" viewBox="0 0 160 22" aria-hidden="true">
-              <path d="M4 15c28-8 57-10 86-9 22 1 43 4 66 1" />
-              <path d="M26 20c36-8 69-11 107-9" />
+            <svg
+              class="mark mark--clarity"
+              viewBox="0 0 160 22"
+              aria-hidden="true"
+            >
+              <path d="M4 15c28-8 57-10 86-9 22 1 43 4 66 1"></path>
+              <path d="M26 20c36-8 69-11 107-9"></path>
             </svg>
           </span>
         </span>
       </p>
 
       <p class="hero__support" data-i18n="support">
-        - I partner with teams to turn complexity into simple, confident experiences.
+        - I partner with teams to turn complexity into simple, confident
+        experiences.
       </p>
 
       <ul class="hero__chips" aria-label="Focus areas">
-        {chips.map(([label, labelEs]) => (
-          <li data-en={label} data-es={labelEs}>{label}</li>
-        ))}
+        {
+          chips.map(([label, labelEs]) => (
+            <li data-en={label} data-es={labelEs}>
+              {label}
+            </li>
+          ))
+        }
       </ul>
-
     </div>
 
-    <div class="hero__map-panel" aria-label="Interactive map of Juan's design focus">
+    <div
+      class="hero__map-panel"
+      aria-label="Interactive map of Juan's design focus"
+    >
       <div class="map-heading">
-        <button class="map-reset" type="button" data-reset-map aria-label="Reset map">
+        <button
+          class="map-reset"
+          type="button"
+          data-reset-map
+          aria-label="Reset map"
+        >
           <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M4.5 9.5a8 8 0 1 1 2 8.1" />
-            <path d="M4.5 4.8v4.7h4.7" />
+            <path d="M4.5 9.5a8 8 0 1 1 2 8.1"></path>
+            <path d="M4.5 4.8v4.7h4.7"></path>
           </svg>
           <span class="screen-reader-text" data-i18n="resetMap">Reset map</span>
         </button>
@@ -163,77 +197,104 @@ const connections = [
 
       <div class="flow-map" data-flow-map>
         <svg class="flow-map__lines" aria-hidden="true">
-          {connections.map(([from, to]) => (
-            <path data-connection data-from={from} data-to={to}></path>
-          ))}
+          {
+            connections.map(([from, to]) => (
+              <path data-connection data-from={from} data-to={to} />
+            ))
+          }
         </svg>
 
-        {nodes.map((node) => (
-          <article
-            class:list={[
-              'flow-node',
-              { 'flow-node--spotify': node.spotify },
-            ]}
-            data-node={node.id}
-            data-x={node.x}
-            data-y={node.y}
-            tabindex="0"
-            aria-label={node.spotify ? 'Spotify currently listening module' : node.title}
-            style={`--x: ${node.x}; --y: ${node.y};`}
-          >
-            {node.spotify ? (
-              <>
-                <div class="spotify-art" aria-hidden="true">
-                  <span class="spotify-art__play"></span>
-                </div>
-                <div class="spotify-copy">
-                  <p
-                    class="spotify-status"
-                    data-en="Currently listening"
-                    data-es="Escuchando ahora"
-                  >
-                    Currently listening
-                  </p>
-                  <h2 data-en="Spotify module" data-es="Módulo de Spotify">Spotify module</h2>
-                  <p
-                    class="spotify-track"
-                    data-en="Last played song soon"
-                    data-es="Última canción pronto"
-                  >
-                    Last played song soon
-                  </p>
-                </div>
-                <div class="flow-node__handle" aria-hidden="true">
-                  <span></span><span></span><span></span><span></span><span></span><span></span>
-                </div>
-              </>
-            ) : (
-              <>
-                <div class="flow-node__copy">
-                  <h2 data-node-title data-en={node.title} data-es={node.titleEs}>{node.title}</h2>
-                </div>
-                <div class="flow-node__handle" aria-hidden="true">
-                  <span></span><span></span><span></span><span></span><span></span><span></span>
-                </div>
-              </>
-            )}
-          </article>
-        ))}
+        {
+          nodes.map((node) => (
+            <article
+              class:list={["flow-node", { "flow-node--spotify": node.spotify }]}
+              data-node={node.id}
+              data-x={node.x}
+              data-y={node.y}
+              tabindex="0"
+              aria-label={
+                node.spotify ? "Spotify currently listening module" : node.title
+              }
+              style={`--x: ${node.x}; --y: ${node.y};`}
+            >
+              {node.spotify ? (
+                <>
+                  <div class="spotify-art" aria-hidden="true">
+                    <span class="spotify-art__play" />
+                  </div>
+                  <div class="spotify-copy">
+                    <p
+                      class="spotify-status"
+                      data-en="Currently listening"
+                      data-es="Escuchando ahora"
+                    >
+                      Currently listening
+                    </p>
+                    <h2 data-en="Spotify module" data-es="Módulo de Spotify">
+                      Spotify module
+                    </h2>
+                    <p
+                      class="spotify-track"
+                      data-en="Last played song soon"
+                      data-es="Última canción pronto"
+                    >
+                      Last played song soon
+                    </p>
+                  </div>
+                  <div class="flow-node__handle" aria-hidden="true">
+                    <span />
+                    <span />
+                    <span />
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div class="flow-node__copy">
+                    <h2
+                      data-node-title
+                      data-en={node.title}
+                      data-es={node.titleEs}
+                    >
+                      {node.title}
+                    </h2>
+                  </div>
+                  <div class="flow-node__handle" aria-hidden="true">
+                    <span />
+                    <span />
+                    <span />
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+                </>
+              )}
+            </article>
+          ))
+        }
 
-        <p class="map-instruction" data-i18n="mapLabelStart">Drag the nodes to interact.</p>
+        <p class="map-instruction" data-i18n="mapLabelStart">
+          Drag the nodes to interact.
+        </p>
       </div>
     </div>
   </div>
 
-  <a class="hero__scroll-cue" href="#about" aria-label="Scroll to What I do section">
+  <a
+    class="hero__scroll-cue"
+    href="#about"
+    aria-label="Scroll to What I do section"
+  >
     <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12 5v14" />
-      <path d="m6 13 6 6 6-6" />
+      <path d="M12 5v14"></path>
+      <path d="m6 13 6 6 6-6"></path>
     </svg>
   </a>
 
   <script>
-    import '../scripts/hero-canvas.ts';
+    import "../scripts/hero-canvas.ts";
   </script>
 </section>
 
@@ -250,12 +311,18 @@ const connections = [
     inset: 0;
     z-index: -1;
     pointer-events: none;
-    content: '';
+    content: "";
     background-image:
       linear-gradient(rgb(16 20 23 / 2%) 1px, transparent 1px),
       linear-gradient(90deg, rgb(16 20 23 / 2%) 1px, transparent 1px);
     background-size: 46px 46px;
-    mask-image: linear-gradient(90deg, transparent 0%, black 22%, black 86%, transparent 100%);
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      black 22%,
+      black 86%,
+      transparent 100%
+    );
   }
 
   .hero__nav {
@@ -326,15 +393,15 @@ const connections = [
     transform: translateY(5px);
   }
 
-  .hero__menu-toggle[aria-expanded='true'] span:nth-child(1) {
+  .hero__menu-toggle[aria-expanded="true"] span:nth-child(1) {
     transform: translateY(0) rotate(45deg);
   }
 
-  .hero__menu-toggle[aria-expanded='true'] span:nth-child(2) {
+  .hero__menu-toggle[aria-expanded="true"] span:nth-child(2) {
     opacity: 0;
   }
 
-  .hero__menu-toggle[aria-expanded='true'] span:nth-child(3) {
+  .hero__menu-toggle[aria-expanded="true"] span:nth-child(3) {
     transform: translateY(0) rotate(-45deg);
   }
 
@@ -353,7 +420,7 @@ const connections = [
     gap: clamp(0.8rem, 1.6vw, 1.45rem);
   }
 
-  .hero__links a[data-i18n='nav.writing'] {
+  .hero__links a[data-i18n="nav.writing"] {
     display: none;
   }
 
@@ -361,7 +428,9 @@ const connections = [
   .language-toggle button,
   .hero__brand,
   .hero__menu-toggle {
-    transition: color 180ms ease, transform 180ms ease;
+    transition:
+      color 180ms ease,
+      transform 180ms ease;
   }
 
   .hero__links a:hover,
@@ -386,7 +455,7 @@ const connections = [
     font: inherit;
   }
 
-  .language-toggle button[aria-pressed='true'] {
+  .language-toggle button[aria-pressed="true"] {
     color: var(--color-blue);
   }
 
@@ -440,11 +509,14 @@ const connections = [
 
   .hero__headline {
     position: relative;
-    max-width: 39rem;
+    max-width: 45rem;
     margin: 0;
     font-family: var(--font-serif);
     font-size: clamp(2rem, 3vw, 4rem);
-    font-variation-settings: 'SOFT' 55, 'WONK' 1, 'opsz' 70;
+    font-variation-settings:
+      "SOFT" 55,
+      "WONK" 1,
+      "opsz" 70;
     font-weight: 720;
     letter-spacing: -0.02em;
     line-height: 1.08;
@@ -549,7 +621,10 @@ const connections = [
     cursor: pointer;
     pointer-events: auto;
     box-shadow: 0 12px 34px rgb(17 24 39 / 7%);
-    transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+    transition:
+      border-color 180ms ease,
+      transform 180ms ease,
+      box-shadow 180ms ease;
   }
 
   .map-reset svg {
@@ -590,7 +665,10 @@ const connections = [
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: 2.35;
-    transition: opacity 160ms cubic-bezier(0.23, 1, 0.32, 1), stroke 160ms cubic-bezier(0.23, 1, 0.32, 1), stroke-width 160ms cubic-bezier(0.23, 1, 0.32, 1);
+    transition:
+      opacity 160ms cubic-bezier(0.23, 1, 0.32, 1),
+      stroke 160ms cubic-bezier(0.23, 1, 0.32, 1),
+      stroke-width 160ms cubic-bezier(0.23, 1, 0.32, 1);
   }
 
   .flow-map__lines path.is-active-connection {
@@ -626,70 +704,81 @@ const connections = [
     border: 1px solid var(--color-soft);
     border-radius: 0.62rem;
     background: rgb(255 255 255 / 88%);
-    box-shadow: 0 18px 50px var(--node-glow), 0 2px 8px var(--node-glow-soft);
+    box-shadow:
+      0 18px 50px var(--node-glow),
+      0 2px 8px var(--node-glow-soft);
     cursor: grab;
     touch-action: none;
     user-select: none;
-    transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+    transition:
+      border-color 180ms ease,
+      box-shadow 180ms ease,
+      transform 180ms ease;
   }
 
   .flow-node:hover,
   .flow-node:focus-visible {
     border-color: #a7b4bf;
-    box-shadow: 0 22px 56px var(--node-interaction-glow), 0 4px 14px var(--node-interaction-glow-soft);
+    box-shadow:
+      0 22px 56px var(--node-interaction-glow),
+      0 4px 14px var(--node-interaction-glow-soft);
     transform: translateY(-2px);
   }
 
-  .flow-node[data-node='strategic'] {
+  .flow-node[data-node="strategic"] {
     --node-interaction-glow: rgb(0 174 180 / 18%);
     --node-interaction-glow-soft: rgb(0 174 180 / 10%);
   }
 
-  .flow-node[data-node='interaction'] {
+  .flow-node[data-node="interaction"] {
     --node-interaction-glow: rgb(255 184 0 / 18%);
     --node-interaction-glow-soft: rgb(255 184 0 / 10%);
   }
 
-  .flow-node[data-node='ai'] {
+  .flow-node[data-node="ai"] {
     --node-interaction-glow: rgb(255 91 128 / 16%);
     --node-interaction-glow-soft: rgb(255 91 128 / 9%);
   }
 
-  .flow-node[data-node='ui'] {
+  .flow-node[data-node="ui"] {
     --node-interaction-glow: rgb(15 92 255 / 16%);
     --node-interaction-glow-soft: rgb(15 92 255 / 9%);
   }
 
-  .flow-node[data-node='ux'] {
+  .flow-node[data-node="ux"] {
     --node-interaction-glow: rgb(120 95 255 / 17%);
     --node-interaction-glow-soft: rgb(120 95 255 / 9%);
   }
 
-  .flow-node[data-node='business'] {
+  .flow-node[data-node="business"] {
     --node-interaction-glow: rgb(29 185 84 / 17%);
     --node-interaction-glow-soft: rgb(29 185 84 / 9%);
   }
 
-  .flow-node[data-node='systems'] {
+  .flow-node[data-node="systems"] {
     --node-interaction-glow: rgb(255 129 54 / 16%);
     --node-interaction-glow-soft: rgb(255 129 54 / 9%);
   }
 
-  .flow-node[data-node='spotify'] {
+  .flow-node[data-node="spotify"] {
     --node-interaction-glow: rgb(29 185 84 / 18%);
     --node-interaction-glow-soft: rgb(29 185 84 / 10%);
   }
 
   .flow-node.is-dragging {
     z-index: 5;
-    box-shadow: 0 26px 62px var(--node-interaction-glow), 0 4px 16px var(--node-interaction-glow-soft);
+    box-shadow:
+      0 26px 62px var(--node-interaction-glow),
+      0 4px 16px var(--node-interaction-glow-soft);
     cursor: grabbing;
     transform: scale(1.025);
   }
 
   .flow-node--active {
     border: 2px solid var(--color-blue);
-    box-shadow: 0 18px 50px var(--node-glow), 0 2px 8px var(--node-glow-soft);
+    box-shadow:
+      0 18px 50px var(--node-glow),
+      0 2px 8px var(--node-glow-soft);
   }
 
   .flow-node__handle {
@@ -705,7 +794,9 @@ const connections = [
     height: 0.24rem;
     border-radius: 50%;
     background: rgb(168 179 188 / 28%);
-    transition: background-color 160ms cubic-bezier(0.23, 1, 0.32, 1), transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+    transition:
+      background-color 160ms cubic-bezier(0.23, 1, 0.32, 1),
+      transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
   }
 
   .flow-node:hover .flow-node__handle span,
@@ -755,7 +846,11 @@ const connections = [
     overflow: hidden;
     border-radius: 50%;
     background:
-      radial-gradient(circle at 70% 25%, rgb(255 255 255 / 85%) 0 0.32rem, transparent 0.36rem),
+      radial-gradient(
+        circle at 70% 25%,
+        rgb(255 255 255 / 85%) 0 0.32rem,
+        transparent 0.36rem
+      ),
       radial-gradient(circle at 35% 65%, #e333ff 0 0.55rem, transparent 0.6rem),
       linear-gradient(135deg, #13002f, #6117ff 42%, #15191e 72%);
     box-shadow: inset 0 0 0 1px rgb(255 255 255 / 35%);
@@ -764,9 +859,14 @@ const connections = [
   .spotify-art::before {
     position: absolute;
     inset: 0;
-    content: '';
+    content: "";
     background:
-      linear-gradient(120deg, transparent 18%, rgb(255 255 255 / 22%) 19% 21%, transparent 22%),
+      linear-gradient(
+        120deg,
+        transparent 18%,
+        rgb(255 255 255 / 22%) 19% 21%,
+        transparent 22%
+      ),
       linear-gradient(20deg, transparent 55%, rgb(0 0 0 / 34%) 56%);
   }
 
@@ -800,7 +900,7 @@ const connections = [
   }
 
   .spotify-status::before {
-    content: '🎧';
+    content: "🎧";
     font-size: 0.78rem;
     line-height: 1;
   }
@@ -830,7 +930,7 @@ const connections = [
     background: rgb(255 255 255 / 86%);
     color: rgb(102 113 124 / 74%);
     box-shadow: 0 14px 34px rgb(17 24 39 / 8%);
-    font-family: 'Bradley Hand', 'Segoe Print', 'Comic Sans MS', cursive;
+    font-family: "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive;
     font-size: clamp(0.72rem, 0.95vw, 0.95rem);
     font-weight: 600;
     line-height: 1.1;
@@ -942,7 +1042,8 @@ const connections = [
       gap: clamp(2rem, 8vw, 3rem);
       overflow: hidden;
       min-height: 100svh;
-      padding: clamp(7.5rem, 18vw, 8.75rem) 1rem max(2rem, env(safe-area-inset-bottom));
+      padding: clamp(7.5rem, 18vw, 8.75rem) 1rem
+        max(2rem, env(safe-area-inset-bottom));
       border: 0;
       border-radius: 0;
       background:
@@ -1063,13 +1164,12 @@ const connections = [
       border-radius: 0.95rem;
     }
 
-    .flow-node[data-node='interfaces'] {
+    .flow-node[data-node="interfaces"] {
       display: none;
     }
 
-    .flow-node[data-node='factory'] {
+    .flow-node[data-node="factory"] {
       display: none;
     }
-
   }
 </style>
