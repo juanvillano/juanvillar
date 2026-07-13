@@ -1,639 +1,345 @@
 ---
-const projects = [
+const chips = [
+  'Product design',
+  'Banking UX',
+  'KYC',
+  'Regulated flow',
+  'Anonymized',
+  'Shipped',
+];
+
+const details = [
   {
-    number: "01",
-    tag: "Banking Onboarding & KYC",
-    title: "KYC Update Flow",
-    summary:
-      "A regulated customer-information update flow designed to reduce confusion, support compliance, and help users complete sensitive steps with confidence.",
-    type: "Banking UX",
-    year: "Live",
-    status: "Process-led case file",
-    tags: ["KYC", "Trust", "Mobile flow", "NDA"],
-    proof: [
-      { value: "NDA", label: "Anonymized" },
-      { value: "Live", label: "Banking flow" },
-      { value: "0->1", label: "Flow structure" },
-    ],
-    variant: "trust",
-    previewLabel: "FLOW // VERIFY_BEFORE_SUBMIT",
-    previewNote:
-      "Validation, review, and recovery states for a trust-sensitive update path.",
+    label: 'ROLE',
+    value: 'Product Designer',
   },
   {
-    number: "02",
-    tag: "Security & Authentication",
-    title: "Digital Token",
-    summary:
-      "A mobile security feature that helped move verification from physical/code-card behavior into a clearer in-app activation and usage flow.",
-    type: "Mobile Product",
-    year: "Live",
-    status: "Case study planned",
-    tags: ["Security", "Trust", "Activation", "Edge cases"],
-    proof: [
-      { value: "Live", label: "Feature" },
-      { value: "Risk", label: "Sensitive flow" },
-      { value: "UX", label: "Activation" },
-    ],
-    variant: "token",
-    previewLabel: "STATE // SECURITY_ACTIVATION",
-    previewNote:
-      "A focused activation sequence for authentication, confirmation, and error recovery.",
+    label: 'FOCUS',
+    value: 'Clarity, validation, trust',
   },
   {
-    number: "03",
-    tag: "Continuous Mobile Product Improvements",
-    title: "Core Banking Improvements",
-    summary:
-      "Continuous improvements to established banking features, reducing friction, clarifying edge cases, and supporting development requests across the product.",
-    type: "Product Evolution",
-    year: "Ongoing",
-    status: "Process-led case file",
-    tags: ["Mobile app", "Handoff", "Legacy systems", "Support"],
-    proof: [
-      { value: "5+", label: "Years in banking" },
-      { value: "Dev", label: "Handoff support" },
-      { value: "Ops", label: "Maintenance" },
-    ],
-    variant: "evolution",
-    previewLabel: "SYSTEM // MAINTAIN_AND_IMPROVE",
-    previewNote:
-      "Small product decisions that keep core flows understandable and easier to maintain.",
-  },
-  {
-    number: "04",
-    tag: "AI-assisted Product Exploration",
-    title: "Exploring What's Next",
-    summary:
-      "A set of experiments using AI to explore product directions, prototype faster, analyze patterns, and move from ambiguity to clearer decisions.",
-    type: "Design Engineering",
-    year: "Lab",
-    status: "Prototype-led study",
-    tags: ["AI workflow", "Prototype", "Creative coding", "Lab"],
-    proof: [
-      { value: "AI", label: "Workflow" },
-      { value: "Lab", label: "Experiments" },
-      { value: "Build", label: "Learning" },
-    ],
-    variant: "ai",
-    previewLabel: "LAB // HUMAN_JUDGMENT",
-    previewNote:
-      "Explorations where AI speeds up the work, but design judgment stays in control.",
+    label: 'STATUS',
+    value: 'Live, anonymized',
   },
 ];
 ---
 
-<section
-  class="selected-work"
-  id="work"
-  aria-labelledby="selected-work-title"
-  data-selected-work
->
-  <div class="selected-work__intro">
-    <h2 id="selected-work-title">Selected Work</h2>
-    <p>
-      A project index for product work across banking UX, trust-sensitive flows,
-      systems, and design engineering. Some financial product work is anonymized;
-      the case studies will focus on process, decisions, and product thinking.
-    </p>
-  </div>
+<section class="selected-work" id="work" aria-labelledby="selected-work-title">
+  <div class="selected-work__inner">
+    <div class="selected-work__copy">
+      <header class="selected-work__intro">
+        <h2 id="selected-work-title">Design Work</h2>
+        <p>
+          Selected product work, ongoing features, and anonymized financial
+          flows shaped under real constraints.
+        </p>
+      </header>
 
-  <div class="work-index">
-    <div class="work-index__rows" aria-label="Selected product design stories">
-      {
-        projects.map((project, index) => (
-          <article
-            class:list={[
-              "project-row",
-              `project-row--${project.variant}`,
-              { "is-active": index === 0 },
-            ]}
-            data-project-row={project.variant}
-            tabindex="0"
-          >
-            <div class="project-row__number" aria-hidden="true">
-              {project.number}
-            </div>
+      <article class="case-preview" aria-label="KYC Update Flow case preview">
+        <ul class="case-preview__chips" aria-label="Project tags">
+          {chips.map((chip) => <li>{chip}</li>)}
+        </ul>
 
-            <div class="project-row__body">
-              <ul class="project-row__tags" aria-label={`${project.title} tags`}>
-                {project.tags.map((tag) => (
-                  <li>{tag}</li>
-                ))}
-              </ul>
+        <div class="case-preview__body">
+          <p class="case-preview__eyebrow">Banking onboarding and KYC / 01</p>
+          <h3>KYC Update Flow</h3>
+          <p class="case-preview__summary">
+            Simplifying a regulated information update flow so clients can
+            complete sensitive data changes with less friction and more
+            confidence.
+          </p>
+        </div>
 
-              <div class="project-row__heading">
-                <h3>{project.title}</h3>
-                <p>{project.type} · {project.year}</p>
+        <dl class="case-preview__meta" aria-label="Project details">
+          {
+            details.map((item) => (
+              <div>
+                <dt>{item.label}</dt>
+                <dd>{item.value}</dd>
               </div>
+            ))
+          }
+        </dl>
 
-              <p class="project-row__summary">{project.summary}</p>
-
-              <dl class="project-row__proof" aria-label={`${project.title} proof points`}>
-                {project.proof.map((item) => (
-                  <div>
-                    <dt>{item.value}</dt>
-                    <dd>{item.label}</dd>
-                  </div>
-                ))}
-              </dl>
-
-              <span class="project-row__status">
-                {project.status}
-                <span aria-hidden="true">-&gt;</span>
-              </span>
-            </div>
-
-            <div class="project-row__mobile-preview" aria-hidden="true">
-              <div class:list={["artifact-preview", `artifact-preview--${project.variant}`, "is-active"]}>
-                <div class="artifact-preview__label">{project.previewLabel}</div>
-                <div class="artifact-preview__visual">
-                  <div class="artifact-preview__glow"></div>
-                  <div class="phone-prototype">
-                    <div class="phone-prototype__screen">
-                      <div class="prototype-ui">
-                        <div class="prototype-ui__status">
-                          <span></span>
-                          <span></span>
-                        </div>
-                        <div class="prototype-ui__header">
-                          <span></span>
-                          <strong>{project.number}</strong>
-                        </div>
-                        <div class="prototype-ui__body">
-                          <span class="prototype-ui__title"></span>
-                          <span class="prototype-ui__line"></span>
-                          <span class="prototype-ui__line"></span>
-                          <div class="prototype-ui__module">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                          </div>
-                          <div class="prototype-ui__flow">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                          </div>
-                        </div>
-                        <div class="prototype-ui__footer">
-                          <span></span>
-                        </div>
-                      </div>
-                    </div>
-                    <img
-                      class="phone-prototype__frame"
-                      src="/images/apple-iphone-15-black-frame.png"
-                      alt=""
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
-                  <div class="artifact-note">
-                    <strong>{project.previewLabel}</strong>
-                    <p>{project.previewNote}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </article>
-        ))
-      }
+        <a class="case-preview__link" href="#contact">
+          Ask about this project <span aria-hidden="true">-&gt;</span>
+        </a>
+      </article>
     </div>
 
-    <div class="work-index__stage" aria-hidden="true">
-      {
-        projects.map((project, index) => (
-          <div
-            class:list={[
-              "artifact-preview",
-              `artifact-preview--${project.variant}`,
-              { "is-active": index === 0 },
-            ]}
-            data-project-preview={project.variant}
-          >
-            <div class="artifact-preview__label">{project.previewLabel}</div>
-            <div class="artifact-preview__visual">
-              <div class="artifact-preview__glow"></div>
-              <div class="phone-prototype">
-                <div class="phone-prototype__screen">
-                  <div class="prototype-ui">
-                    <div class="prototype-ui__status">
-                      <span></span>
-                      <span></span>
-                    </div>
-                    <div class="prototype-ui__header">
-                      <span></span>
-                      <strong>{project.number}</strong>
-                    </div>
-                    <div class="prototype-ui__body">
-                      <span class="prototype-ui__title"></span>
-                      <span class="prototype-ui__line"></span>
-                      <span class="prototype-ui__line"></span>
-                      <div class="prototype-ui__module">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                      </div>
-                      <div class="prototype-ui__flow">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                      </div>
-                    </div>
-                    <div class="prototype-ui__footer">
-                      <span></span>
-                    </div>
-                  </div>
-                </div>
-                <img
-                  class="phone-prototype__frame"
-                  src="/images/apple-iphone-15-black-frame.png"
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <div class="artifact-note">
-                <strong>{project.previewLabel}</strong>
-                <p>{project.previewNote}</p>
-              </div>
+    <div class="selected-work__visual" aria-hidden="true">
+      <div class="project-phone">
+        <div class="project-phone__glow"></div>
+        <div class="project-phone__screen">
+          <div class="prototype-flow">
+            <div class="prototype-flow__status">
+              <span></span>
+              <span></span>
             </div>
+
+            <div class="prototype-flow__header">
+              <span></span>
+              <strong>01</strong>
+            </div>
+
+            <div class="prototype-flow__copy">
+              <span class="prototype-flow__title"></span>
+              <span></span>
+              <span></span>
+            </div>
+
+            <div class="prototype-flow__panel">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+            <div class="prototype-flow__actions">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+            <div class="prototype-flow__review">
+              <strong></strong>
+              <span></span>
+              <span></span>
+            </div>
+
+            <div class="prototype-flow__button"></div>
           </div>
-        ))
-      }
+        </div>
+        <img
+          class="project-phone__frame"
+          src="/images/apple-iphone-15-black-frame.png"
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
     </div>
   </div>
 </section>
-
-<script>
-  const selectedWorkSections = document.querySelectorAll<HTMLElement>('[data-selected-work]');
-
-  selectedWorkSections.forEach((section) => {
-    const rows = Array.from(section.querySelectorAll<HTMLElement>('[data-project-row]'));
-    const previews = Array.from(section.querySelectorAll<HTMLElement>('[data-project-preview]'));
-
-    const setActiveProject = (id: string | undefined) => {
-      if (!id) return;
-
-      rows.forEach((row) => {
-        row.classList.toggle('is-active', row.dataset.projectRow === id);
-      });
-
-      previews.forEach((preview) => {
-        preview.classList.toggle('is-active', preview.dataset.projectPreview === id);
-      });
-    };
-
-    rows.forEach((row) => {
-      row.addEventListener('pointerenter', () => setActiveProject(row.dataset.projectRow));
-      row.addEventListener('focusin', () => setActiveProject(row.dataset.projectRow));
-    });
-  });
-</script>
 
 <style>
   .selected-work {
     position: relative;
     overflow: clip;
-    padding: clamp(4.5rem, 8vw, 8rem) clamp(1.25rem, 2.2vw, 2.5rem);
+    padding: clamp(4.75rem, 8vw, 8rem) clamp(1.25rem, 3vw, 4.5rem)
+      clamp(3rem, 6vw, 5.5rem);
     background:
-      linear-gradient(rgb(16 20 23 / 2.4%) 1px, transparent 1px),
-      linear-gradient(90deg, rgb(16 20 23 / 2.4%) 1px, transparent 1px),
-      linear-gradient(180deg, var(--color-canvas), var(--color-paper));
+      linear-gradient(rgb(16 20 23 / 2.2%) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(16 20 23 / 2.2%) 1px, transparent 1px),
+      linear-gradient(180deg, var(--color-paper), var(--color-canvas));
     background-size:
       46px 46px,
       46px 46px,
       auto;
-    border-top: 1px solid var(--color-soft);
+    border-top: 1px solid rgb(200 208 214 / 64%);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .selected-work__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 0.57fr) minmax(21rem, 0.43fr);
+    gap: clamp(2.5rem, 7vw, 7.5rem);
+    align-items: end;
+    width: min(100%, 118rem);
+    margin: 0 auto;
+  }
+
+  .selected-work__copy {
+    display: grid;
+    gap: clamp(3rem, 6vw, 6rem);
+    min-width: 0;
   }
 
   .selected-work__intro {
-    display: grid;
-    grid-template-columns: minmax(18rem, 0.42fr) minmax(18rem, 0.58fr);
-    gap: clamp(2rem, 6vw, 7rem);
-    align-items: start;
-    margin-bottom: clamp(3.5rem, 7vw, 7rem);
+    max-width: 58rem;
   }
 
   .selected-work h2 {
-    max-width: 36rem;
     margin: 0;
-    color: var(--color-ink);
+    color: #06065c;
     font-family: var(--font-display);
-    font-size: clamp(3.25rem, 3.1vw, 5rem);
-    line-height: 0.9;
-    letter-spacing: -0.065em;
+    font-size: clamp(3.25rem, 5vw, 6.75rem);
+    font-weight: 900;
+    line-height: 0.82;
+    letter-spacing: -0.055em;
     text-transform: uppercase;
   }
 
   .selected-work__intro p {
-    max-width: 52rem;
-    margin: 0;
+    max-width: 48rem;
+    margin: clamp(0.65rem, 1.1vw, 0.95rem) 0 0;
     color: var(--color-muted);
-    font-size: clamp(1rem, 1.35vw, 1.28rem);
-    font-weight: 400;
-    line-height: 1.45;
-    letter-spacing: -0.015em;
+    font-size: clamp(1rem, 1.25vw, 1.35rem);
+    font-weight: 520;
+    line-height: 1.25;
+    letter-spacing: -0.018em;
   }
 
-  .work-index {
+  .case-preview {
     display: grid;
-    grid-template-columns: minmax(0, 0.6fr) minmax(19rem, 0.4fr);
-    gap: clamp(2rem, 5vw, 6rem);
-    align-items: start;
+    gap: clamp(1.6rem, 2.4vw, 2.4rem);
+    padding-bottom: clamp(2rem, 4vw, 3rem);
   }
 
-  .work-index__rows {
-    display: grid;
-    border-bottom: 1px solid var(--color-line);
-  }
-
-  .project-row {
-    --story-accent: 15 92 255;
-    display: grid;
-    grid-template-columns: 3.2rem minmax(0, 1fr);
-    gap: clamp(1rem, 2vw, 2rem);
-    min-width: 0;
-    padding: clamp(1.45rem, 2.8vw, 2.35rem) 0;
-    border-top: 1px solid var(--color-line);
-    outline: none;
-    transition:
-      background-color 220ms ease,
-      border-color 220ms ease,
-      opacity 220ms ease,
-      padding 220ms ease;
-  }
-
-  .project-row--token {
-    --story-accent: 255 184 0;
-  }
-
-  .project-row--evolution {
-    --story-accent: 29 185 84;
-  }
-
-  .project-row--ai {
-    --story-accent: 126 87 194;
-  }
-
-  .project-row:hover,
-  .project-row:focus-visible,
-  .project-row.is-active {
-    padding-inline: clamp(0.75rem, 1.4vw, 1.2rem);
-    border-color: rgb(var(--story-accent) / 32%);
-    background:
-      radial-gradient(circle at 8% 20%, rgb(var(--story-accent) / 7%), transparent 16rem),
-      rgb(255 255 255 / 52%);
-  }
-
-  .project-row:focus-visible {
-    box-shadow: inset 0 0 0 2px rgb(var(--story-accent) / 55%);
-  }
-
-  .project-row__number {
-    color: rgb(var(--story-accent));
-    font-family: var(--font-mono);
-    font-size: clamp(0.92rem, 1vw, 1rem);
-    font-weight: 750;
-    letter-spacing: 0.04em;
-    line-height: 2.5;
-  }
-
-  .project-row__body {
-    display: grid;
-    gap: clamp(0.85rem, 1.4vw, 1.1rem);
-    min-width: 0;
-  }
-
-  .project-row__tags {
+  .case-preview__chips {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.45rem;
+    gap: 0.55rem;
     padding: 0;
     margin: 0;
     list-style: none;
   }
 
-  .project-row__tags li {
+  .case-preview__chips li {
+    display: inline-flex;
+    align-items: center;
     min-height: 1.9rem;
-    padding: 0.34rem 0.72rem;
-    border: 1px solid rgb(var(--story-accent) / 28%);
+    padding: 0.28rem 0.78rem;
+    border: 1px solid rgb(15 92 255 / 28%);
     border-radius: 999px;
-    color: rgb(var(--story-accent));
-    background: rgb(var(--story-accent) / 5%);
-    font-family: var(--font-mono);
-    font-size: clamp(0.75rem, 0.88vw, 0.86rem);
-    font-weight: 750;
+    color: var(--color-blue);
+    background: rgb(15 92 255 / 7%);
+    font-family: var(--font-serif);
+    font-size: clamp(0.78rem, 0.9vw, 0.95rem);
+    font-weight: 760;
     line-height: 1;
-  }
-
-  .project-row__heading {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: clamp(1rem, 3vw, 3rem);
-    align-items: end;
-  }
-
-  .project-row h3 {
-    margin: 0;
-    color: var(--color-ink);
-    font-family: var(--font-fraunces);
-    font-size: clamp(2.25rem, 4.6vw, 5.25rem);
-    font-variation-settings: "SOFT" 0, "WONK" 1;
-    font-weight: 780;
-    line-height: 0.95;
-    letter-spacing: -0.045em;
-  }
-
-  .project-row__heading p {
-    margin: 0 0 0.35rem;
-    color: var(--color-muted);
-    font-family: var(--font-mono);
-    font-size: clamp(0.82rem, 1vw, 0.95rem);
-    font-weight: 600;
-    line-height: 1.25;
     white-space: nowrap;
   }
 
-  .project-row__summary {
-    max-width: 46rem;
-    max-height: 0;
+  .case-preview__body {
+    display: grid;
+    gap: clamp(1rem, 1.8vw, 1.55rem);
+    max-width: 58rem;
+  }
+
+  .case-preview__eyebrow {
     margin: 0;
-    overflow: hidden;
+    color: var(--color-blue);
+    font-size: clamp(0.82rem, 0.95vw, 1rem);
+    font-weight: 850;
+    letter-spacing: 0.1em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .case-preview h3 {
+    margin: 0;
+    color: #06065c;
+    font-family: var(--font-serif);
+    font-size: clamp(3.15rem, 5.6vw, 7rem);
+    font-weight: 850;
+    font-variation-settings: "SOFT" 0, "WONK" 1;
+    line-height: 0.9;
+    letter-spacing: -0.055em;
+  }
+
+  .case-preview__summary {
+    max-width: 50rem;
+    margin: 0;
     color: var(--color-muted);
-    font-size: clamp(1rem, 1.25vw, 1.18rem);
-    font-weight: 420;
-    line-height: 1.5;
-    letter-spacing: -0.012em;
-    opacity: 0;
-    transition:
-      max-height 240ms ease,
-      opacity 180ms ease;
+    font-size: clamp(1rem, 1.35vw, 1.42rem);
+    font-weight: 460;
+    line-height: 1.42;
+    letter-spacing: -0.018em;
   }
 
-  .project-row:hover .project-row__summary,
-  .project-row:focus-visible .project-row__summary,
-  .project-row.is-active .project-row__summary {
-    max-height: 12rem;
-    opacity: 1;
-  }
-
-  .project-row__proof {
+  .case-preview__meta {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
-    max-width: 38rem;
-    max-height: 0;
+    gap: clamp(1rem, 2.5vw, 3rem);
+    max-width: 54rem;
+    padding-top: clamp(1.25rem, 2vw, 1.8rem);
     margin: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition:
-      max-height 240ms ease,
-      opacity 180ms ease;
+    border-top: 1px solid var(--color-line);
   }
 
-  .project-row:hover .project-row__proof,
-  .project-row:focus-visible .project-row__proof,
-  .project-row.is-active .project-row__proof {
-    max-height: 7rem;
-    opacity: 1;
-  }
-
-  .project-row__proof div {
+  .case-preview__meta div {
     min-width: 0;
   }
 
-  .project-row__proof dt {
+  .case-preview__meta dt {
+    margin: 0 0 0.45rem;
+    color: var(--color-blue);
+    font-size: clamp(0.72rem, 0.8vw, 0.82rem);
+    font-weight: 850;
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+
+  .case-preview__meta dd {
     margin: 0;
     color: var(--color-ink);
-    font-family: var(--font-fraunces);
-    font-size: clamp(1.3rem, 2.2vw, 2.2rem);
-    font-weight: 850;
-    line-height: 0.95;
-    letter-spacing: -0.04em;
+    font-size: clamp(0.9rem, 1.05vw, 1.05rem);
+    font-weight: 760;
+    line-height: 1.2;
+    letter-spacing: -0.012em;
   }
 
-  .project-row__proof dd {
-    margin: 0.25rem 0 0;
-    color: var(--color-muted);
-    font-family: var(--font-mono);
-    font-size: clamp(0.72rem, 0.85vw, 0.84rem);
-    line-height: 1.25;
-  }
-
-  .project-row__status {
+  .case-preview__link {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.65rem;
     width: max-content;
-    color: var(--color-ink);
-    font-size: clamp(0.92rem, 1vw, 1rem);
-    font-weight: 800;
+    color: var(--color-blue);
+    font-size: clamp(1rem, 1.15vw, 1.12rem);
+    font-weight: 760;
     letter-spacing: -0.01em;
   }
 
-  .project-row__status span {
-    color: rgb(var(--story-accent));
+  .case-preview__link span {
+    font-size: 1.25em;
+    line-height: 1;
+    transition: transform 180ms ease;
   }
 
-  .project-row__mobile-preview {
-    display: none;
+  .case-preview__link:hover span,
+  .case-preview__link:focus-visible span {
+    transform: translateX(0.22rem);
   }
 
-  .work-index__stage {
-    position: sticky;
-    top: clamp(3rem, 7vw, 6rem);
-    min-height: clamp(34rem, 74svh, 48rem);
-  }
-
-  .artifact-preview {
-    --story-accent: 15 92 255;
-    position: absolute;
-    inset: 0;
-    display: grid;
-    align-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(1rem) scale(0.98);
-    transition:
-      opacity 240ms ease,
-      transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
-  }
-
-  .artifact-preview--token {
-    --story-accent: 255 184 0;
-  }
-
-  .artifact-preview--evolution {
-    --story-accent: 29 185 84;
-  }
-
-  .artifact-preview--ai {
-    --story-accent: 126 87 194;
-  }
-
-  .artifact-preview.is-active {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-
-  .artifact-preview__label {
-    width: max-content;
-    margin: 0 0 1rem 0.35rem;
-    padding: 0.2rem 0.55rem;
-    border: 1px solid var(--color-line);
-    color: rgb(var(--story-accent));
-    background: rgb(255 255 255 / 68%);
-    font-family: var(--font-mono);
-    font-size: 0.76rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-  }
-
-  .artifact-preview__visual {
+  .selected-work__visual {
     position: relative;
     display: grid;
-    grid-template-columns: minmax(10rem, 0.56fr) minmax(10rem, 0.44fr);
-    gap: clamp(1rem, 3vw, 2rem);
-    align-items: center;
-    min-height: 32rem;
+    place-items: end center;
+    min-height: clamp(32rem, 56vw, 50rem);
+    overflow: visible;
   }
 
-  .artifact-preview__glow {
+  .project-phone {
+    position: relative;
+    width: clamp(17rem, 25vw, 30rem);
+    aspect-ratio: 1419 / 2796;
+    transform: translateY(clamp(4rem, 8vw, 7rem)) rotate(10deg);
+    transform-origin: center bottom;
+    filter: drop-shadow(0 36px 54px rgb(17 24 39 / 16%));
+  }
+
+  .project-phone__glow {
     position: absolute;
-    inset: 14% 8% 8% 0;
+    inset: 18% -20% 8%;
     z-index: 0;
     border-radius: 999px;
-    background: rgb(var(--story-accent) / 13%);
-    filter: blur(44px);
+    background: linear-gradient(160deg, rgb(15 92 255 / 18%), rgb(15 92 255 / 3%));
+    filter: blur(36px);
+    transform: rotate(-8deg);
   }
 
-  .phone-prototype {
-    position: relative;
-    z-index: 1;
-    width: min(100%, 18.5rem);
-    aspect-ratio: 1419 / 2796;
-    filter: drop-shadow(0 34px 50px rgb(17 24 39 / 18%));
-    transform: rotate(-2deg);
-  }
-
-  .artifact-preview--token .phone-prototype,
-  .artifact-preview--ai .phone-prototype {
-    transform: rotate(2.5deg);
-  }
-
-  .phone-prototype__frame {
+  .project-phone__frame {
     position: absolute;
     inset: 0;
+    z-index: 3;
     display: block;
-    z-index: 1;
     width: 100%;
     height: 100%;
     object-fit: contain;
     pointer-events: none;
   }
 
-  .phone-prototype__screen {
+  .project-phone__screen {
     position: absolute;
     inset: 5.2% 7.4% 4.45%;
     z-index: 2;
@@ -649,300 +355,233 @@ const projects = [
       auto;
   }
 
-  .phone-prototype__screen::before,
-  .phone-prototype__screen::after {
-    position: absolute;
-    z-index: 3;
-    content: "";
-    pointer-events: none;
-  }
-
-  .phone-prototype__screen::before {
-    top: 1.3%;
-    left: 38.5%;
-    width: 16.8%;
-    height: 2.4%;
-    border-radius: 999px;
-    background: var(--color-ink);
-  }
-
-  .phone-prototype__screen::after {
-    top: 1.32%;
-    left: 57.8%;
-    width: 3.2%;
-    aspect-ratio: 1;
-    border-radius: 999px;
-    background:
-      radial-gradient(circle at 56% 48%, rgb(83 111 255 / 78%) 0 12%, transparent 13%),
-      radial-gradient(circle at 50% 50%, rgb(8 11 22) 0 54%, rgb(28 33 48) 55% 100%);
-    box-shadow: inset 0 0 0 0.12rem rgb(0 0 0 / 35%);
-  }
-
-  .prototype-ui {
-    position: relative;
-    z-index: 1;
+  .prototype-flow {
     display: grid;
-    grid-template-rows: auto auto 1fr auto;
+    grid-template-rows: auto auto auto auto auto 1fr auto;
     min-height: 100%;
-    padding: clamp(3.2rem, 8vw, 4.4rem) clamp(0.85rem, 3vw, 1.1rem)
-      clamp(0.85rem, 3vw, 1.1rem);
-    color: var(--color-ink);
+    padding: clamp(3.6rem, 8vw, 4.9rem) clamp(0.9rem, 2vw, 1.2rem)
+      clamp(1rem, 2vw, 1.35rem);
   }
 
-  .prototype-ui__status,
-  .prototype-ui__header,
-  .prototype-ui__footer,
-  .prototype-ui__flow {
+  .prototype-flow__status,
+  .prototype-flow__header,
+  .prototype-flow__actions {
     display: flex;
     align-items: center;
-  }
-
-  .prototype-ui__status {
     justify-content: space-between;
-    margin-bottom: 1.1rem;
   }
 
-  .prototype-ui__status span {
-    display: block;
-    width: 2.6rem;
-    height: 0.38rem;
-    border-radius: 999px;
-    background: rgb(16 20 23 / 16%);
+  .prototype-flow__status {
+    margin-bottom: clamp(1.3rem, 3vw, 2rem);
   }
 
-  .prototype-ui__status span:last-child {
-    width: 1.3rem;
-  }
-
-  .prototype-ui__header {
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .prototype-ui__header span,
-  .prototype-ui__title,
-  .prototype-ui__line,
-  .prototype-ui__footer span {
-    display: block;
+  .prototype-flow__status span {
+    width: 2.9rem;
+    height: 0.42rem;
     border-radius: 999px;
     background: rgb(16 20 23 / 14%);
   }
 
-  .prototype-ui__header span {
-    width: 6rem;
-    height: 0.75rem;
+  .prototype-flow__status span:last-child {
+    width: 1.4rem;
   }
 
-  .prototype-ui__header strong {
+  .prototype-flow__header {
+    gap: 1rem;
+    margin-bottom: clamp(1.7rem, 4vw, 2.6rem);
+  }
+
+  .prototype-flow__header span,
+  .prototype-flow__copy span,
+  .prototype-flow__panel span,
+  .prototype-flow__review strong,
+  .prototype-flow__review span,
+  .prototype-flow__button {
+    display: block;
+    border-radius: 999px;
+    background: rgb(16 20 23 / 12%);
+  }
+
+  .prototype-flow__header span {
+    width: 42%;
+    height: 0.8rem;
+  }
+
+  .prototype-flow__header strong {
     display: grid;
     place-items: center;
-    width: 2.25rem;
-    min-height: 2.25rem;
-    border: 1px solid rgb(var(--story-accent) / 46%);
+    width: 2.45rem;
+    min-height: 2.45rem;
+    border: 1px solid rgb(15 92 255 / 38%);
     border-radius: 999px;
-    color: rgb(var(--story-accent));
-    font-size: 0.76rem;
+    color: var(--color-blue);
+    background: rgb(15 92 255 / 5%);
+    font-size: 0.82rem;
     font-weight: 850;
     font-variant-numeric: tabular-nums;
   }
 
-  .prototype-ui__body {
+  .prototype-flow__copy {
     display: grid;
-    align-content: start;
-    gap: 0.72rem;
+    gap: 0.75rem;
+    margin-bottom: clamp(1.7rem, 4vw, 2.5rem);
   }
 
-  .prototype-ui__title {
-    width: 72%;
-    height: 1.05rem;
+  .prototype-flow__copy .prototype-flow__title {
+    width: 70%;
+    height: clamp(0.9rem, 2vw, 1.12rem);
     background: var(--color-ink);
   }
 
-  .prototype-ui__line {
-    width: 88%;
+  .prototype-flow__copy span:not(.prototype-flow__title) {
+    width: 86%;
     height: 0.62rem;
   }
 
-  .prototype-ui__line:nth-child(3) {
+  .prototype-flow__copy span:last-child {
     width: 58%;
   }
 
-  .prototype-ui__module {
+  .prototype-flow__panel {
+    display: grid;
+    gap: 0.7rem;
+    padding: clamp(1rem, 2.5vw, 1.45rem);
+    margin-bottom: clamp(1.4rem, 3vw, 2rem);
+    border: 1px solid rgb(15 92 255 / 13%);
+    border-radius: 1rem;
+    background: rgb(15 92 255 / 7%);
+  }
+
+  .prototype-flow__panel span {
+    width: 100%;
+    height: clamp(1.25rem, 3vw, 1.65rem);
+    background: rgb(255 255 255 / 82%);
+    box-shadow: inset 0 0 0 1px rgb(16 20 23 / 5%);
+  }
+
+  .prototype-flow__actions {
+    gap: 0.55rem;
+    margin-bottom: clamp(1.3rem, 3vw, 2rem);
+  }
+
+  .prototype-flow__actions span {
+    width: 100%;
+    height: clamp(1.4rem, 3vw, 1.85rem);
+    border: 1px solid rgb(15 92 255 / 24%);
+    border-radius: 0.75rem;
+    background: rgb(255 255 255 / 62%);
+  }
+
+  .prototype-flow__review {
     display: grid;
     gap: 0.65rem;
-    margin-top: 1.05rem;
-    padding: 0.9rem;
-    border: 1px solid rgb(16 20 23 / 12%);
+    align-self: start;
+    padding: clamp(1rem, 2.4vw, 1.35rem);
+    border: 1px solid rgb(16 20 23 / 9%);
     border-radius: 1rem;
-    background: rgb(var(--story-accent) / 8%);
-  }
-
-  .prototype-ui__module span {
-    display: block;
-    height: 2rem;
-    border-radius: 0.78rem;
     background: rgb(255 255 255 / 82%);
-    box-shadow: inset 0 0 0 1px rgb(16 20 23 / 8%);
+    box-shadow: 0 16px 34px rgb(17 24 39 / 8%);
   }
 
-  .prototype-ui__flow {
-    justify-content: space-between;
-    gap: 0.48rem;
-    margin-top: 0.9rem;
+  .prototype-flow__review strong {
+    width: 56%;
+    height: 0.8rem;
+    background: var(--color-ink);
   }
 
-  .prototype-ui__flow span {
-    flex: 1;
-    height: 2.8rem;
-    border: 1px solid rgb(var(--story-accent) / 28%);
-    border-radius: 0.92rem;
-    background: rgb(255 255 255 / 72%);
-  }
-
-  .prototype-ui__footer {
-    margin-top: 1.05rem;
-  }
-
-  .prototype-ui__footer span {
+  .prototype-flow__review span {
     width: 100%;
-    height: 2.5rem;
-    background: rgb(var(--story-accent) / 18%);
+    height: 0.56rem;
   }
 
-  .artifact-note {
-    position: relative;
-    z-index: 2;
-    align-self: center;
-    max-width: 22rem;
-    padding: clamp(1rem, 2vw, 1.3rem);
-    border: 1px solid var(--color-line);
-    background: rgb(255 255 255 / 76%);
-    box-shadow: 0 22px 60px rgb(17 24 39 / 10%);
+  .prototype-flow__review span:last-child {
+    width: 68%;
   }
 
-  .artifact-note strong {
-    display: block;
-    margin-bottom: 0.45rem;
-    color: rgb(var(--story-accent));
-    font-family: var(--font-mono);
-    font-size: clamp(0.8rem, 0.95vw, 0.9rem);
-    font-weight: 850;
-    letter-spacing: 0.08em;
+  .prototype-flow__button {
+    align-self: end;
+    height: clamp(1.7rem, 4vw, 2.2rem);
+    background: rgb(15 92 255 / 15%);
   }
 
-  .artifact-note p {
-    margin: 0;
-    color: var(--color-ink);
-    font-size: clamp(0.94rem, 1.08vw, 1.05rem);
-    font-weight: 680;
-    line-height: 1.4;
-    letter-spacing: -0.012em;
+  @media (max-width: 1050px) {
+    .selected-work__inner {
+      grid-template-columns: 1fr;
+      gap: clamp(1.5rem, 6vw, 4rem);
+      align-items: start;
+    }
+
+    .selected-work__visual {
+      min-height: clamp(22rem, 58vw, 38rem);
+      place-items: center;
+    }
+
+    .project-phone {
+      width: clamp(15rem, 42vw, 24rem);
+      transform: translateY(clamp(2rem, 5vw, 4rem)) rotate(8deg);
+    }
+  }
+
+  @media (max-width: 720px) {
+    .selected-work {
+      padding: clamp(3.5rem, 14vw, 5rem) clamp(1.25rem, 5vw, 1.5rem)
+        clamp(3rem, 12vw, 4.5rem);
+    }
+
+    .selected-work__copy {
+      gap: clamp(2.4rem, 10vw, 3.5rem);
+    }
+
+    .selected-work h2 {
+      font-size: clamp(3rem, 17vw, 4.8rem);
+    }
+
+    .selected-work__intro p {
+      max-width: none;
+      font-size: 1rem;
+    }
+
+    .case-preview {
+      gap: 1.35rem;
+      padding-bottom: 1rem;
+    }
+
+    .case-preview__chips {
+      gap: 0.45rem;
+    }
+
+    .case-preview__chips li {
+      font-size: 0.78rem;
+    }
+
+    .case-preview h3 {
+      font-size: clamp(2.7rem, 15vw, 4.4rem);
+    }
+
+    .case-preview__summary {
+      font-size: 1rem;
+    }
+
+    .case-preview__meta {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .selected-work__visual {
+      min-height: 24rem;
+      margin-top: -1rem;
+      overflow: hidden;
+    }
+
+    .project-phone {
+      width: min(68vw, 18rem);
+      transform: translateY(4.2rem) rotate(9deg);
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .project-row,
-    .project-row__summary,
-    .project-row__proof,
-    .artifact-preview {
+    .case-preview__link span {
       transition: none;
-    }
-  }
-
-  @media (max-width: 1080px) {
-    .work-index {
-      grid-template-columns: 1fr;
-    }
-
-    .work-index__stage {
-      display: none;
-    }
-
-    .project-row {
-      grid-template-columns: 2.7rem minmax(0, 1fr);
-    }
-
-    .project-row__mobile-preview {
-      display: block;
-      grid-column: 2;
-      min-height: 28rem;
-      margin-top: 1rem;
-    }
-
-    .project-row__mobile-preview .artifact-preview {
-      position: relative;
-      opacity: 1;
-      transform: none;
-    }
-
-    .artifact-preview__visual {
-      min-height: 28rem;
-    }
-  }
-
-  @media (max-width: 760px) {
-    .selected-work {
-      padding-inline: 1rem;
-    }
-
-    .selected-work__intro {
-      grid-template-columns: 1fr;
-    }
-
-    .project-row,
-    .project-row:hover,
-    .project-row:focus-visible,
-    .project-row.is-active {
-      grid-template-columns: 1fr;
-      padding-inline: 0;
-    }
-
-    .project-row__number,
-    .project-row__mobile-preview {
-      grid-column: 1;
-    }
-
-    .project-row__heading {
-      grid-template-columns: 1fr;
-      gap: 0.25rem;
-    }
-
-    .project-row__heading p {
-      white-space: normal;
-    }
-
-    .project-row__summary,
-    .project-row__proof {
-      max-height: none;
-      opacity: 1;
-    }
-
-    .project-row__proof {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .artifact-preview__visual {
-      grid-template-columns: 1fr;
-      min-height: auto;
-    }
-
-    .phone-prototype {
-      justify-self: center;
-      width: min(100%, 15rem);
-    }
-
-    .artifact-note {
-      max-width: none;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .project-row__proof {
-      grid-template-columns: 1fr;
-    }
-
-    .phone-prototype {
-      width: min(100%, 13rem);
     }
   }
 </style>
