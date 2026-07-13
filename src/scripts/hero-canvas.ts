@@ -197,6 +197,7 @@ const setupFlowMap = () => {
 
   const nodes = Array.from(map.querySelectorAll<HTMLElement>('[data-node]'));
   const paths = Array.from(map.querySelectorAll<SVGPathElement>('[data-connection]'));
+  const instruction = map.querySelector<HTMLElement>('[data-map-instruction]');
   const resetButton = document.querySelector<HTMLButtonElement>('[data-reset-map]');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const mobilePointer = window.matchMedia('(max-width: 760px), (pointer: coarse)');
@@ -231,6 +232,31 @@ const setupFlowMap = () => {
     paths.forEach((path) => {
       path.classList.toggle('is-active-connection', activeId ? pathConnectsToNode(path, activeId) : false);
     });
+  };
+
+  const showInstruction = (node: HTMLElement) => {
+    if (!instruction) return;
+
+    const mapRect = map.getBoundingClientRect();
+    const nodeRect = node.getBoundingClientRect();
+    const instructionRect = instruction.getBoundingClientRect();
+    const gap = 10;
+    let left = nodeRect.right - mapRect.left + gap;
+    const top = nodeRect.top - mapRect.top + nodeRect.height / 2;
+
+    if (left + instructionRect.width > mapRect.width - gap) {
+      left = nodeRect.left - mapRect.left - instructionRect.width - gap;
+    }
+
+    const maxLeft = Math.max(gap, mapRect.width - instructionRect.width - gap);
+
+    instruction.style.setProperty('--tooltip-x', `${clamp(left, gap, maxLeft)}px`);
+    instruction.style.setProperty('--tooltip-y', `${clamp(top, gap, mapRect.height - gap)}px`);
+    instruction.classList.add('is-visible');
+  };
+
+  const hideInstruction = () => {
+    instruction?.classList.remove('is-visible');
   };
 
   const getNodeBox = (id: string) => {
@@ -367,12 +393,24 @@ const setupFlowMap = () => {
     nodes.forEach((node) => {
       const id = node.dataset.node;
 
-      node.addEventListener('pointerenter', () => setHighlightedConnections(id));
-      node.addEventListener('pointerleave', () => {
-        if (!node.classList.contains('is-dragging')) setHighlightedConnections();
+      node.addEventListener('pointerenter', () => {
+        setHighlightedConnections(id);
+        showInstruction(node);
       });
-      node.addEventListener('focus', () => setHighlightedConnections(id));
-      node.addEventListener('blur', () => setHighlightedConnections());
+      node.addEventListener('pointerleave', () => {
+        if (!node.classList.contains('is-dragging')) {
+          setHighlightedConnections();
+          hideInstruction();
+        }
+      });
+      node.addEventListener('focus', () => {
+        setHighlightedConnections(id);
+        showInstruction(node);
+      });
+      node.addEventListener('blur', () => {
+        setHighlightedConnections();
+        hideInstruction();
+      });
 
       node.addEventListener('pointerdown', (event) => {
         if (mobilePointer.matches) return;
@@ -387,6 +425,7 @@ const setupFlowMap = () => {
 
         node.classList.add('is-dragging');
         setHighlightedConnections(id);
+        showInstruction(node);
         node.setPointerCapture(event.pointerId);
 
         const moveNode = (moveEvent: PointerEvent) => {
@@ -394,11 +433,13 @@ const setupFlowMap = () => {
           const top = moveEvent.clientY - mapRect.top - offsetY;
           setPositionFromPixels(node, left, top);
           updateConnections();
+          showInstruction(node);
         };
 
         const stopDrag = () => {
           node.classList.remove('is-dragging');
           setHighlightedConnections();
+          hideInstruction();
           node.removeEventListener('pointermove', moveNode);
           node.removeEventListener('pointerup', stopDrag);
           node.removeEventListener('pointercancel', stopDrag);

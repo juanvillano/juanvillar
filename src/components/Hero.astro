@@ -275,7 +275,7 @@ const connections = [
           ))
         }
 
-        <p class="map-instruction" data-i18n="mapLabelStart">
+        <p class="map-instruction" data-map-instruction data-i18n="mapLabelStart">
           Drag the nodes to interact.
         </p>
       </div>
@@ -646,7 +646,12 @@ const connections = [
   .flow-map {
     position: relative;
     min-height: clamp(28rem, 55vh, 36rem);
+    cursor: grab;
     isolation: isolate;
+  }
+
+  .flow-map:active {
+    cursor: grabbing;
   }
 
   .flow-map__lines {
@@ -921,8 +926,8 @@ const connections = [
 
   .map-instruction {
     position: absolute;
-    right: clamp(0.5rem, 5vw, 6rem);
-    bottom: clamp(1.3rem, 4vh, 2.4rem);
+    left: min(var(--tooltip-x, 68%), calc(100% - 17rem));
+    top: min(var(--tooltip-y, 78%), calc(100% - 3.5rem));
     z-index: 3;
     margin: 0;
     padding: 0.7rem 1rem 0.72rem;
@@ -934,7 +939,20 @@ const connections = [
     font-size: clamp(0.72rem, 0.95vw, 0.95rem);
     font-weight: 600;
     line-height: 1.1;
+    opacity: 0;
     pointer-events: none;
+    transform: translate(0.7rem, -50%) translateY(0.35rem);
+    transition:
+      opacity 160ms ease,
+      transform 180ms ease;
+    visibility: hidden;
+    white-space: nowrap;
+  }
+
+  .map-instruction.is-visible {
+    opacity: 1;
+    transform: translate(0.7rem, -50%) translateY(0);
+    visibility: visible;
   }
 
   .hero__scroll-cue {
