@@ -203,6 +203,7 @@ const setupFlowMap = () => {
   const mobilePointer = window.matchMedia('(max-width: 760px), (pointer: coarse)');
 
   const initialPositions = new Map<string, { x: number; y: number }>();
+  let isDraggingNode = false;
 
   nodes.forEach((node) => {
     const id = node.dataset.node;
@@ -234,8 +235,30 @@ const setupFlowMap = () => {
     });
   };
 
-  const showInstruction = (node: HTMLElement) => {
-    if (!instruction) return;
+  const showInstructionAtPointer = (event: PointerEvent) => {
+    if (!instruction || isDraggingNode) return;
+
+    const mapRect = map.getBoundingClientRect();
+    const instructionRect = instruction.getBoundingClientRect();
+    const gap = 10;
+    const offset = 16;
+    let left = event.clientX - mapRect.left + offset;
+    const top = event.clientY - mapRect.top + offset;
+
+    if (left + instructionRect.width > mapRect.width - gap) {
+      left = event.clientX - mapRect.left - instructionRect.width - offset;
+    }
+
+    const maxLeft = Math.max(gap, mapRect.width - instructionRect.width - gap);
+    const maxTop = Math.max(gap, mapRect.height - instructionRect.height - gap);
+
+    instruction.style.setProperty('--tooltip-x', `${clamp(left, gap, maxLeft)}px`);
+    instruction.style.setProperty('--tooltip-y', `${clamp(top, gap, maxTop)}px`);
+    instruction.classList.add('is-visible');
+  };
+
+  const showInstructionNearNode = (node: HTMLElement) => {
+    if (!instruction || isDraggingNode) return;
 
     const mapRect = map.getBoundingClientRect();
     const nodeRect = node.getBoundingClientRect();
@@ -249,9 +272,10 @@ const setupFlowMap = () => {
     }
 
     const maxLeft = Math.max(gap, mapRect.width - instructionRect.width - gap);
+    const maxTop = Math.max(gap, mapRect.height - instructionRect.height - gap);
 
     instruction.style.setProperty('--tooltip-x', `${clamp(left, gap, maxLeft)}px`);
-    instruction.style.setProperty('--tooltip-y', `${clamp(top, gap, mapRect.height - gap)}px`);
+    instruction.style.setProperty('--tooltip-y', `${clamp(top, gap, maxTop)}px`);
     instruction.classList.add('is-visible');
   };
 
@@ -393,9 +417,12 @@ const setupFlowMap = () => {
     nodes.forEach((node) => {
       const id = node.dataset.node;
 
-      node.addEventListener('pointerenter', () => {
+      node.addEventListener('pointerenter', (event) => {
         setHighlightedConnections(id);
-        showInstruction(node);
+        showInstructionAtPointer(event);
+      });
+      node.addEventListener('pointermove', (event) => {
+        showInstructionAtPointer(event);
       });
       node.addEventListener('pointerleave', () => {
         if (!node.classList.contains('is-dragging')) {
@@ -405,7 +432,7 @@ const setupFlowMap = () => {
       });
       node.addEventListener('focus', () => {
         setHighlightedConnections(id);
-        showInstruction(node);
+        showInstructionNearNode(node);
       });
       node.addEventListener('blur', () => {
         setHighlightedConnections();
@@ -424,8 +451,9 @@ const setupFlowMap = () => {
         const offsetY = event.clientY - nodeRect.top;
 
         node.classList.add('is-dragging');
+        isDraggingNode = true;
         setHighlightedConnections(id);
-        showInstruction(node);
+        hideInstruction();
         node.setPointerCapture(event.pointerId);
 
         const moveNode = (moveEvent: PointerEvent) => {
@@ -433,11 +461,11 @@ const setupFlowMap = () => {
           const top = moveEvent.clientY - mapRect.top - offsetY;
           setPositionFromPixels(node, left, top);
           updateConnections();
-          showInstruction(node);
         };
 
         const stopDrag = () => {
           node.classList.remove('is-dragging');
+          isDraggingNode = false;
           setHighlightedConnections();
           hideInstruction();
           node.removeEventListener('pointermove', moveNode);
