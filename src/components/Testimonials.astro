@@ -105,35 +105,50 @@ const testimonials = [
   }
 
   .testimonials__grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    border: 1px solid var(--color-line);
-    background: rgb(255 255 255 / 48%);
-    box-shadow: 0 24px 80px rgb(17 24 39 / 5%);
+    display: flex;
+    gap: clamp(1rem, 2vw, 1.75rem);
+    margin-inline: calc(clamp(1.25rem, 2.2vw, 2.5rem) * -1);
+    padding-inline: clamp(1.25rem, 2.2vw, 2.5rem);
+    padding-bottom: 0.75rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-padding-inline: clamp(1.25rem, 2.2vw, 2.5rem);
+    scroll-snap-type: inline mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .testimonials__grid::-webkit-scrollbar {
+    height: 0.55rem;
+  }
+
+  .testimonials__grid::-webkit-scrollbar-track {
+    background: rgb(200 208 214 / 28%);
+    border-radius: 999px;
+  }
+
+  .testimonials__grid::-webkit-scrollbar-thumb {
+    background: rgb(15 92 255 / 52%);
+    border-radius: 999px;
   }
 
   .testimonial-card {
     position: relative;
+    flex: 0 0 clamp(24rem, 40vw, 45rem);
     display: grid;
     grid-template-rows: 1fr auto auto;
     min-height: clamp(20rem, 27vw, 29rem);
     gap: clamp(1rem, 2vw, 1.6rem);
     margin: 0;
     padding: clamp(1.1rem, 2.4vw, 2rem);
-    border-bottom: 1px solid var(--color-line);
+    border: 1px solid var(--color-line);
+    background: rgb(255 255 255 / 62%);
+    box-shadow: 0 24px 80px rgb(17 24 39 / 5%);
     color: var(--color-ink);
-  }
-
-  .testimonial-card:nth-child(odd) {
-    border-right: 1px solid var(--color-line);
-  }
-
-  .testimonial-card:nth-last-child(-n + 2) {
-    border-bottom: 0;
+    scroll-snap-align: start;
   }
 
   .testimonial-card blockquote {
-    align-self: end;
+    align-self: start;
     margin: 0;
   }
 
@@ -176,20 +191,12 @@ const testimonials = [
   }
 
   @media (max-width: 900px) {
-    .testimonials__intro,
-    .testimonials__grid {
+    .testimonials__intro {
       grid-template-columns: 1fr;
     }
 
-    .testimonial-card,
-    .testimonial-card:nth-child(odd),
-    .testimonial-card:nth-last-child(-n + 2) {
-      border-right: 0;
-      border-bottom: 1px solid var(--color-line);
-    }
-
-    .testimonial-card:last-child {
-      border-bottom: 0;
+    .testimonial-card {
+      flex-basis: min(32rem, 86vw);
     }
   }
 
@@ -198,7 +205,14 @@ const testimonials = [
       padding-inline: 1rem;
     }
 
+    .testimonials__grid {
+      margin-inline: -1rem;
+      padding-inline: 1rem;
+      scroll-padding-inline: 1rem;
+    }
+
     .testimonial-card {
+      flex-basis: 84vw;
       min-height: 18rem;
     }
   }
