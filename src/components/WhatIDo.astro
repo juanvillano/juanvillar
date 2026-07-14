@@ -1,52 +1,41 @@
 ---
 const services = [
   {
+    label: "Core",
+    labelEs: "Base",
     title: "End-to-end Product Design",
     titleEs: "Diseño de producto end-to-end",
-    body: "I work across discovery, structure, interaction, and delivery - turning unclear problems into usable product experiences.",
+    body: "Discovery, structure, interaction, and handoff - turning unclear product problems into usable flows, screens, and decisions.",
     bodyEs:
-      "Trabajo desde el descubrimiento, la estructura, la interacción y la entrega para convertir problemas poco claros en experiencias de producto usables.",
+      "Descubrimiento, estructura, interacción y handoff para convertir problemas de producto poco claros en flujos, pantallas y decisiones usables.",
+    proof: "Systems thinking · Strategy · Handoff",
+    proofEs: "Pensamiento sistémico · Estrategia · Handoff",
     accent: "15 92 255",
   },
   {
-    title: "Systems Thinking",
-    titleEs: "Pensamiento sistémico",
-    body: "I connect flows, components, states, and business rules so products feel consistent, scalable, and easier to maintain.",
+    label: "Specialty",
+    labelEs: "Especialidad",
+    title: "Banking & Fintech",
+    titleEs: "Banca y fintech",
+    body: "Onboarding, verification, account, and regulated product flows - where clarity, trust, and error prevention matter most.",
     bodyEs:
-      "Conecto flujos, componentes, estados y reglas de negocio para que los productos se sientan consistentes, escalables y más fáciles de mantener.",
-    accent: "255 184 0",
+      "Onboarding, verificación, cuentas y flujos regulados donde la claridad, la confianza y la prevención de errores importan más.",
+    proof: "5+ years in banking products",
+    proofEs: "5+ años en productos bancarios",
+    accent: "15 92 255",
+    featured: true,
   },
   {
+    label: "Evolving",
+    labelEs: "Evolución",
     title: "AI-assisted Workflow",
     titleEs: "Flujo de trabajo asistido por IA",
-    body: "I use AI to explore directions, prototype faster, refine content, analyze patterns, and move from ambiguity to clearer decisions.",
+    body: "Using AI to explore directions, prototype faster, analyze patterns, and move from ambiguity to clearer decisions.",
     bodyEs:
-      "Uso IA para explorar direcciones, prototipar más rápido, refinar contenido, analizar patrones y pasar de la ambigüedad a decisiones más claras.",
-    accent: "255 91 128",
-  },
-  {
-    title: "Complex Product Flows",
-    titleEs: "Flujos complejos de producto",
-    body: "I design onboarding, KYC, account, payment, and operational flows where clarity, trust, and error prevention matter.",
-    bodyEs:
-      "Diseño flujos de onboarding, KYC, cuentas, pagos y operaciones donde importan la claridad, la confianza y la prevención de errores.",
-    accent: "29 185 84",
-  },
-  {
-    title: "Product Strategy & Clarity",
-    titleEs: "Estrategia de producto y claridad",
-    body: "I help teams define what matters, simplify decisions, and align user needs with business goals.",
-    bodyEs:
-      "Ayudo a los equipos a definir lo importante, simplificar decisiones y alinear las necesidades de los usuarios con los objetivos del negocio.",
+      "Uso IA para explorar direcciones, prototipar más rápido, analizar patrones y pasar de la ambigüedad a decisiones más claras.",
+    proof: "Prototyping · Pattern analysis",
+    proofEs: "Prototipado · Análisis de patrones",
     accent: "126 87 194",
-  },
-  {
-    title: "Prototyping & Handoff",
-    titleEs: "Prototipado y handoff",
-    body: "I create prototypes, interaction logic, specs, and design details that help developers understand how the product should behave.",
-    bodyEs:
-      "Creo prototipos, lógica de interacción, especificaciones y detalles de diseño que ayudan a los desarrolladores a entender cómo debe comportarse el producto.",
-    accent: "255 122 24",
   },
 ];
 ---
@@ -57,23 +46,30 @@ const services = [
       What I Do
     </h2>
     <p
-      data-en="I work where product complexity needs to become a clearer path: flows, systems, interfaces, and the business context around them."
-      data-es="Trabajo donde la complejidad del producto necesita convertirse en un camino más claro: flujos, sistemas, interfaces y el contexto de negocio que los rodea."
+      data-en="I work where product complexity needs to become a clearer path - across flows, structure, and the business context around them."
+      data-es="Trabajo donde la complejidad del producto necesita convertirse en un camino más claro: entre flujos, estructura y el contexto de negocio que los rodea."
     >
-      I work where product complexity needs to become a clearer path: flows,
-      systems, interfaces, and the business context around them.
+      I work where product complexity needs to become a clearer path - across
+      flows, structure, and the business context around them.
     </p>
   </div>
 
   <div class="what-i-do__wall" aria-label="Ways Juan can help">
     {
-      services.map((service, index) => (
+      services.map((service) => (
         <article
-          class="what-i-do__item"
+          class:list={[
+            "what-i-do__item",
+            service.featured && "what-i-do__item--featured",
+          ]}
           style={`--item-accent: ${service.accent};`}
         >
-          <span class="what-i-do__number">
-            {String(index + 1).padStart(2, "0")}
+          <span
+            class="what-i-do__label"
+            data-en={service.label}
+            data-es={service.labelEs}
+          >
+            {service.label}
           </span>
           <div class="what-i-do__copy">
             <h3 data-en={service.title} data-es={service.titleEs}>
@@ -83,6 +79,13 @@ const services = [
               {service.body}
             </p>
           </div>
+          <p
+            class="what-i-do__proof"
+            data-en={service.proof}
+            data-es={service.proofEs}
+          >
+            {service.proof}
+          </p>
         </article>
       ))
     }
@@ -146,16 +149,12 @@ const services = [
 
   .what-i-do__item {
     display: grid;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto 1fr auto;
     min-width: 0;
-    min-height: clamp(21rem, 27vw, 28rem);
-    padding: clamp(1rem, 1.7vw, 1.65rem);
+    min-height: clamp(20rem, 27vw, 27rem);
+    padding: clamp(1.5rem, 2.9vw, 3.65rem);
     border-right: 1px solid var(--color-line);
-    background: linear-gradient(
-      180deg,
-      transparent,
-      rgb(var(--item-accent) / 4.5%)
-    );
+    background: rgb(255 255 255 / 38%);
     outline: 1px solid transparent;
     outline-offset: -1px;
     transition:
@@ -165,12 +164,16 @@ const services = [
       transform 180ms cubic-bezier(0.23, 1, 0.32, 1);
   }
 
-  .what-i-do__item:nth-child(3n) {
+  .what-i-do__item:last-child {
     border-right: 0;
   }
 
-  .what-i-do__item:nth-child(n + 4) {
-    border-top: 1px solid var(--color-line);
+  .what-i-do__item--featured {
+    background:
+      linear-gradient(180deg, rgb(15 92 255 / 7%), rgb(15 92 255 / 4%)),
+      var(--color-blue-soft);
+    border-color: rgb(15 92 255 / 22%);
+    box-shadow: inset 0 0 0 1px rgb(15 92 255 / 12%);
   }
 
   @media (hover: hover) {
@@ -184,25 +187,27 @@ const services = [
       transform: translateY(-0.28rem);
     }
 
-    .what-i-do__item:hover .what-i-do__number {
+    .what-i-do__item:hover .what-i-do__label {
       border-color: rgb(var(--item-accent) / 48%);
       background: rgb(var(--item-accent) / 8%);
       color: rgb(var(--item-accent));
     }
   }
 
-  .what-i-do__number {
-    justify-self: end;
-    display: grid;
-    place-items: center;
-    width: 3.35rem;
-    min-height: 3.35rem;
-    border: 1px solid var(--color-line);
+  .what-i-do__label {
+    justify-self: start;
+    display: inline-flex;
+    align-items: center;
+    min-height: 2rem;
+    padding: 0.32rem 0.78rem 0.28rem;
+    border: 1.5px solid rgb(var(--item-accent) / 72%);
+    border-radius: 999px;
     color: var(--color-blue);
-    font-size: 0.86rem;
+    font-size: clamp(0.72rem, 0.85vw, 0.9rem);
     font-weight: 850;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.04em;
+    line-height: 1;
+    letter-spacing: 0.075em;
+    text-transform: uppercase;
     transition:
       background-color 180ms cubic-bezier(0.23, 1, 0.32, 1),
       border-color 180ms cubic-bezier(0.23, 1, 0.32, 1),
@@ -212,25 +217,35 @@ const services = [
   .what-i-do__copy {
     align-self: end;
     display: grid;
-    gap: 0.95rem;
+    gap: clamp(1.35rem, 2vw, 2rem);
   }
 
   .what-i-do__copy h3 {
-    max-width: 18rem;
+    max-width: 20rem;
     margin: 0;
     color: var(--color-ink);
-    font-size: clamp(1.55rem, 2.45vw, 3.2rem);
+    font-size: clamp(2rem, 2.8vw, 4rem);
     line-height: 0.95;
-    letter-spacing: -0.055em;
+    letter-spacing: -0.065em;
   }
 
   .what-i-do__copy p {
-    max-width: 24rem;
+    max-width: 25rem;
     margin: 0;
     color: var(--color-muted);
-    font-size: clamp(0.96rem, 1.05vw, 1.1rem);
-    font-weight: 580;
+    font-size: clamp(1rem, 1.25vw, 1.28rem);
+    font-weight: 520;
     line-height: 1.45;
+  }
+
+  .what-i-do__proof {
+    margin: clamp(1.5rem, 2.5vw, 2.25rem) 0 0;
+    padding-top: clamp(1rem, 1.6vw, 1.35rem);
+    border-top: 1px solid rgb(var(--item-accent) / 22%);
+    color: rgb(var(--item-accent));
+    font-size: clamp(0.9rem, 1vw, 1rem);
+    font-weight: 800;
+    line-height: 1.35;
   }
 
   @media (max-width: 980px) {
@@ -249,7 +264,7 @@ const services = [
     }
 
     .what-i-do__item,
-    .what-i-do__item:nth-child(3n) {
+    .what-i-do__item:last-child {
       border-right: 1px solid var(--color-line);
     }
 
@@ -257,8 +272,7 @@ const services = [
       border-right: 0;
     }
 
-    .what-i-do__item:nth-child(n + 3),
-    .what-i-do__item:nth-child(n + 4) {
+    .what-i-do__item:nth-child(n + 3) {
       border-top: 1px solid var(--color-line);
     }
   }
@@ -273,17 +287,22 @@ const services = [
     }
 
     .what-i-do__item {
-      min-height: 18rem;
+      min-height: 19rem;
       border-right: 0;
       border-top: 1px solid var(--color-line);
     }
 
     .what-i-do__item:nth-child(2n),
-    .what-i-do__item:nth-child(3n) {
+    .what-i-do__item:last-child {
       border-right: 0;
     }
 
     .what-i-do__item:first-child {
+      border-top: 1px solid var(--color-line);
+    }
+
+    .what-i-do__item--featured {
+      order: -1;
       border-top: 0;
     }
   }
