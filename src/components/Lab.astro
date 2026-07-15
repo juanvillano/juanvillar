@@ -18,22 +18,12 @@ const labUrl = "https://kettlebell-routine--imjuanvillar.replit.app/";
           </svg>
         </span>
         <div class="lab-card__media" aria-hidden="true">
-          <div class="lab-app">
-            <div class="lab-app__header">
-              <span>DAY 1</span>
-              <span>EDIT</span>
-              <span>SYNC</span>
-            </div>
-            <div class="lab-app__metric">
-              <strong>15:00</strong>
-              <span>next session</span>
-            </div>
-            <div class="lab-app__rows">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          </div>
+          <img
+            src="/images/lab/kettlebell-routine.png"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
         </div>
         <div class="lab-card__body">
           <h3>Kettlebell Routine Planner</h3>
@@ -156,65 +146,17 @@ const labUrl = "https://kettlebell-routine--imjuanvillar.replit.app/";
     display: grid;
     place-items: center;
     min-height: 13rem;
-    padding: clamp(1.25rem, 2.4vw, 2rem);
-    background:
-      radial-gradient(circle at 24% 16%, rgb(255 115 37 / 42%), transparent 24%),
-      linear-gradient(140deg, #050506, #111318 56%, #060607);
+    padding: 0;
+    background: #101010;
+    overflow: hidden;
   }
 
-  .lab-app {
-    width: min(100%, 19rem);
-    padding: 1rem;
-    border: 1px solid rgb(255 255 255 / 14%);
-    border-radius: 0.75rem;
-    background: rgb(255 255 255 / 6%);
-    box-shadow: 0 18px 54px rgb(0 0 0 / 30%);
-    color: white;
-  }
-
-  .lab-app__header,
-  .lab-app__rows {
-    display: grid;
-    gap: 0.5rem;
-  }
-
-  .lab-app__header {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .lab-app__header span,
-  .lab-app__rows span {
-    border-radius: 0.4rem;
-    background: rgb(255 255 255 / 12%);
-  }
-
-  .lab-app__header span {
-    padding: 0.5rem;
-    color: rgb(255 255 255 / 76%);
-    font-size: 0.68rem;
-    font-weight: 800;
-    letter-spacing: 0.06em;
-  }
-
-  .lab-app__metric {
-    display: grid;
-    gap: 0.25rem;
-    margin: 1.1rem 0;
-  }
-
-  .lab-app__metric strong {
-    color: #ff7a1a;
-    font-size: 2rem;
-    line-height: 1;
-  }
-
-  .lab-app__metric span {
-    color: rgb(255 255 255 / 68%);
-    font-size: 0.8rem;
-  }
-
-  .lab-app__rows span {
-    height: 2rem;
+  .lab-card__media img {
+    width: 100%;
+    height: 100%;
+    min-height: 13rem;
+    object-fit: cover;
+    object-position: 50% 12%;
   }
 
   .lab-card__body {
