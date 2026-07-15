@@ -2,33 +2,46 @@
 const testimonials = [
   {
     quote:
-      "Add a coworker review about how the collaboration felt, what problem we worked through, and what changed because of the work.",
-    name: "Name",
-    role: "Product partner / project context",
-    tag: "Collaboration",
+      "As a colleague, I always saw him as an approachable leader with a strong ethical sense that very few people possess. He is a capable and innovative professional, and I always admired his ability to adapt to change.\n\nAs a person, Juan is a man of strong values: he supports and defends those around him, and he is someone you can turn to for advice. Any team that has Juan Fernando among its members can be confident of achieving exceptional results.",
+    name: "Oscar Martínez",
+    role: "Senior iOS Developer",
+    avatar: "/images/testimonials/oscar-martinez.png",
+    tags: ["Collaboration", "Clarity", "Trust"],
   },
   {
     quote:
       "Add a review that speaks to flow clarity, handoffs with engineering, or how a complex product decision became easier to understand.",
     name: "Name",
     role: "Engineering partner / project context",
-    tag: "Handoffs",
+    avatar: "",
+    tags: ["Handoffs", "Systems", "Flow"],
   },
   {
     quote:
       "Add a review about reliability, trust, business context, or how the work helped the team move with more confidence.",
     name: "Name",
     role: "Stakeholder / project context",
-    tag: "Trust",
+    avatar: "",
+    tags: ["Trust", "Business", "Support"],
   },
   {
     quote:
       "Add a review about systems thinking, product maintenance, or improving an experience across states, constraints, and edge cases.",
     name: "Name",
     role: "Design partner / project context",
-    tag: "Systems",
+    avatar: "",
+    tags: ["Systems", "Product", "Quality"],
   },
 ];
+
+const getInitials = (name: string) =>
+  name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase();
 ---
 
 <section class="testimonials" aria-labelledby="testimonials-title">
@@ -48,11 +61,34 @@ const testimonials = [
           <blockquote>
             <p>{testimonial.quote}</p>
           </blockquote>
+          <div class="testimonial-card__tags" aria-label="Review themes">
+            {
+              testimonial.tags.map((tag) => (
+                <span class="testimonial-card__tag">{tag}</span>
+              ))
+            }
+          </div>
           <figcaption>
-            <strong>{testimonial.name}</strong>
-            <span>{testimonial.role}</span>
+            {
+              testimonial.avatar ? (
+                <img
+                  src={testimonial.avatar}
+                  alt=""
+                  class="testimonial-card__avatar"
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <span class="testimonial-card__avatar testimonial-card__avatar--fallback">
+                  {getInitials(testimonial.name)}
+                </span>
+              )
+            }
+            <span class="testimonial-card__person">
+              <strong>{testimonial.name}</strong>
+              <span>{testimonial.role}</span>
+            </span>
           </figcaption>
-          <span class="testimonial-card__tag">{testimonial.tag}</span>
         </figure>
       ))
     }
@@ -137,7 +173,7 @@ const testimonials = [
     display: grid;
     grid-template-rows: 1fr auto auto;
     min-height: clamp(20rem, 27vw, 29rem);
-    gap: clamp(1rem, 2vw, 1.6rem);
+    gap: clamp(1.1rem, 2vw, 1.65rem);
     margin: 0;
     padding: clamp(1.1rem, 2.4vw, 2rem);
     border: 1px solid var(--color-line);
@@ -161,14 +197,22 @@ const testimonials = [
     font-weight: 720;
     line-height: 1.12;
     letter-spacing: -0.035em;
+    white-space: pre-line;
   }
 
   .testimonial-card figcaption {
-    display: grid;
-    gap: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
     color: var(--color-muted);
     font-size: clamp(0.9rem, 1vw, 1rem);
     line-height: 1.35;
+  }
+
+  .testimonial-card__person {
+    display: grid;
+    gap: 0.12rem;
+    min-width: 0;
   }
 
   .testimonial-card figcaption strong {
@@ -177,17 +221,45 @@ const testimonials = [
     font-weight: 760;
   }
 
-  .testimonial-card__tag {
-    justify-self: start;
-    border: 1px solid rgb(15 92 255 / 32%);
-    border-radius: 999px;
-    padding: 0.42rem 0.7rem;
+  .testimonial-card__avatar {
+    width: clamp(2.6rem, 3.6vw, 3.25rem);
+    height: clamp(2.6rem, 3.6vw, 3.25rem);
+    flex: 0 0 auto;
+    border: 1px solid rgb(15 92 255 / 18%);
+    border-radius: 50%;
+    background: var(--color-blue-soft);
+    object-fit: cover;
+  }
+
+  .testimonial-card__avatar--fallback {
+    display: inline-grid;
+    place-items: center;
     color: var(--color-blue);
-    font-size: 0.76rem;
-    font-weight: 760;
+    font-size: 0.8rem;
+    font-weight: 850;
     letter-spacing: 0.04em;
+  }
+
+  .testimonial-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    align-self: end;
+  }
+
+  .testimonial-card__tag {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid rgb(15 92 255 / 32%);
+    background: var(--color-blue-soft);
+    border-radius: 999px;
+    padding: 0.38rem 0.7rem 0.34rem;
+    color: var(--color-blue);
+    font-family: var(--font-serif);
+    font-size: clamp(0.82rem, 1vw, 0.98rem);
+    font-weight: 760;
+    letter-spacing: -0.015em;
     line-height: 1;
-    text-transform: uppercase;
   }
 
   @media (max-width: 900px) {
