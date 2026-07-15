@@ -29,16 +29,25 @@ const details = [
 
     <article class="case-preview" aria-label="KYC Update flow case preview">
       <ul class="case-preview__chips" aria-label="Project tags">
-        {chips.map((chip) => <li>{chip}</li>)}
+        {
+          chips.map((chip) => (
+            <li class:list={{ "case-preview__chip--nda": chip === "NDA" }}>
+              {chip === "NDA" && (
+                <img src="/icons/lock.svg" alt="" aria-hidden="true" />
+              )}
+              {chip}
+            </li>
+          ))
+        }
       </ul>
 
       <div class="case-preview__body">
-        <h3>KYC Update flow: enabling cleaner client data collection</h3>
+        <h3>A clearer KYC update flow for clients and the business</h3>
         <p class="case-preview__summary">
-          Simplifying and enabling a regulated data management flow that allows
-          clients to complete or update sensitive information changes with less
-          friction and more confidence while complying with national
-          regulations.
+          Redesigning a regulated data update flow so clients can review and
+          change sensitive information with less friction, clearer guidance, and
+          more confidence—while helping the business collect more complete and
+          accurate data.
         </p>
       </div>
 
@@ -47,7 +56,12 @@ const details = [
           details.map((item) => (
             <div>
               <dt>{item.label}</dt>
-              <dd>{item.value}</dd>
+              <dd class:list={{ "case-preview__status": item.label === "STATUS" }}>
+                {item.label === "STATUS" && (
+                  <span class="case-preview__status-dot" aria-hidden="true" />
+                )}
+                {item.value}
+              </dd>
             </div>
           ))
         }
@@ -138,6 +152,7 @@ const details = [
   .case-preview__chips li {
     display: inline-flex;
     align-items: center;
+    gap: 0.28rem;
     min-height: 1.7rem;
     padding: 0.26rem 0.68rem;
     border: 1px solid rgb(24 136 0 / 20%);
@@ -149,6 +164,12 @@ const details = [
     font-weight: 700;
     line-height: 1;
     white-space: nowrap;
+  }
+
+  .case-preview__chips img {
+    width: 0.88rem;
+    height: 0.88rem;
+    display: block;
   }
 
   .case-preview__body {
@@ -196,9 +217,10 @@ const details = [
 
   .case-preview__meta dt {
     margin: 0 0 0.42rem;
-    color: var(--color-ink);
+    color: #66717c;
+    font-family: var(--font-body);
     font-size: clamp(0.68rem, 0.76vw, 0.78rem);
-    font-weight: 850;
+    font-weight: 500;
     letter-spacing: 0.08em;
     line-height: 1;
   }
@@ -206,10 +228,54 @@ const details = [
   .case-preview__meta dd {
     margin: 0;
     color: var(--color-ink);
+    font-family: var(--font-body);
     font-size: clamp(0.82rem, 0.95vw, 0.98rem);
     font-weight: 760;
     line-height: 1.25;
     letter-spacing: -0.012em;
+  }
+
+  .case-preview__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42rem;
+  }
+
+  .case-preview__status-dot {
+    position: relative;
+    width: 0.68rem;
+    height: 0.68rem;
+    border-radius: 50%;
+    background: #12c83f;
+    box-shadow: 0 0 0 0.28rem rgb(18 200 63 / 15%);
+  }
+
+  .case-preview__status-dot::after {
+    position: absolute;
+    inset: -0.28rem;
+    border-radius: inherit;
+    background: rgb(18 200 63 / 22%);
+    content: "";
+    animation: selected-work-status-pulse 1.8s ease-out infinite;
+  }
+
+  @keyframes selected-work-status-pulse {
+    0% {
+      opacity: 0.8;
+      transform: scale(0.72);
+    }
+
+    72%,
+    100% {
+      opacity: 0;
+      transform: scale(1.9);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .case-preview__status-dot::after {
+      animation: none;
+    }
   }
 
   .selected-work__visual {
