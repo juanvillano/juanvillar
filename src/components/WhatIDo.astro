@@ -60,7 +60,7 @@ const services = [
         <article
           class:list={[
             "what-i-do__item",
-            service.featured && "what-i-do__item--featured",
+            // service.featured && "what-i-do__item--featured",
           ]}
           style={`--item-accent: ${service.accent};`}
         >
@@ -146,6 +146,7 @@ const services = [
     font-size: clamp(1rem, 1.35vw, 1.28rem);
     font-weight: 600;
     line-height: 1.45;
+    max-width: 50%;
   }
 
   .what-i-do__wall {
