@@ -1,0 +1,285 @@
+---
+const labUrl = "https://kettlebell-routine--imjuanvillar.replit.app/";
+---
+
+<section class="lab" id="lab" aria-labelledby="lab-title">
+  <div class="lab__inner">
+    <header class="lab__intro">
+      <h2 id="lab-title">Lab</h2>
+      <p>Things I'm experimenting with AI & code.</p>
+    </header>
+
+    <div class="lab__grid">
+      <a class="lab-card lab-card--active" href={labUrl} target="_blank" rel="noreferrer">
+        <span class="lab-card__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M7 17 17 7"></path>
+            <path d="M8 7h9v9"></path>
+          </svg>
+        </span>
+        <div class="lab-card__media" aria-hidden="true">
+          <div class="lab-app">
+            <div class="lab-app__header">
+              <span>DAY 1</span>
+              <span>EDIT</span>
+              <span>SYNC</span>
+            </div>
+            <div class="lab-app__metric">
+              <strong>15:00</strong>
+              <span>next session</span>
+            </div>
+            <div class="lab-app__rows">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
+        <div class="lab-card__body">
+          <h3>Kettlebell Routine Planner</h3>
+          <p>Personal app to plan and track my home exercises with kettlebells.</p>
+          <ul aria-label="Project tags">
+            <li>Replit</li>
+            <li>Figma</li>
+            <li>Web app</li>
+          </ul>
+        </div>
+      </a>
+
+      <article class="lab-card lab-card--empty">
+        <span>More things on the way...</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .lab {
+    position: relative;
+    overflow: clip;
+    padding: clamp(3.5rem, 7vw, 7rem) clamp(1.25rem, 2.2vw, 2.5rem);
+    background:
+      linear-gradient(rgb(13 13 89 / 2.2%) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(13 13 89 / 2.2%) 1px, transparent 1px),
+      var(--color-canvas);
+    background-size:
+      46px 46px,
+      46px 46px,
+      auto;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .lab__inner {
+    width: min(100%, 118rem);
+    margin: 0 auto;
+  }
+
+  .lab__intro {
+    margin-bottom: clamp(1.5rem, 3vw, 2.75rem);
+  }
+
+  .lab h2 {
+    margin: 0;
+    color: var(--color-ink);
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 760;
+    line-height: 0.96;
+    letter-spacing: -0.06em;
+  }
+
+  .lab__intro p {
+    max-width: 30rem;
+    margin: 0.65rem 0 0;
+    color: var(--color-muted);
+    font-size: clamp(0.95rem, 1.1vw, 1.12rem);
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: -0.018em;
+  }
+
+  .lab__grid {
+    display: grid;
+    grid-template-columns: minmax(18rem, 0.32fr) minmax(18rem, 0.32fr);
+    gap: clamp(1rem, 2vw, 1.75rem);
+    align-items: stretch;
+  }
+
+  .lab-card {
+    position: relative;
+    min-height: clamp(18rem, 30vw, 28rem);
+    border: 1px solid var(--color-line);
+    background: rgb(255 255 255 / 58%);
+    color: var(--color-ink);
+    overflow: hidden;
+    transition:
+      border-color 180ms cubic-bezier(0.23, 1, 0.32, 1),
+      box-shadow 180ms cubic-bezier(0.23, 1, 0.32, 1),
+      transform 180ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .lab-card--active {
+    display: grid;
+    grid-template-rows: minmax(10rem, 1fr) auto;
+  }
+
+  .lab-card--active:hover,
+  .lab-card--active:focus-visible {
+    border-color: rgb(15 92 255 / 42%);
+    box-shadow: 0 24px 70px rgb(15 92 255 / 12%);
+    transform: translateY(-0.2rem);
+  }
+
+  .lab-card__arrow {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    color: var(--color-paper);
+  }
+
+  .lab-card__arrow svg {
+    width: 1.45rem;
+    height: 1.45rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2.2;
+  }
+
+  .lab-card__media {
+    display: grid;
+    place-items: center;
+    min-height: 13rem;
+    padding: clamp(1.25rem, 2.4vw, 2rem);
+    background:
+      radial-gradient(circle at 24% 16%, rgb(255 115 37 / 42%), transparent 24%),
+      linear-gradient(140deg, #050506, #111318 56%, #060607);
+  }
+
+  .lab-app {
+    width: min(100%, 19rem);
+    padding: 1rem;
+    border: 1px solid rgb(255 255 255 / 14%);
+    border-radius: 0.75rem;
+    background: rgb(255 255 255 / 6%);
+    box-shadow: 0 18px 54px rgb(0 0 0 / 30%);
+    color: white;
+  }
+
+  .lab-app__header,
+  .lab-app__rows {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .lab-app__header {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .lab-app__header span,
+  .lab-app__rows span {
+    border-radius: 0.4rem;
+    background: rgb(255 255 255 / 12%);
+  }
+
+  .lab-app__header span {
+    padding: 0.5rem;
+    color: rgb(255 255 255 / 76%);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+  }
+
+  .lab-app__metric {
+    display: grid;
+    gap: 0.25rem;
+    margin: 1.1rem 0;
+  }
+
+  .lab-app__metric strong {
+    color: #ff7a1a;
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .lab-app__metric span {
+    color: rgb(255 255 255 / 68%);
+    font-size: 0.8rem;
+  }
+
+  .lab-app__rows span {
+    height: 2rem;
+  }
+
+  .lab-card__body {
+    display: grid;
+    gap: 0.75rem;
+    padding: clamp(1.1rem, 2vw, 1.6rem);
+  }
+
+  .lab-card h3 {
+    max-width: 20rem;
+    margin: 0;
+    color: var(--color-ink);
+    font-family: var(--font-serif);
+    font-size: clamp(1.6rem, 2.4vw, 2.55rem);
+    font-weight: 760;
+    line-height: 0.98;
+    letter-spacing: -0.055em;
+  }
+
+  .lab-card p {
+    max-width: 24rem;
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 0.96rem;
+    line-height: 1.35;
+  }
+
+  .lab-card ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 0;
+    margin: 0.25rem 0 0;
+    list-style: none;
+  }
+
+  .lab-card li {
+    padding: 0.28rem 0.62rem;
+    border: 1px solid rgb(15 92 255 / 28%);
+    border-radius: 999px;
+    background: rgb(15 92 255 / 9%);
+    color: var(--color-blue);
+    font-size: 0.72rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .lab-card--empty {
+    display: grid;
+    place-items: center;
+    color: var(--color-muted);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 760px) {
+    .lab {
+      padding-inline: 1rem;
+    }
+
+    .lab__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

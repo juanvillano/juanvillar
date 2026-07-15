@@ -1,12 +1,5 @@
 ---
-const chips = [
-  "Product design",
-  "Banking UX",
-  "KYC",
-  "Regulated flow",
-  "Anonymized",
-  "Shipped",
-];
+const chips = ["Product Design", "Banking UX", "KYC", "Shipped", "NDA"];
 
 const details = [
   {
@@ -15,108 +8,60 @@ const details = [
   },
   {
     label: "FOCUS",
-    value: "Clarity, validation, trust",
+    value: "User flows, information architecture, content design",
   },
   {
     label: "STATUS",
-    value: "Live, anonymized",
+    value: "Live",
   },
 ];
 ---
 
 <section class="selected-work" id="work" aria-labelledby="selected-work-title">
   <div class="selected-work__inner">
-    <div class="selected-work__copy">
-      <header class="selected-work__intro">
-        <h2 id="selected-work-title">Latest Work</h2>
-        <p>
-          Selected product work, ongoing features, and anonymized financial
-          flows shaped under real constraints.
+    <header class="selected-work__intro">
+      <h2 id="selected-work-title">Latest Work</h2>
+      <p>
+        Selected product work, ongoing features, and anonymized financial flows
+        shaped under real constraints.
+      </p>
+    </header>
+
+    <article class="case-preview" aria-label="KYC Update flow case preview">
+      <ul class="case-preview__chips" aria-label="Project tags">
+        {chips.map((chip) => <li>{chip}</li>)}
+      </ul>
+
+      <div class="case-preview__body">
+        <h3>KYC Update flow: enabling cleaner client data collection</h3>
+        <p class="case-preview__summary">
+          Simplifying and enabling a regulated data management flow that allows
+          clients to complete or update sensitive information changes with less
+          friction and more confidence while complying with national
+          regulations.
         </p>
-      </header>
+      </div>
 
-      <article class="case-preview" aria-label="KYC Update Flow case preview">
-        <ul class="case-preview__chips" aria-label="Project tags">
-          {chips.map((chip) => <li>{chip}</li>)}
-        </ul>
-
-        <div class="case-preview__body">
-          <p class="case-preview__eyebrow">Banking onboarding and KYC / 01</p>
-          <h3>KYC Update Flow</h3>
-          <p class="case-preview__summary">
-            Simplifying a regulated information update flow so clients can
-            complete sensitive data changes with less friction and more
-            confidence.
-          </p>
-        </div>
-
-        <dl class="case-preview__meta" aria-label="Project details">
-          {
-            details.map((item) => (
-              <div>
-                <dt>{item.label}</dt>
-                <dd>{item.value}</dd>
-              </div>
-            ))
-          }
-        </dl>
-
-        <a class="case-preview__link" href="#contact">
-          Ask about this project <span aria-hidden="true">-&gt;</span>
-        </a>
-      </article>
-    </div>
+      <dl class="case-preview__meta" aria-label="Project details">
+        {
+          details.map((item) => (
+            <div>
+              <dt>{item.label}</dt>
+              <dd>{item.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </article>
 
     <div class="selected-work__visual" aria-hidden="true">
-      <div class="project-phone">
-        <div class="project-phone__glow"></div>
-        <div class="project-phone__screen">
-          <div class="prototype-flow">
-            <div class="prototype-flow__status">
-              <span></span>
-              <span></span>
-            </div>
-
-            <div class="prototype-flow__header">
-              <span></span>
-              <strong>01</strong>
-            </div>
-
-            <div class="prototype-flow__copy">
-              <span class="prototype-flow__title"></span>
-              <span></span>
-              <span></span>
-            </div>
-
-            <div class="prototype-flow__panel">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-
-            <div class="prototype-flow__actions">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-
-            <div class="prototype-flow__review">
-              <strong></strong>
-              <span></span>
-              <span></span>
-            </div>
-
-            <div class="prototype-flow__button"></div>
-          </div>
-        </div>
-        <img
-          class="project-phone__frame"
-          src="/images/apple-iphone-15-black-frame.png"
-          alt=""
-          loading="lazy"
-          decoding="async"
-        />
-      </div>
+      <img
+        class="selected-work__screens"
+        src="/images/work/kyc-flow-preview.png"
+        alt=""
+        loading="lazy"
+        decoding="async"
+      />
     </div>
   </div>
 </section>
@@ -128,67 +73,64 @@ const details = [
     padding: clamp(4.75rem, 8vw, 8rem) clamp(1.25rem, 3vw, 4.5rem)
       clamp(3rem, 6vw, 5.5rem);
     background:
-      linear-gradient(rgb(16 20 23 / 2.2%) 1px, transparent 1px),
-      linear-gradient(90deg, rgb(16 20 23 / 2.2%) 1px, transparent 1px),
+      linear-gradient(rgb(13 13 89 / 2.2%) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(13 13 89 / 2.2%) 1px, transparent 1px),
       linear-gradient(180deg, var(--color-paper), var(--color-canvas));
     background-size:
       46px 46px,
       46px 46px,
       auto;
-    border-top: 1px solid rgb(200 208 214 / 64%);
+    border-top: 1px solid rgb(199 208 214 / 64%);
     border-bottom: 1px solid var(--color-line);
   }
 
   .selected-work__inner {
     display: grid;
-    grid-template-columns: minmax(0, 0.57fr) minmax(21rem, 0.43fr);
-    gap: clamp(2.5rem, 7vw, 7.5rem);
+    grid-template-columns: minmax(0, 0.46fr) minmax(22rem, 0.54fr);
+    gap: clamp(2.5rem, 6vw, 7rem);
     align-items: end;
     width: min(100%, 118rem);
     margin: 0 auto;
   }
 
-  .selected-work__copy {
-    display: grid;
-    gap: clamp(3rem, 6vw, 6rem);
-    min-width: 0;
-  }
-
   .selected-work__intro {
-    max-width: 58rem;
+    grid-column: 1 / -1;
+    max-width: 48rem;
+    padding-bottom: clamp(2.5rem, 5vw, 4.25rem);
+    border-bottom: 1px solid var(--color-line);
   }
 
   .selected-work h2 {
     margin: 0;
-    color: #06065c;
-    font-family: var(--font-display);
-    font-size: clamp(3.25rem, 5vw, 6.75rem);
-    font-weight: 900;
-    line-height: 0.82;
-    letter-spacing: -0.055em;
-    text-transform: uppercase;
+    color: var(--color-ink);
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 760;
+    line-height: 0.96;
+    letter-spacing: -0.06em;
   }
 
   .selected-work__intro p {
-    max-width: 48rem;
-    margin: clamp(0.65rem, 1.1vw, 0.95rem) 0 0;
+    max-width: 28rem;
+    margin: clamp(0.7rem, 1vw, 1rem) 0 0;
     color: var(--color-muted);
-    font-size: clamp(1rem, 1.25vw, 1.35rem);
+    font-size: clamp(0.95rem, 1.1vw, 1.12rem);
     font-weight: 520;
-    line-height: 1.25;
+    line-height: 1.35;
     letter-spacing: -0.018em;
   }
 
   .case-preview {
     display: grid;
-    gap: clamp(1.6rem, 2.4vw, 2.4rem);
-    padding-bottom: clamp(2rem, 4vw, 3rem);
+    gap: clamp(1.35rem, 2vw, 2rem);
+    min-width: 0;
+    padding: clamp(1.25rem, 2.2vw, 2rem) 0 0;
   }
 
   .case-preview__chips {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.55rem;
+    gap: 0.45rem;
     padding: 0;
     margin: 0;
     list-style: none;
@@ -197,14 +139,14 @@ const details = [
   .case-preview__chips li {
     display: inline-flex;
     align-items: center;
-    min-height: 1.9rem;
-    padding: 0.28rem 0.78rem;
+    min-height: 1.7rem;
+    padding: 0.26rem 0.68rem;
     border: 1px solid rgb(15 92 255 / 28%);
     border-radius: 999px;
     color: var(--color-blue);
-    background: rgb(15 92 255 / 7%);
+    background: rgb(15 92 255 / 9%);
     font-family: var(--font-serif);
-    font-size: clamp(0.78rem, 0.9vw, 0.95rem);
+    font-size: clamp(0.72rem, 0.82vw, 0.88rem);
     font-weight: 760;
     line-height: 1;
     white-space: nowrap;
@@ -212,49 +154,39 @@ const details = [
 
   .case-preview__body {
     display: grid;
-    gap: clamp(1rem, 1.8vw, 1.55rem);
-    max-width: 58rem;
-  }
-
-  .case-preview__eyebrow {
-    margin: 0;
-    color: var(--color-blue);
-    font-size: clamp(0.82rem, 0.95vw, 1rem);
-    font-weight: 850;
-    letter-spacing: 0.1em;
-    line-height: 1;
-    text-transform: uppercase;
+    gap: clamp(1rem, 1.6vw, 1.35rem);
+    max-width: 50rem;
   }
 
   .case-preview h3 {
     margin: 0;
-    color: #06065c;
+    color: var(--color-ink);
     font-family: var(--font-serif);
-    font-size: clamp(3.15rem, 5.6vw, 7rem);
-    font-weight: 850;
-    font-variation-settings:
-      "SOFT" 0,
-      "WONK" 1;
-    line-height: 0.9;
-    letter-spacing: -0.055em;
+    font-size: clamp(2.2rem, 4vw, 4.9rem);
+    font-weight: 760;
+    line-height: 0.98;
+    letter-spacing: -0.065em;
   }
 
   .case-preview__summary {
-    max-width: 50rem;
+    max-width: 42rem;
     margin: 0;
     color: var(--color-muted);
-    font-size: clamp(1rem, 1.35vw, 1.42rem);
+    font-size: clamp(0.98rem, 1.18vw, 1.18rem);
     font-weight: 460;
-    line-height: 1.42;
+    line-height: 1.45;
     letter-spacing: -0.018em;
   }
 
   .case-preview__meta {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(1rem, 2.5vw, 3rem);
-    max-width: 54rem;
-    padding-top: clamp(1.25rem, 2vw, 1.8rem);
+    grid-template-columns: minmax(7rem, 0.4fr) minmax(13rem, 1fr) minmax(
+        6rem,
+        0.32fr
+      );
+    gap: clamp(1rem, 2.25vw, 2.6rem);
+    max-width: 47rem;
+    padding-top: clamp(1.1rem, 1.8vw, 1.5rem);
     margin: 0;
     border-top: 1px solid var(--color-line);
   }
@@ -264,9 +196,9 @@ const details = [
   }
 
   .case-preview__meta dt {
-    margin: 0 0 0.45rem;
-    color: var(--color-blue);
-    font-size: clamp(0.72rem, 0.8vw, 0.82rem);
+    margin: 0 0 0.42rem;
+    color: var(--color-ink);
+    font-size: clamp(0.68rem, 0.76vw, 0.78rem);
     font-weight: 850;
     letter-spacing: 0.08em;
     line-height: 1;
@@ -275,256 +207,49 @@ const details = [
   .case-preview__meta dd {
     margin: 0;
     color: var(--color-ink);
-    font-size: clamp(0.9rem, 1.05vw, 1.05rem);
+    font-size: clamp(0.82rem, 0.95vw, 0.98rem);
     font-weight: 760;
-    line-height: 1.2;
+    line-height: 1.25;
     letter-spacing: -0.012em;
-  }
-
-  .case-preview__link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.65rem;
-    width: max-content;
-    color: var(--color-blue);
-    font-size: clamp(1rem, 1.15vw, 1.12rem);
-    font-weight: 760;
-    letter-spacing: -0.01em;
-  }
-
-  .case-preview__link span {
-    font-size: 1.25em;
-    line-height: 1;
-    transition: transform 180ms ease;
-  }
-
-  .case-preview__link:hover span,
-  .case-preview__link:focus-visible span {
-    transform: translateX(0.22rem);
   }
 
   .selected-work__visual {
     position: relative;
     display: grid;
     place-items: end center;
-    min-height: clamp(32rem, 56vw, 50rem);
+    min-height: clamp(24rem, 39vw, 40rem);
     overflow: visible;
   }
 
-  .project-phone {
-    position: relative;
-    width: clamp(17rem, 25vw, 30rem);
-    aspect-ratio: 1419 / 2796;
-    transform: translateY(clamp(4rem, 8vw, 7rem)) rotate(10deg);
-    transform-origin: center bottom;
-    filter: drop-shadow(0 36px 54px rgb(17 24 39 / 16%));
-  }
-
-  .project-phone__glow {
-    position: absolute;
-    inset: 18% -20% 8%;
-    z-index: 0;
-    border-radius: 999px;
-    background: linear-gradient(
-      160deg,
-      rgb(15 92 255 / 18%),
-      rgb(15 92 255 / 3%)
-    );
-    filter: blur(36px);
-    transform: rotate(-8deg);
-  }
-
-  .project-phone__frame {
-    position: absolute;
-    inset: 0;
-    z-index: 3;
-    display: block;
-    width: 100%;
-    height: 100%;
+  .selected-work__screens {
+    width: min(100%, clamp(34rem, 55vw, 70rem));
+    max-width: none;
+    height: auto;
     object-fit: contain;
-    pointer-events: none;
-  }
-
-  .project-phone__screen {
-    position: absolute;
-    inset: 5.2% 7.4% 4.45%;
-    z-index: 2;
-    overflow: hidden;
-    border-radius: 6.5% / 3.1%;
-    background:
-      linear-gradient(rgb(16 20 23 / 5%) 1px, transparent 1px),
-      linear-gradient(90deg, rgb(16 20 23 / 5%) 1px, transparent 1px),
-      var(--color-paper);
-    background-size:
-      28px 28px,
-      28px 28px,
-      auto;
-  }
-
-  .prototype-flow {
-    display: grid;
-    grid-template-rows: auto auto auto auto auto 1fr auto;
-    min-height: 100%;
-    padding: clamp(3.6rem, 8vw, 4.9rem) clamp(0.9rem, 2vw, 1.2rem)
-      clamp(1rem, 2vw, 1.35rem);
-  }
-
-  .prototype-flow__status,
-  .prototype-flow__header,
-  .prototype-flow__actions {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .prototype-flow__status {
-    margin-bottom: clamp(1.3rem, 3vw, 2rem);
-  }
-
-  .prototype-flow__status span {
-    width: 2.9rem;
-    height: 0.42rem;
-    border-radius: 999px;
-    background: rgb(16 20 23 / 14%);
-  }
-
-  .prototype-flow__status span:last-child {
-    width: 1.4rem;
-  }
-
-  .prototype-flow__header {
-    gap: 1rem;
-    margin-bottom: clamp(1.7rem, 4vw, 2.6rem);
-  }
-
-  .prototype-flow__header span,
-  .prototype-flow__copy span,
-  .prototype-flow__panel span,
-  .prototype-flow__review strong,
-  .prototype-flow__review span,
-  .prototype-flow__button {
-    display: block;
-    border-radius: 999px;
-    background: rgb(16 20 23 / 12%);
-  }
-
-  .prototype-flow__header span {
-    width: 42%;
-    height: 0.8rem;
-  }
-
-  .prototype-flow__header strong {
-    display: grid;
-    place-items: center;
-    width: 2.45rem;
-    min-height: 2.45rem;
-    border: 1px solid rgb(15 92 255 / 38%);
-    border-radius: 999px;
-    color: var(--color-blue);
-    background: rgb(15 92 255 / 5%);
-    font-size: 0.82rem;
-    font-weight: 850;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .prototype-flow__copy {
-    display: grid;
-    gap: 0.75rem;
-    margin-bottom: clamp(1.7rem, 4vw, 2.5rem);
-  }
-
-  .prototype-flow__copy .prototype-flow__title {
-    width: 70%;
-    height: clamp(0.9rem, 2vw, 1.12rem);
-    background: var(--color-ink);
-  }
-
-  .prototype-flow__copy span:not(.prototype-flow__title) {
-    width: 86%;
-    height: 0.62rem;
-  }
-
-  .prototype-flow__copy span:last-child {
-    width: 58%;
-  }
-
-  .prototype-flow__panel {
-    display: grid;
-    gap: 0.7rem;
-    padding: clamp(1rem, 2.5vw, 1.45rem);
-    margin-bottom: clamp(1.4rem, 3vw, 2rem);
-    border: 1px solid rgb(15 92 255 / 13%);
-    border-radius: 1rem;
-    background: rgb(15 92 255 / 7%);
-  }
-
-  .prototype-flow__panel span {
-    width: 100%;
-    height: clamp(1.25rem, 3vw, 1.65rem);
-    background: rgb(255 255 255 / 82%);
-    box-shadow: inset 0 0 0 1px rgb(16 20 23 / 5%);
-  }
-
-  .prototype-flow__actions {
-    gap: 0.55rem;
-    margin-bottom: clamp(1.3rem, 3vw, 2rem);
-  }
-
-  .prototype-flow__actions span {
-    width: 100%;
-    height: clamp(1.4rem, 3vw, 1.85rem);
-    border: 1px solid rgb(15 92 255 / 24%);
-    border-radius: 0.75rem;
-    background: rgb(255 255 255 / 62%);
-  }
-
-  .prototype-flow__review {
-    display: grid;
-    gap: 0.65rem;
-    align-self: start;
-    padding: clamp(1rem, 2.4vw, 1.35rem);
-    border: 1px solid rgb(16 20 23 / 9%);
-    border-radius: 1rem;
-    background: rgb(255 255 255 / 82%);
-    box-shadow: 0 16px 34px rgb(17 24 39 / 8%);
-  }
-
-  .prototype-flow__review strong {
-    width: 56%;
-    height: 0.8rem;
-    background: var(--color-ink);
-  }
-
-  .prototype-flow__review span {
-    width: 100%;
-    height: 0.56rem;
-  }
-
-  .prototype-flow__review span:last-child {
-    width: 68%;
-  }
-
-  .prototype-flow__button {
-    align-self: end;
-    height: clamp(1.7rem, 4vw, 2.2rem);
-    background: rgb(15 92 255 / 15%);
+    filter: drop-shadow(0 28px 48px rgb(15 92 255 / 13%));
+    transform: translateY(clamp(1rem, 4vw, 4.5rem));
   }
 
   @media (max-width: 1050px) {
     .selected-work__inner {
       grid-template-columns: 1fr;
-      gap: clamp(1.5rem, 6vw, 4rem);
+      gap: clamp(2rem, 6vw, 4rem);
       align-items: start;
     }
 
-    .selected-work__visual {
-      min-height: clamp(22rem, 58vw, 38rem);
-      place-items: center;
+    .selected-work__intro {
+      padding-bottom: clamp(2rem, 6vw, 3rem);
     }
 
-    .project-phone {
-      width: clamp(15rem, 42vw, 24rem);
-      transform: translateY(clamp(2rem, 5vw, 4rem)) rotate(8deg);
+    .selected-work__visual {
+      min-height: auto;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .selected-work__screens {
+      width: min(44rem, 116vw);
+      transform: translateY(0);
     }
   }
 
@@ -534,60 +259,38 @@ const details = [
         clamp(3rem, 12vw, 4.5rem);
     }
 
-    .selected-work__copy {
-      gap: clamp(2.4rem, 10vw, 3.5rem);
-    }
-
     .selected-work h2 {
-      font-size: clamp(3rem, 17vw, 4.8rem);
+      font-size: clamp(2.75rem, 13vw, 4.3rem);
     }
 
     .selected-work__intro p {
       max-width: none;
-      font-size: 1rem;
+      font-size: 0.96rem;
     }
 
     .case-preview {
-      gap: 1.35rem;
-      padding-bottom: 1rem;
+      gap: 1.2rem;
     }
 
     .case-preview__chips {
-      gap: 0.45rem;
+      gap: 0.4rem;
     }
 
     .case-preview__chips li {
-      font-size: 0.78rem;
+      font-size: 0.72rem;
     }
 
     .case-preview h3 {
-      font-size: clamp(2.7rem, 15vw, 4.4rem);
+      font-size: clamp(2.2rem, 11vw, 3.4rem);
     }
 
     .case-preview__summary {
-      font-size: 1rem;
+      font-size: 0.98rem;
     }
 
     .case-preview__meta {
       grid-template-columns: 1fr;
       gap: 1rem;
-    }
-
-    .selected-work__visual {
-      min-height: 24rem;
-      margin-top: -1rem;
-      overflow: hidden;
-    }
-
-    .project-phone {
-      width: min(68vw, 18rem);
-      transform: translateY(4.2rem) rotate(9deg);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .case-preview__link span {
-      transition: none;
     }
   }
 </style>
