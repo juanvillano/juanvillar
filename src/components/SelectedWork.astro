@@ -1,25 +1,25 @@
 ---
 const chips = [
-  'Product design',
-  'Banking UX',
-  'KYC',
-  'Regulated flow',
-  'Anonymized',
-  'Shipped',
+  "Product design",
+  "Banking UX",
+  "KYC",
+  "Regulated flow",
+  "Anonymized",
+  "Shipped",
 ];
 
 const details = [
   {
-    label: 'ROLE',
-    value: 'Product Designer',
+    label: "ROLE",
+    value: "Product Designer",
   },
   {
-    label: 'FOCUS',
-    value: 'Clarity, validation, trust',
+    label: "FOCUS",
+    value: "Clarity, validation, trust",
   },
   {
-    label: 'STATUS',
-    value: 'Live, anonymized',
+    label: "STATUS",
+    value: "Live, anonymized",
   },
 ];
 ---
@@ -28,7 +28,7 @@ const details = [
   <div class="selected-work__inner">
     <div class="selected-work__copy">
       <header class="selected-work__intro">
-        <h2 id="selected-work-title">Design Work</h2>
+        <h2 id="selected-work-title">Latest Work</h2>
         <p>
           Selected product work, ongoing features, and anonymized financial
           flows shaped under real constraints.
@@ -232,7 +232,9 @@ const details = [
     font-family: var(--font-serif);
     font-size: clamp(3.15rem, 5.6vw, 7rem);
     font-weight: 850;
-    font-variation-settings: "SOFT" 0, "WONK" 1;
+    font-variation-settings:
+      "SOFT" 0,
+      "WONK" 1;
     line-height: 0.9;
     letter-spacing: -0.055em;
   }
@@ -323,7 +325,11 @@ const details = [
     inset: 18% -20% 8%;
     z-index: 0;
     border-radius: 999px;
-    background: linear-gradient(160deg, rgb(15 92 255 / 18%), rgb(15 92 255 / 3%));
+    background: linear-gradient(
+      160deg,
+      rgb(15 92 255 / 18%),
+      rgb(15 92 255 / 3%)
+    );
     filter: blur(36px);
     transform: rotate(-8deg);
   }
