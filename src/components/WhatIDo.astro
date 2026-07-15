@@ -3,7 +3,7 @@ const services = [
   {
     label: "Core",
     labelEs: "Base",
-    title: "End-to-end Product Design",
+    title: "End-to-end Design",
     titleEs: "Diseño de producto end-to-end",
     body: "Discovery, Information Architecture, Interaction Design, Prototyping and hand-off",
     bodyEs:
@@ -108,7 +108,7 @@ const services = [
     border-top: 1px solid var(--color-soft);
   }
 
-  .what-i-do__intro {
+  /* .what-i-do__intro {
     display: grid;
     grid-template-columns: minmax(14rem, 0.32fr) minmax(0, 0.42fr) minmax(
         18rem,
@@ -116,6 +116,15 @@ const services = [
       );
     gap: clamp(1.5rem, 3vw, 3rem);
     align-items: start;
+    margin-bottom: clamp(2.5rem, 5vw, 5rem);
+  } */
+
+  .what-i-do__intro {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.5rem, 3vw, 3rem);
+    align-items: flex-start;
+    justify-content: flex-start;
     margin-bottom: clamp(2.5rem, 5vw, 5rem);
   }
 
