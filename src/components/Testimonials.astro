@@ -150,21 +150,12 @@ const getInitials = (name: string) =>
     overscroll-behavior-inline: contain;
     scroll-padding-inline: clamp(1.25rem, 2.2vw, 2.5rem);
     scroll-snap-type: inline mandatory;
+    scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
   }
 
   .testimonials__grid::-webkit-scrollbar {
-    height: 0.55rem;
-  }
-
-  .testimonials__grid::-webkit-scrollbar-track {
-    background: rgb(200 208 214 / 28%);
-    border-radius: 999px;
-  }
-
-  .testimonials__grid::-webkit-scrollbar-thumb {
-    background: rgb(15 92 255 / 52%);
-    border-radius: 999px;
+    display: none;
   }
 
   .testimonial-card {
