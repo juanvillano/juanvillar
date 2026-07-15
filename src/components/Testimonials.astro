@@ -6,7 +6,7 @@ const testimonials = [
     name: "Oscar Martínez",
     role: "Senior iOS Developer",
     avatar: "/images/testimonials/oscar-martinez.png",
-    tags: ["Collaboration", "Clarity", "Trust"],
+    tags: ["Innovation", "Leadership", "Trust"],
   },
   {
     quote:
@@ -46,7 +46,7 @@ const getInitials = (name: string) =>
 
 <section class="testimonials" aria-labelledby="testimonials-title">
   <div class="testimonials__intro">
-    <h2 id="testimonials-title">People I have worked with</h2>
+    <h2 id="testimonials-title">People I've worked with say</h2>
     <p>
       Notes from collaborators will give this section a human read on how I
       work: the clarity, trust, and structure people experience with me in the
@@ -62,28 +62,24 @@ const getInitials = (name: string) =>
             <p>{testimonial.quote}</p>
           </blockquote>
           <div class="testimonial-card__tags" aria-label="Review themes">
-            {
-              testimonial.tags.map((tag) => (
-                <span class="testimonial-card__tag">{tag}</span>
-              ))
-            }
+            {testimonial.tags.map((tag) => (
+              <span class="testimonial-card__tag">{tag}</span>
+            ))}
           </div>
           <figcaption>
-            {
-              testimonial.avatar ? (
-                <img
-                  src={testimonial.avatar}
-                  alt=""
-                  class="testimonial-card__avatar"
-                  loading="lazy"
-                  decoding="async"
-                />
-              ) : (
-                <span class="testimonial-card__avatar testimonial-card__avatar--fallback">
-                  {getInitials(testimonial.name)}
-                </span>
-              )
-            }
+            {testimonial.avatar ? (
+              <img
+                src={testimonial.avatar}
+                alt=""
+                class="testimonial-card__avatar"
+                loading="lazy"
+                decoding="async"
+              />
+            ) : (
+              <span class="testimonial-card__avatar testimonial-card__avatar--fallback">
+                {getInitials(testimonial.name)}
+              </span>
+            )}
             <span class="testimonial-card__person">
               <strong>{testimonial.name}</strong>
               <span>{testimonial.role}</span>
@@ -184,11 +180,12 @@ const getInitials = (name: string) =>
     margin: 0;
     color: var(--color-ink);
     font-family: var(--font-serif);
-    font-size: clamp(1.35rem, 2vw, 2.2rem);
-    font-weight: 720;
-    line-height: 1.12;
+    font-size: clamp(1rem, 1.5vw, 2rem);
+    font-weight: 400;
+    line-height: 1.3;
     letter-spacing: -0.035em;
     white-space: pre-line;
+    font-style: italic;
   }
 
   .testimonial-card figcaption {
@@ -208,7 +205,7 @@ const getInitials = (name: string) =>
 
   .testimonial-card figcaption strong {
     color: var(--color-ink);
-    font-size: clamp(0.98rem, 1.05vw, 1.08rem);
+    font-size: clamp(0.8rem, 1.3vw, 1.5rem);
     font-weight: 760;
   }
 
