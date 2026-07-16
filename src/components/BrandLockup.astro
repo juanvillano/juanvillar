@@ -1,0 +1,139 @@
+---
+interface Props {
+  href?: string;
+  label?: string;
+  lazy?: boolean;
+  class?: string;
+}
+
+const {
+  href,
+  label = "Juan Villar",
+  lazy = false,
+  class: className = "",
+} = Astro.props;
+
+const classes = ["brand-lockup", className].filter(Boolean).join(" ");
+---
+
+{
+  href ? (
+    <a class={classes} href={href} aria-label={`${label} home`}>
+      <span class="brand-lockup__avatar" aria-hidden="true">
+        <img
+          src="/images/juan-villar-headshot.jpg"
+          alt=""
+          width="44"
+          height="44"
+          loading={lazy ? "lazy" : undefined}
+          decoding="async"
+        />
+      </span>
+      <span>{label}</span>
+    </a>
+  ) : (
+    <div class={classes}>
+      <span class="brand-lockup__avatar" aria-hidden="true">
+        <img
+          src="/images/juan-villar-headshot.jpg"
+          alt=""
+          width="44"
+          height="44"
+          loading={lazy ? "lazy" : undefined}
+          decoding="async"
+        />
+      </span>
+      <strong>{label}</strong>
+    </div>
+  )
+}
+
+<style>
+  .brand-lockup {
+    --brand-avatar-size: clamp(2.15rem, 3vw, 2.75rem);
+
+    display: inline-flex;
+    align-items: center;
+    gap: clamp(0.55rem, 1vw, 0.8rem);
+    width: fit-content;
+    color: var(--color-ink);
+    font-size: 0.86rem;
+    font-weight: 850;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    transition: color 180ms ease;
+  }
+
+  .brand-lockup__avatar {
+    position: relative;
+    display: inline-grid;
+    width: var(--brand-avatar-size);
+    height: var(--brand-avatar-size);
+    flex: 0 0 auto;
+    place-items: center;
+    border-radius: 999px;
+  }
+
+  .brand-lockup__avatar::after {
+    position: absolute;
+    inset: -0.28rem;
+    border: 1px solid rgb(15 92 255 / 0%);
+    border-radius: inherit;
+    content: "";
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.82);
+  }
+
+  .brand-lockup img {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    filter: grayscale(1);
+    object-fit: cover;
+    box-shadow: 0 0 0 1px rgb(16 20 23 / 8%);
+    transition:
+      filter 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .brand-lockup:is(:hover, :focus-visible) {
+    color: var(--color-blue);
+  }
+
+  .brand-lockup:is(:hover, :focus-visible) img {
+    filter: grayscale(0);
+    box-shadow: 0 0 0 1px rgb(15 92 255 / 20%);
+  }
+
+  .brand-lockup:is(:hover, :focus-visible) .brand-lockup__avatar::after {
+    animation: avatar-pulse 1.2s ease-out infinite;
+  }
+
+  .brand-lockup strong {
+    font: inherit;
+  }
+
+  @keyframes avatar-pulse {
+    0% {
+      border-color: rgb(15 92 255 / 36%);
+      opacity: 0.95;
+      transform: scale(0.82);
+    }
+
+    100% {
+      border-color: rgb(15 92 255 / 0%);
+      opacity: 0;
+      transform: scale(1.45);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand-lockup:is(:hover, :focus-visible) .brand-lockup__avatar::after {
+      animation: none;
+      border-color: rgb(15 92 255 / 28%);
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>

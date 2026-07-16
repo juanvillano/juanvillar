@@ -1,4 +1,6 @@
 ---
+import BrandLockup from "./BrandLockup.astro";
+
 const chips = [
   ["Banking", "Banca"],
   ["Fintech", "Fintech"],
@@ -85,16 +87,7 @@ const connections = [
 
 <section class="hero" aria-labelledby="hero-title">
   <header class="hero__nav" aria-label="Primary">
-    <a class="hero__brand" href="/" aria-label="Juan Villar home">
-      <img
-        src="/images/juan-villar-headshot.jpg"
-        alt=""
-        width="44"
-        height="44"
-        decoding="async"
-      />
-      <span>Juan Villar</span>
-    </a>
+    <BrandLockup class="hero__brand" href="/" />
     <button
       class="hero__menu-toggle"
       type="button"
@@ -340,30 +333,6 @@ const connections = [
     text-transform: uppercase;
   }
 
-  .hero__brand {
-    display: inline-flex;
-    align-items: center;
-    gap: clamp(0.55rem, 1vw, 0.8rem);
-    color: var(--color-ink);
-    font-size: 0.86rem;
-    font-weight: 850;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-  }
-
-  .hero__brand img {
-    width: clamp(2.15rem, 3vw, 2.75rem);
-    height: clamp(2.15rem, 3vw, 2.75rem);
-    flex: 0 0 auto;
-    border-radius: 999px;
-    filter: grayscale(1);
-    object-fit: cover;
-    box-shadow: 0 0 0 1px rgb(16 20 23 / 8%);
-    transition:
-      filter 180ms ease,
-      box-shadow 180ms ease;
-  }
-
   .hero__menu-toggle {
     display: none;
     width: 2.85rem;
@@ -430,7 +399,6 @@ const connections = [
 
   .hero__links a,
   .language-toggle button,
-  .hero__brand,
   .hero__menu-toggle {
     transition:
       color 180ms ease,
@@ -438,15 +406,8 @@ const connections = [
   }
 
   .hero__links a:hover,
-  .language-toggle button:hover,
-  .hero__brand:hover {
+  .language-toggle button:hover {
     color: var(--color-blue);
-  }
-
-  .hero__brand:hover img,
-  .hero__brand:focus-visible img {
-    filter: grayscale(0);
-    box-shadow: 0 0 0 1px rgb(15 92 255 / 20%);
   }
 
   .language-toggle {
@@ -1045,16 +1006,6 @@ const connections = [
     .hero__nav.is-menu-open {
       position: fixed;
       inset: 1rem 1rem auto;
-    }
-
-    .hero__brand {
-      gap: 0.55rem;
-      font-size: 0.76rem;
-    }
-
-    .hero__brand img {
-      width: 2rem;
-      height: 2rem;
     }
 
     .hero__menu-toggle {

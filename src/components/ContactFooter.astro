@@ -1,4 +1,6 @@
 ---
+import BrandLockup from "./BrandLockup.astro";
+
 const emailHref = "mailto:imjuanvillar@gmail.com";
 const linkedinHref = "https://www.linkedin.com/in/juan-villar-guillen-79b64735";
 ---
@@ -74,17 +76,7 @@ const linkedinHref = "https://www.linkedin.com/in/juan-villar-guillen-79b64735";
 </section>
 
 <footer class="site-footer">
-  <div class="site-footer__brand">
-    <img
-      src="/images/juan-villar-headshot.jpg"
-      alt=""
-      width="32"
-      height="32"
-      loading="lazy"
-      decoding="async"
-    />
-    <strong>Juan Villar</strong>
-  </div>
+  <BrandLockup class="site-footer__brand" lazy />
 
   <p class="site-footer__note">Built with Astro. 2026.</p>
 
@@ -302,37 +294,6 @@ const linkedinHref = "https://www.linkedin.com/in/juan-villar-guillen-79b64735";
       46px 46px,
       auto;
     color: var(--color-muted);
-  }
-
-  .site-footer__brand {
-    display: inline-flex;
-    gap: 0.55rem;
-    align-items: center;
-  }
-
-  .site-footer__brand img {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    filter: grayscale(1);
-    box-shadow: 0 0 0 1px rgb(13 13 89 / 8%);
-    object-fit: cover;
-    transition:
-      filter 180ms ease,
-      box-shadow 180ms ease;
-  }
-
-  .site-footer__brand:hover img {
-    filter: grayscale(0);
-    box-shadow: 0 0 0 1px rgb(15 92 255 / 20%);
-  }
-
-  .site-footer__brand strong {
-    color: var(--color-ink);
-    font-size: clamp(1rem, 1.15vw, 1.12rem);
-    font-weight: 880;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
   }
 
   .site-footer__top {
