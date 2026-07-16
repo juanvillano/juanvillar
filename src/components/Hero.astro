@@ -356,8 +356,12 @@ const connections = [
     height: clamp(2.15rem, 3vw, 2.75rem);
     flex: 0 0 auto;
     border-radius: 999px;
+    filter: grayscale(1);
     object-fit: cover;
     box-shadow: 0 0 0 1px rgb(16 20 23 / 8%);
+    transition:
+      filter 180ms ease,
+      box-shadow 180ms ease;
   }
 
   .hero__menu-toggle {
@@ -437,6 +441,12 @@ const connections = [
   .language-toggle button:hover,
   .hero__brand:hover {
     color: var(--color-blue);
+  }
+
+  .hero__brand:hover img,
+  .hero__brand:focus-visible img {
+    filter: grayscale(0);
+    box-shadow: 0 0 0 1px rgb(15 92 255 / 20%);
   }
 
   .language-toggle {

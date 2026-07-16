@@ -314,8 +314,17 @@ const linkedinHref = "https://www.linkedin.com/in/juan-villar-guillen-79b64735";
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
+    filter: grayscale(1);
     box-shadow: 0 0 0 1px rgb(13 13 89 / 8%);
     object-fit: cover;
+    transition:
+      filter 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .site-footer__brand:hover img {
+    filter: grayscale(0);
+    box-shadow: 0 0 0 1px rgb(15 92 255 / 20%);
   }
 
   .site-footer__brand strong {
