@@ -125,6 +125,11 @@ const applyLanguage = (language: Language) => {
     if (value) element.textContent = value;
   });
 
+  document.querySelectorAll<HTMLElement>('[data-aria-en][data-aria-es]').forEach((element) => {
+    const value = language === 'es' ? element.dataset.ariaEs : element.dataset.ariaEn;
+    if (value) element.setAttribute('aria-label', value);
+  });
+
   document.querySelectorAll<HTMLButtonElement>('[data-lang-option]').forEach((button) => {
     button.setAttribute('aria-pressed', `${button.dataset.langOption === language}`);
   });

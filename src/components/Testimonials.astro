@@ -3,34 +3,66 @@ const testimonials = [
   {
     quote:
       "As a colleague, I always saw him as an approachable leader with a strong ethical sense that very few people possess. He is a capable and innovative professional, and I always admired his ability to adapt to change.\n\nAs a person, Juan is a man of strong values: he supports and defends those around him, and he is someone you can turn to for advice. Any team that has Juan Fernando among its members can be confident of achieving exceptional results.",
+    quoteEs:
+      "Como colega, siempre lo vi como un líder cercano, con un fuerte sentido ético que muy pocas personas poseen. Es un profesional capaz e innovador, y siempre admiré su habilidad para adaptarse al cambio.\n\nComo persona, Juan es un hombre de valores sólidos: apoya y defiende a quienes lo rodean, y es alguien a quien puedes acudir por consejo. Cualquier equipo que tenga a Juan Fernando entre sus miembros puede confiar en lograr resultados excepcionales.",
     name: "Oscar Martínez",
+    nameEs: "Oscar Martínez",
     role: "Senior iOS Developer",
+    roleEs: "Desarrollador iOS senior",
     avatar: "/images/testimonials/oscar-martinez.png",
-    tags: ["Innovation", "Leadership", "Trust"],
+    tags: [
+      ["Innovation", "Innovación"],
+      ["Leadership", "Liderazgo"],
+      ["Trust", "Confianza"],
+    ],
   },
   {
     quote:
       "Add a review that speaks to flow clarity, handoffs with engineering, or how a complex product decision became easier to understand.",
+    quoteEs:
+      "Agrega una recomendación sobre claridad en flujos, entregas con ingeniería o cómo una decisión compleja de producto se volvió más fácil de entender.",
     name: "Name",
+    nameEs: "Nombre",
     role: "Engineering partner / project context",
+    roleEs: "Partner de ingeniería / contexto del proyecto",
     avatar: "",
-    tags: ["Handoffs", "Systems", "Flow"],
+    tags: [
+      ["Handoffs", "Handoff"],
+      ["Systems", "Sistemas"],
+      ["Flow", "Flujo"],
+    ],
   },
   {
     quote:
       "Add a review about reliability, trust, business context, or how the work helped the team move with more confidence.",
+    quoteEs:
+      "Agrega una recomendación sobre confiabilidad, confianza, contexto de negocio o cómo el trabajo ayudó al equipo a avanzar con más seguridad.",
     name: "Name",
+    nameEs: "Nombre",
     role: "Stakeholder / project context",
+    roleEs: "Stakeholder / contexto del proyecto",
     avatar: "",
-    tags: ["Trust", "Business", "Support"],
+    tags: [
+      ["Trust", "Confianza"],
+      ["Business", "Negocio"],
+      ["Support", "Apoyo"],
+    ],
   },
   {
     quote:
       "Add a review about systems thinking, product maintenance, or improving an experience across states, constraints, and edge cases.",
+    quoteEs:
+      "Agrega una recomendación sobre pensamiento sistémico, mantenimiento de producto o mejora de una experiencia entre estados, restricciones y casos borde.",
     name: "Name",
+    nameEs: "Nombre",
     role: "Design partner / project context",
+    roleEs: "Partner de diseño / contexto del proyecto",
     avatar: "",
-    tags: ["Systems", "Product", "Quality"],
+    tags: [
+      ["Systems", "Sistemas"],
+      ["Product", "Producto"],
+      ["Quality", "Calidad"],
+    ],
   },
 ];
 
@@ -46,7 +78,13 @@ const getInitials = (name: string) =>
 
 <section class="testimonials" aria-labelledby="testimonials-title">
   <div class="testimonials__intro">
-    <h2 id="testimonials-title">People I've worked with say</h2>
+    <h2
+      id="testimonials-title"
+      data-en="People I've worked with say"
+      data-es="Lo que dicen quienes han trabajado conmigo"
+    >
+      People I've worked with say
+    </h2>
   </div>
 
   <div
@@ -58,11 +96,15 @@ const getInitials = (name: string) =>
       testimonials.map((testimonial) => (
         <figure class="testimonial-card">
           <blockquote>
-            <p>{testimonial.quote}</p>
+            <p data-en={testimonial.quote} data-es={testimonial.quoteEs}>
+              {testimonial.quote}
+            </p>
           </blockquote>
           <div class="testimonial-card__tags" aria-label="Review themes">
             {testimonial.tags.map((tag) => (
-              <span class="testimonial-card__tag">{tag}</span>
+              <span class="testimonial-card__tag" data-en={tag[0]} data-es={tag[1]}>
+                {tag[0]}
+              </span>
             ))}
           </div>
           <figcaption>
@@ -80,8 +122,12 @@ const getInitials = (name: string) =>
               </span>
             )}
             <span class="testimonial-card__person">
-              <strong>{testimonial.name}</strong>
-              <span>{testimonial.role}</span>
+              <strong data-en={testimonial.name} data-es={testimonial.nameEs ?? testimonial.name}>
+                {testimonial.name}
+              </strong>
+              <span data-en={testimonial.role} data-es={testimonial.roleEs}>
+                {testimonial.role}
+              </span>
             </span>
           </figcaption>
         </figure>

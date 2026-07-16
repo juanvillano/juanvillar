@@ -1,18 +1,30 @@
 ---
-const chips = ["Product Design", "Banking UX", "KYC", "Shipped", "NDA"];
+const chips = [
+  { label: "Product Design", labelEs: "Diseño de producto" },
+  { label: "Banking UX", labelEs: "UX bancaria" },
+  { label: "KYC", labelEs: "KYC" },
+  { label: "Shipped", labelEs: "Lanzado" },
+  { label: "NDA", labelEs: "NDA", nda: true },
+];
 
 const details = [
   {
     label: "ROLE",
+    labelEs: "ROL",
     value: "Product Designer",
+    valueEs: "Diseñador de producto",
   },
   {
     label: "FOCUS",
+    labelEs: "ENFOQUE",
     value: "User flows, information architecture, content design",
+    valueEs: "Flujos de usuario, arquitectura de información, diseño de contenido",
   },
   {
     label: "STATUS",
+    labelEs: "ESTADO",
     value: "Live",
+    valueEs: "En vivo",
   },
 ];
 ---
@@ -20,8 +32,13 @@ const details = [
 <section class="selected-work" id="work" aria-labelledby="selected-work-title">
   <div class="selected-work__inner">
     <header class="selected-work__intro">
-      <h2 id="selected-work-title">Latest Work</h2>
-      <p>
+      <h2 id="selected-work-title" data-en="Latest Work" data-es="Trabajo reciente">
+        Latest Work
+      </h2>
+      <p
+        data-en="Selected product work, ongoing features, and anonymized financial flows shaped under real constraints."
+        data-es="Trabajo de producto, funcionalidades en curso y flujos financieros anonimizados definidos bajo restricciones reales."
+      >
         Selected product work, ongoing features, and anonymized financial flows
         shaped under real constraints.
       </p>
@@ -31,19 +48,28 @@ const details = [
       <ul class="case-preview__chips" aria-label="Project tags">
         {
           chips.map((chip) => (
-            <li class:list={{ "case-preview__chip--nda": chip === "NDA" }}>
-              {chip === "NDA" && (
+            <li class:list={{ "case-preview__chip--nda": chip.nda }}>
+              {chip.nda && (
                 <img src="/icons/lock.svg" alt="" aria-hidden="true" />
               )}
-              {chip}
+              <span data-en={chip.label} data-es={chip.labelEs}>{chip.label}</span>
             </li>
           ))
         }
       </ul>
 
       <div class="case-preview__body">
-        <h3>A clearer KYC update flow for clients and the business</h3>
-        <p class="case-preview__summary">
+        <h3
+          data-en="A clearer KYC update flow for clients and the business"
+          data-es="Un flujo de actualización KYC más claro para clientes y negocio"
+        >
+          A clearer KYC update flow for clients and the business
+        </h3>
+        <p
+          class="case-preview__summary"
+          data-en="Redesigning a regulated data update flow so clients can review and change sensitive information with less friction, clearer guidance, and more confidence—while helping the business collect more complete and accurate data."
+          data-es="Rediseño de un flujo regulado de actualización de datos para que los clientes puedan revisar y cambiar información sensible con menos fricción, orientación más clara y más confianza, mientras el negocio obtiene datos más completos y precisos."
+        >
           Redesigning a regulated data update flow so clients can review and
           change sensitive information with less friction, clearer guidance, and
           more confidence—while helping the business collect more complete and
@@ -55,12 +81,12 @@ const details = [
         {
           details.map((item) => (
             <div>
-              <dt>{item.label}</dt>
+              <dt data-en={item.label} data-es={item.labelEs}>{item.label}</dt>
               <dd class:list={{ "case-preview__status": item.label === "STATUS" }}>
                 {item.label === "STATUS" && (
                   <span class="case-preview__status-dot" aria-hidden="true" />
                 )}
-                {item.value}
+                <span data-en={item.value} data-es={item.valueEs}>{item.value}</span>
               </dd>
             </div>
           ))
