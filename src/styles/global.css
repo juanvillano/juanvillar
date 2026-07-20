@@ -32,8 +32,15 @@ body {
   min-width: 320px;
   margin: 0;
   background:
+    linear-gradient(rgb(16 20 23 / 2.4%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(16 20 23 / 2.4%) 1px, transparent 1px),
     radial-gradient(circle at 16% 12%, rgb(15 92 255 / 4%), transparent 22rem),
     linear-gradient(180deg, var(--color-canvas), #ffffff 62%);
+  background-size:
+    46px 46px,
+    46px 46px,
+    auto,
+    auto;
   color: var(--color-ink);
   font-family: var(--font-body);
   text-rendering: optimizeLegibility;

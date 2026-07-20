@@ -299,25 +299,6 @@ const connections = [
     padding: clamp(1.25rem, 2.2vw, 2.5rem);
   }
 
-  .hero::before {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    content: "";
-    background-image:
-      linear-gradient(rgb(16 20 23 / 2%) 1px, transparent 1px),
-      linear-gradient(90deg, rgb(16 20 23 / 2%) 1px, transparent 1px);
-    background-size: 46px 46px;
-    mask-image: linear-gradient(
-      90deg,
-      transparent 0%,
-      black 22%,
-      black 86%,
-      transparent 100%
-    );
-  }
-
   .hero__nav {
     position: relative;
     z-index: 4;
