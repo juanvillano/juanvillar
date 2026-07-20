@@ -190,9 +190,6 @@ const outcomes = [
 
       <section class="case-section case-section--context" aria-labelledby="context-title">
         <div>
-          <p class="case-section__label" data-en="01 / Context" data-es="01 / Contexto">
-            01 / Context
-          </p>
           <h2 id="context-title" data-en="Context" data-es="Contexto">Context</h2>
         </div>
         <div class="case-section__body">
@@ -219,9 +216,6 @@ const outcomes = [
 
       <section class="case-section" aria-labelledby="problem-title">
         <div>
-          <p class="case-section__label" data-en="02 / Problem" data-es="02 / Problema">
-            02 / Problem
-          </p>
           <h2 id="problem-title" data-en="Problem" data-es="Problema">Problem</h2>
         </div>
         <div class="case-section__body">
@@ -239,9 +233,6 @@ const outcomes = [
 
       <section class="case-section" aria-labelledby="process-title">
         <div>
-          <p class="case-section__label" data-en="03 / Process" data-es="03 / Proceso">
-            03 / Process
-          </p>
           <h2 id="process-title" data-en="Process" data-es="Proceso">Process</h2>
         </div>
         <div class="case-section__body">
@@ -263,9 +254,6 @@ const outcomes = [
 
       <section class="case-section" aria-labelledby="proposal-title">
         <div>
-          <p class="case-section__label" data-en="04 / Proposal" data-es="04 / Propuesta">
-            04 / Proposal
-          </p>
           <h2 id="proposal-title" data-en="Proposal" data-es="Propuesta">Proposal</h2>
         </div>
         <div class="case-section__body">
@@ -290,9 +278,6 @@ const outcomes = [
 
       <section class="case-section" aria-labelledby="result-title">
         <div>
-          <p class="case-section__label" data-en="05 / Result" data-es="05 / Resultado">
-            05 / Result
-          </p>
           <h2 id="result-title" data-en="Result / Outcome" data-es="Resultado">
             Result / Outcome
           </h2>
@@ -319,19 +304,7 @@ const outcomes = [
         </div>
       </section>
 
-      <section class="case-cta" aria-labelledby="case-contact-title">
-        <div>
-          <h2 id="case-contact-title" data-en="Bring the messy flow" data-es="Trae el flujo complejo">
-            Bring the messy flow
-          </h2>
-          <p
-            data-en="I help teams turn complex product paths into clearer, more confident experiences."
-            data-es="Ayudo a equipos a convertir caminos complejos de producto en experiencias más claras y confiables."
-          >
-            I help teams turn complex product paths into clearer, more confident
-            experiences.
-          </p>
-        </div>
+      <section class="case-cta" aria-label="Contact">
         <a class="case-email" href="mailto:imjuanvillar@gmail.com">
           <span aria-hidden="true">@</span>
           <strong data-en="Email me" data-es="Escríbeme">Email me</strong>
@@ -485,8 +458,7 @@ const outcomes = [
     max-width: 72rem;
   }
 
-  .case-eyebrow,
-  .case-section__label {
+  .case-eyebrow {
     margin: 0;
     color: var(--color-muted);
     font-size: 0.82rem;
@@ -607,8 +579,7 @@ const outcomes = [
     padding-top: clamp(4.25rem, 8vw, 7rem);
   }
 
-  .case-section h2,
-  .case-cta h2 {
+  .case-section h2 {
     margin: 0;
     color: var(--color-ink);
     font-family: var(--font-serif);
@@ -616,11 +587,6 @@ const outcomes = [
     font-weight: 760;
     line-height: 1.02;
     letter-spacing: -0.06em;
-  }
-
-  .case-section__label {
-    margin-bottom: 0.8rem;
-    color: var(--color-blue);
   }
 
   .case-section__body {
@@ -760,19 +726,7 @@ const outcomes = [
   }
 
   .case-cta {
-    display: grid;
-    grid-template-columns: minmax(15rem, 0.4fr) minmax(0, 1fr);
-    gap: clamp(2rem, 6vw, 6rem);
-    align-items: end;
     padding-top: clamp(4.5rem, 8vw, 7rem);
-  }
-
-  .case-cta p {
-    max-width: 28rem;
-    margin: 0.75rem 0 0;
-    color: var(--color-muted);
-    font-size: 1rem;
-    line-height: 1.45;
   }
 
   .case-email {
@@ -783,6 +737,7 @@ const outcomes = [
     min-height: clamp(5rem, 8vw, 7rem);
     padding: 1rem clamp(1rem, 2.5vw, 2rem);
     border: 1px solid var(--color-line);
+    background: rgb(255 255 255 / 42%);
     color: var(--color-ink);
     text-decoration: none;
     transition:
@@ -846,8 +801,7 @@ const outcomes = [
 
     .case-meta,
     .case-section,
-    .case-section--context .case-section__body,
-    .case-cta {
+    .case-section--context .case-section__body {
       grid-template-columns: 1fr;
     }
 
