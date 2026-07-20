@@ -1,0 +1,925 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BrandLockup from '../../components/BrandLockup.astro';
+
+type LocalizedText = {
+  label: string;
+  labelEs: string;
+};
+
+type CaseChip = LocalizedText & {
+  nda?: boolean;
+};
+
+type CaseMetadata = LocalizedText & {
+  value: string;
+  valueEs: string;
+  live?: boolean;
+};
+
+const chips: CaseChip[] = [
+  { label: 'Product Design', labelEs: 'Diseño de producto' },
+  { label: 'Banking UX', labelEs: 'UX bancaria' },
+  { label: 'KYC', labelEs: 'KYC' },
+  { label: 'Shipped', labelEs: 'Lanzado' },
+  { label: 'NDA', labelEs: 'NDA', nda: true },
+];
+
+const metadata: CaseMetadata[] = [
+  {
+    label: 'ROLE',
+    labelEs: 'ROL',
+    value: 'Product Designer',
+    valueEs: 'Diseñador de producto',
+  },
+  {
+    label: 'FOCUS',
+    labelEs: 'ENFOQUE',
+    value: 'User flows, information architecture, content design',
+    valueEs: 'Flujos de usuario, arquitectura de información, diseño de contenido',
+  },
+  {
+    label: 'STATUS',
+    labelEs: 'ESTADO',
+    value: 'Live',
+    valueEs: 'En vivo',
+    live: true,
+  },
+];
+
+const processSteps = [
+  {
+    title: 'Understand where outdated data created risk.',
+    titleEs: 'Entender dónde los datos desactualizados generaban riesgo.',
+    body: 'The trigger was practical: online product applications were being evaluated with stale client information, which could affect eligibility and risk decisions.',
+    bodyEs:
+      'El punto de partida fue práctico: las solicitudes digitales se evaluaban con información desactualizada del cliente, lo que podía afectar elegibilidad y riesgo.',
+  },
+  {
+    title: 'Reduce the KYC scope to the information that mattered most.',
+    titleEs: 'Reducir el alcance KYC a la información más importante.',
+    body: 'Testing with collaborators close to clients helped identify which fields were critical for a simplified update flow, instead of trying to move every possible data point at once.',
+    bodyEs:
+      'Las pruebas con colaboradores cercanos a clientes ayudaron a identificar los campos críticos para un flujo simplificado, en vez de mover toda la información posible a la vez.',
+  },
+  {
+    title: 'Design around legacy constraints without hiding them from the user.',
+    titleEs: 'Diseñar alrededor de restricciones legadas sin ocultarlas.',
+    body: 'The original idea was section-level editing. Because the core system required the full sequence, the flow shifted toward a guided review that made an unavoidable path feel manageable.',
+    bodyEs:
+      'La idea original era editar secciones específicas. Como el core requería la secuencia completa, el flujo cambió hacia una revisión guiada que hiciera manejable un camino inevitable.',
+  },
+  {
+    title: 'Make the form safer through labels, prefill, and validation.',
+    titleEs: 'Hacer el formulario más seguro con etiquetas, precarga y validación.',
+    body: 'I focused on clear field labels, prefilled current information, inline validation, and edge cases so clients could review what existed, edit only what needed attention, and submit with more confidence.',
+    bodyEs:
+      'Me enfoqué en etiquetas claras, información actual precargada, validación en línea y casos borde para que los clientes pudieran revisar lo existente, editar lo necesario y enviar con más confianza.',
+  },
+];
+
+const proposalFlow = [
+  ['Prefilled review', 'Revisión precargada'],
+  ['Guided sections', 'Secciones guiadas'],
+  ['Inline validation', 'Validación en línea'],
+  ['Final confirmation', 'Confirmación final'],
+  ['Core update', 'Actualización al core'],
+];
+
+const outcomes = [
+  {
+    title: 'More complete client data',
+    titleEs: 'Datos de cliente más completos',
+    body: 'Clients gained a digital path to maintain sensitive information without visiting a branch.',
+    bodyEs:
+      'Los clientes obtuvieron una vía digital para mantener información sensible sin visitar una sucursal.',
+  },
+  {
+    title: 'Cleaner downstream decisions',
+    titleEs: 'Decisiones posteriores más claras',
+    body: 'Updated information is saved in the core system, improving the quality of risk checks and product eligibility decisions.',
+    bodyEs:
+      'La información actualizada se guarda en el core, mejorando la calidad de validaciones de riesgo y elegibilidad.',
+  },
+  {
+    title: 'A clearer MVP lesson',
+    titleEs: 'Un aprendizaje más claro sobre MVP',
+    body: 'Technical dependencies shaped the real MVP. I would validate backend constraints earlier and simplify scope sooner.',
+    bodyEs:
+      'Las dependencias técnicas definieron el MVP real. Validaría restricciones de backend antes y simplificaría el alcance más temprano.',
+  },
+];
+---
+
+<BaseLayout title="KYC Update Flow - Juan Villar">
+  <section class="case-study" aria-labelledby="case-title">
+    <header class="case-nav" aria-label="Case study navigation">
+      <BrandLockup href="/" />
+      <div class="case-nav__right">
+        <nav class="case-nav__links" aria-label="Primary">
+          <a href="/#work" data-en="Work" data-es="Trabajo">Work</a>
+          <a href="/#about" data-en="About" data-es="Sobre mi">About</a>
+          <a href="/#contact" data-en="Contact" data-es="Contacto">Contact</a>
+        </nav>
+        <div class="case-language" aria-label="Language">
+          <button type="button" data-lang-option="en" aria-pressed="true">EN</button>
+          <span aria-hidden="true">/</span>
+          <button type="button" data-lang-option="es" aria-pressed="false">ES</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="case-main">
+      <a class="case-back" href="/#work" data-en="← Back to work" data-es="← Volver al trabajo">
+        ← Back to work
+      </a>
+
+      <header class="case-hero">
+        <p class="case-eyebrow" data-en="CASE STUDY / 01" data-es="CASO / 01">
+          CASE STUDY / 01
+        </p>
+        <h1
+          id="case-title"
+          data-en="A clearer KYC update flow for clients and the business"
+          data-es="Un flujo KYC más claro para clientes y negocio"
+        >
+          A clearer KYC update flow for clients and the business
+        </h1>
+        <p
+          class="case-subtitle"
+          data-en="Mobile banking app feature for retail banking clients."
+          data-es="Funcionalidad de banca móvil para clientes de banca personal."
+        >
+          Mobile banking app feature for retail banking clients.
+        </p>
+
+        <ul class="case-chips" aria-label="Project tags">
+          {
+            chips.map((chip) => (
+              <li>
+                {chip.nda && <img src="/icons/lock.svg" alt="" aria-hidden="true" />}
+                <span data-en={chip.label} data-es={chip.labelEs}>{chip.label}</span>
+              </li>
+            ))
+          }
+        </ul>
+
+        <p
+          class="case-note"
+          data-en="Details are anonymized to protect confidentiality. The process, decisions, and constraints are real."
+          data-es="Los detalles están anonimizados para proteger la confidencialidad. El proceso, las decisiones y las restricciones son reales."
+        >
+          Details are anonymized to protect confidentiality. The process,
+          decisions, and constraints are real.
+        </p>
+
+        <dl class="case-meta" aria-label="Project metadata">
+          {
+            metadata.map((item) => (
+              <div>
+                <dt data-en={item.label} data-es={item.labelEs}>{item.label}</dt>
+                <dd class:list={{ "case-meta__live": item.live }}>
+                  {item.live && <span class="case-meta__dot" aria-hidden="true" />}
+                  <span data-en={item.value} data-es={item.valueEs}>{item.value}</span>
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+      </header>
+
+      <section class="case-section case-section--context" aria-labelledby="context-title">
+        <div>
+          <p class="case-section__label" data-en="01 / Context" data-es="01 / Contexto">
+            01 / Context
+          </p>
+          <h2 id="context-title" data-en="Context" data-es="Contexto">Context</h2>
+        </div>
+        <div class="case-section__body">
+          <p
+            data-en="This was a mobile banking feature for retail clients who needed a way to update personal information digitally. The work sat between product, compliance, business, and development, with real legacy constraints shaping what could ship."
+            data-es="Esta fue una funcionalidad de banca móvil para clientes de banca personal que necesitaban actualizar información personal digitalmente. El trabajo conectó producto, cumplimiento, negocio y desarrollo, con restricciones legadas reales definiendo lo que podía lanzarse."
+          >
+            This was a mobile banking feature for retail clients who needed a
+            way to update personal information digitally. The work sat between
+            product, compliance, business, and development, with real legacy
+            constraints shaping what could ship.
+          </p>
+          <div class="case-stat">
+            <strong>60-65%</strong>
+            <span
+              data-en="clients with outdated information"
+              data-es="clientes con información desactualizada"
+            >
+              clients with outdated information
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section" aria-labelledby="problem-title">
+        <div>
+          <p class="case-section__label" data-en="02 / Problem" data-es="02 / Problema">
+            02 / Problem
+          </p>
+          <h2 id="problem-title" data-en="Problem" data-es="Problema">Problem</h2>
+        </div>
+        <div class="case-section__body">
+          <p
+            data-en="Operational risk was evaluating some clients with outdated information when they applied for products online. The only way to correct personal data was to visit a branch, and the core system was not ready to receive updates from the mobile app."
+            data-es="Riesgo operacional evaluaba algunos clientes con información desactualizada cuando solicitaban productos digitales. La única forma de corregir datos personales era visitar una sucursal, y el core no estaba listo para recibir actualizaciones desde la app móvil."
+          >
+            Operational risk was evaluating some clients with outdated
+            information when they applied for products online. The only way to
+            correct personal data was to visit a branch, and the core system was
+            not ready to receive updates from the mobile app.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-section" aria-labelledby="process-title">
+        <div>
+          <p class="case-section__label" data-en="03 / Process" data-es="03 / Proceso">
+            03 / Process
+          </p>
+          <h2 id="process-title" data-en="Process" data-es="Proceso">Process</h2>
+        </div>
+        <div class="case-section__body">
+          <ol class="process-list">
+            {
+              processSteps.map((step, index) => (
+                <li>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <div>
+                    <h3 data-en={step.title} data-es={step.titleEs}>{step.title}</h3>
+                    <p data-en={step.body} data-es={step.bodyEs}>{step.body}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+      </section>
+
+      <section class="case-section" aria-labelledby="proposal-title">
+        <div>
+          <p class="case-section__label" data-en="04 / Proposal" data-es="04 / Propuesta">
+            04 / Proposal
+          </p>
+          <h2 id="proposal-title" data-en="Proposal" data-es="Propuesta">Proposal</h2>
+        </div>
+        <div class="case-section__body">
+          <p
+            data-en="We built a full guided review instead of a small edit-only shortcut. That direction respected the core system limitation while still giving clients a clearer way to review, correct, validate, and submit their information from the app."
+            data-es="Construimos una revisión guiada completa en vez de un atajo para editar campos específicos. Esa dirección respetaba la limitación del core y, al mismo tiempo, daba a los clientes una forma más clara de revisar, corregir, validar y enviar su información desde la app."
+          >
+            We built a full guided review instead of a small edit-only shortcut.
+            That direction respected the core system limitation while still
+            giving clients a clearer way to review, correct, validate, and
+            submit their information from the app.
+          </p>
+          <ol class="proposal-flow" aria-label="Anonymized proposal flow">
+            {
+              proposalFlow.map(([label, labelEs]) => (
+                <li data-en={label} data-es={labelEs}>{label}</li>
+              ))
+            }
+          </ol>
+        </div>
+      </section>
+
+      <section class="case-section" aria-labelledby="result-title">
+        <div>
+          <p class="case-section__label" data-en="05 / Result" data-es="05 / Resultado">
+            05 / Result
+          </p>
+          <h2 id="result-title" data-en="Result / Outcome" data-es="Resultado">
+            Result / Outcome
+          </h2>
+        </div>
+        <div class="case-section__body">
+          <p
+            data-en="The shipped flow gave clients a digital path to maintain their data and helped the business improve the quality of information used across risk evaluation, credit validation, and product eligibility."
+            data-es="El flujo lanzado dio a los clientes una vía digital para mantener sus datos y ayudó al negocio a mejorar la calidad de la información usada en evaluación de riesgo, validación crediticia y elegibilidad de productos."
+          >
+            The shipped flow gave clients a digital path to maintain their data
+            and helped the business improve the quality of information used
+            across risk evaluation, credit validation, and product eligibility.
+          </p>
+          <ul class="outcome-list">
+            {
+              outcomes.map((item) => (
+                <li>
+                  <h3 data-en={item.title} data-es={item.titleEs}>{item.title}</h3>
+                  <p data-en={item.body} data-es={item.bodyEs}>{item.body}</p>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </section>
+
+      <section class="case-cta" aria-labelledby="case-contact-title">
+        <div>
+          <h2 id="case-contact-title" data-en="Bring the messy flow" data-es="Trae el flujo complejo">
+            Bring the messy flow
+          </h2>
+          <p
+            data-en="I help teams turn complex product paths into clearer, more confident experiences."
+            data-es="Ayudo a equipos a convertir caminos complejos de producto en experiencias más claras y confiables."
+          >
+            I help teams turn complex product paths into clearer, more confident
+            experiences.
+          </p>
+        </div>
+        <a class="case-email" href="mailto:imjuanvillar@gmail.com">
+          <span aria-hidden="true">@</span>
+          <strong data-en="Email me" data-es="Escríbeme">Email me</strong>
+          <small>imjuanvillar@gmail.com</small>
+          <em aria-hidden="true">↗</em>
+        </a>
+      </section>
+    </main>
+
+    <footer class="case-footer">
+      <BrandLockup href="/" lazy />
+      <p data-en="Built with Astro & Code. 2026." data-es="Hecho con Astro & Code. 2026.">
+        Built with Astro & Code. 2026.
+      </p>
+      <a href="#top" data-en="Back to top ↑" data-es="Volver arriba ↑">Back to top ↑</a>
+    </footer>
+  </section>
+</BaseLayout>
+
+<script>
+  type PortfolioLanguage = 'en' | 'es';
+
+  const getPreferredLanguage = (): PortfolioLanguage => {
+    try {
+      const stored = window.localStorage.getItem('portfolio-language');
+      if (stored === 'en' || stored === 'es') return stored;
+    } catch {
+      return 'en';
+    }
+
+    return 'en';
+  };
+
+  const applyLanguage = (language: PortfolioLanguage) => {
+    document.documentElement.lang = language;
+    document.documentElement.dataset.lang = language;
+
+    document.querySelectorAll<HTMLElement>('[data-en][data-es]').forEach((element) => {
+      const value = language === 'es' ? element.dataset.es : element.dataset.en;
+      if (value) element.textContent = value;
+    });
+
+    document.querySelectorAll<HTMLButtonElement>('[data-lang-option]').forEach((button) => {
+      button.setAttribute('aria-pressed', `${button.dataset.langOption === language}`);
+    });
+
+    try {
+      window.localStorage.setItem('portfolio-language', language);
+    } catch {
+      // Visible state still updates if storage is unavailable.
+    }
+  };
+
+  applyLanguage(getPreferredLanguage());
+
+  document.querySelectorAll<HTMLButtonElement>('[data-lang-option]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const language = button.dataset.langOption;
+      if (language === 'en' || language === 'es') applyLanguage(language);
+    });
+  });
+</script>
+
+<style>
+  .case-study {
+    min-height: 100vh;
+    color: var(--color-ink);
+  }
+
+  .case-nav,
+  .case-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: min(100%, 118rem);
+    margin: 0 auto;
+    padding: clamp(1.25rem, 2.6vw, 2.25rem) clamp(1.25rem, 3vw, 4.5rem);
+  }
+
+  .case-nav__right,
+  .case-nav__links,
+  .case-language {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .case-nav__right {
+    gap: clamp(1rem, 2vw, 2rem);
+  }
+
+  .case-nav__links {
+    gap: clamp(1rem, 2vw, 1.7rem);
+  }
+
+  .case-nav a,
+  .case-language button,
+  .case-language span,
+  .case-footer a,
+  .case-footer p {
+    color: var(--color-muted);
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 760;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .case-nav a,
+  .case-footer a {
+    text-decoration: none;
+  }
+
+  .case-nav a:is(:hover, :focus-visible),
+  .case-language button[aria-pressed="true"],
+  .case-language button:is(:hover, :focus-visible),
+  .case-footer a:is(:hover, :focus-visible) {
+    color: var(--color-blue);
+  }
+
+  .case-language {
+    gap: 0.58rem;
+  }
+
+  .case-language button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .case-main {
+    width: min(100% - clamp(2.5rem, 6vw, 9rem), 82rem);
+    margin: 0 auto;
+    padding: clamp(3rem, 7vw, 6.5rem) 0 clamp(4.5rem, 8vw, 7rem);
+  }
+
+  .case-back {
+    display: inline-flex;
+    width: fit-content;
+    margin-bottom: clamp(2.25rem, 4vw, 4rem);
+    color: var(--color-blue);
+    font-size: 0.9rem;
+    font-weight: 760;
+    text-decoration: none;
+  }
+
+  .case-hero {
+    display: grid;
+    gap: clamp(1.15rem, 2vw, 1.6rem);
+    max-width: 72rem;
+  }
+
+  .case-eyebrow,
+  .case-section__label {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 0.82rem;
+    font-weight: 760;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .case-hero h1 {
+    max-width: 68rem;
+    margin: 0;
+    color: var(--color-ink);
+    font-family: var(--font-serif);
+    font-size: clamp(3.4rem, 7vw, 7.6rem);
+    font-weight: 760;
+    line-height: 0.98;
+    letter-spacing: -0.07em;
+  }
+
+  .case-subtitle {
+    max-width: 42rem;
+    margin: 0;
+    color: var(--color-muted);
+    font-size: clamp(1.06rem, 1.45vw, 1.35rem);
+    font-weight: 520;
+    line-height: 1.35;
+  }
+
+  .case-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0;
+    margin: clamp(0.25rem, 1vw, 0.75rem) 0 0;
+    list-style: none;
+  }
+
+  .case-chips li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.32rem;
+    min-height: 1.85rem;
+    padding: 0.28rem 0.75rem;
+    border: 1px solid rgb(24 136 0 / 20%);
+    border-radius: 999px;
+    color: #188800;
+    background: rgb(24 136 0 / 10%);
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .case-chips img {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+
+  .case-note {
+    max-width: 60rem;
+    margin: clamp(0.5rem, 1vw, 1rem) 0 0;
+    padding: 1rem 1.1rem;
+    border: 1px solid rgb(15 92 255 / 24%);
+    border-radius: 0.45rem;
+    color: var(--color-ink);
+    background: rgb(15 92 255 / 6%);
+    font-size: 0.95rem;
+    font-weight: 660;
+    line-height: 1.45;
+  }
+
+  .case-meta {
+    display: grid;
+    grid-template-columns: minmax(8rem, 0.5fr) minmax(16rem, 1fr) minmax(8rem, 0.42fr);
+    gap: clamp(1rem, 3vw, 4rem);
+    max-width: 72rem;
+    padding-top: clamp(1rem, 2.5vw, 2rem);
+    margin: clamp(0.5rem, 1vw, 1rem) 0 0;
+  }
+
+  .case-meta div {
+    min-width: 0;
+  }
+
+  .case-meta dt {
+    margin: 0 0 0.5rem;
+    color: var(--color-muted);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+  }
+
+  .case-meta dd {
+    margin: 0;
+    color: var(--color-ink);
+    font-size: 1rem;
+    font-weight: 760;
+    line-height: 1.28;
+  }
+
+  .case-meta__live {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .case-meta__dot {
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+    background: #12c83f;
+    box-shadow: 0 0 0 0.28rem rgb(18 200 63 / 15%);
+  }
+
+  .case-section {
+    display: grid;
+    grid-template-columns: minmax(13rem, 0.34fr) minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 6rem);
+    padding-top: clamp(4.25rem, 8vw, 7rem);
+  }
+
+  .case-section h2,
+  .case-cta h2 {
+    margin: 0;
+    color: var(--color-ink);
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 3.8vw, 4rem);
+    font-weight: 760;
+    line-height: 1.02;
+    letter-spacing: -0.06em;
+  }
+
+  .case-section__label {
+    margin-bottom: 0.8rem;
+    color: var(--color-blue);
+  }
+
+  .case-section__body {
+    display: grid;
+    gap: clamp(1.5rem, 3vw, 2.6rem);
+    min-width: 0;
+  }
+
+  .case-section__body > p {
+    max-width: 56rem;
+    margin: 0;
+    color: var(--color-muted);
+    font-size: clamp(1.05rem, 1.45vw, 1.34rem);
+    font-weight: 440;
+    line-height: 1.58;
+    letter-spacing: -0.018em;
+  }
+
+  .case-section--context .case-section__body {
+    grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.35fr);
+    align-items: start;
+  }
+
+  .case-stat {
+    display: grid;
+    gap: 0.35rem;
+    color: var(--color-blue);
+  }
+
+  .case-stat strong {
+    font-family: var(--font-serif);
+    font-size: clamp(3.2rem, 6vw, 6.5rem);
+    font-weight: 600;
+    line-height: 0.9;
+    letter-spacing: -0.07em;
+  }
+
+  .case-stat span {
+    color: var(--color-muted);
+    font-size: 0.95rem;
+    font-weight: 660;
+    line-height: 1.3;
+  }
+
+  .process-list,
+  .proposal-flow,
+  .outcome-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .process-list {
+    display: grid;
+    gap: 0;
+  }
+
+  .process-list li {
+    display: grid;
+    grid-template-columns: 3.2rem minmax(0, 1fr);
+    gap: clamp(1rem, 2vw, 1.75rem);
+    padding: 1.45rem 0;
+    border-top: 1px solid rgb(199 208 214 / 70%);
+  }
+
+  .process-list li:last-child {
+    border-bottom: 1px solid rgb(199 208 214 / 70%);
+  }
+
+  .process-list span {
+    color: var(--color-blue);
+    font-weight: 820;
+    letter-spacing: 0.05em;
+  }
+
+  .process-list h3,
+  .outcome-list h3 {
+    margin: 0 0 0.45rem;
+    color: var(--color-ink);
+    font-size: clamp(1.08rem, 1.45vw, 1.35rem);
+    font-weight: 820;
+    line-height: 1.18;
+  }
+
+  .process-list p,
+  .outcome-list p {
+    max-width: 48rem;
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 1rem;
+    font-weight: 440;
+    line-height: 1.55;
+  }
+
+  .proposal-flow {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1.6rem;
+    counter-reset: proposal;
+  }
+
+  .proposal-flow li {
+    position: relative;
+    display: grid;
+    min-height: 4.6rem;
+    place-items: center;
+    padding: 1rem;
+    border: 1px solid var(--color-line);
+    border-radius: 0.45rem;
+    background: rgb(255 255 255 / 52%);
+    color: var(--color-ink);
+    font-size: 0.86rem;
+    font-weight: 760;
+    text-align: center;
+  }
+
+  .proposal-flow li:not(:last-child)::after {
+    position: absolute;
+    top: 50%;
+    right: -1.25rem;
+    color: var(--color-muted);
+    content: "→";
+    transform: translateY(-50%);
+  }
+
+  .outcome-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .outcome-list li {
+    padding: clamp(1.15rem, 2vw, 1.45rem);
+    border: 1px solid rgb(15 92 255 / 20%);
+    border-radius: 0.5rem;
+    background: rgb(15 92 255 / 5%);
+  }
+
+  .case-cta {
+    display: grid;
+    grid-template-columns: minmax(15rem, 0.4fr) minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 6rem);
+    align-items: end;
+    padding-top: clamp(4.5rem, 8vw, 7rem);
+  }
+
+  .case-cta p {
+    max-width: 28rem;
+    margin: 0.75rem 0 0;
+    color: var(--color-muted);
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+
+  .case-email {
+    display: grid;
+    grid-template-columns: auto minmax(8rem, 0.42fr) minmax(12rem, 1fr) auto;
+    gap: clamp(0.8rem, 2vw, 2rem);
+    align-items: center;
+    min-height: clamp(5rem, 8vw, 7rem);
+    padding: 1rem clamp(1rem, 2.5vw, 2rem);
+    border: 1px solid var(--color-line);
+    color: var(--color-ink);
+    text-decoration: none;
+    transition:
+      border-color 160ms ease,
+      box-shadow 160ms ease,
+      transform 160ms ease;
+  }
+
+  .case-email > span {
+    color: var(--color-blue);
+    font-size: clamp(2rem, 3.5vw, 3.8rem);
+    font-weight: 760;
+  }
+
+  .case-email strong {
+    font-size: clamp(1.6rem, 2.6vw, 3rem);
+    font-weight: 860;
+    line-height: 1;
+  }
+
+  .case-email small {
+    color: var(--color-muted);
+    font-size: 0.92rem;
+    font-weight: 500;
+  }
+
+  .case-email em {
+    color: var(--color-blue);
+    font-size: clamp(2rem, 3.5vw, 3.6rem);
+    font-style: normal;
+    line-height: 1;
+  }
+
+  .case-email:is(:hover, :focus-visible) {
+    border-color: rgb(15 92 255 / 42%);
+    box-shadow: 0 18px 42px rgb(15 92 255 / 10%);
+    transform: translateY(-0.12rem);
+  }
+
+  .case-footer {
+    padding-top: clamp(2.5rem, 4vw, 3.5rem);
+    padding-bottom: clamp(2rem, 4vw, 3rem);
+  }
+
+  .case-footer p {
+    margin: 0;
+    text-align: center;
+    text-transform: none;
+  }
+
+  @media (max-width: 900px) {
+    .case-nav {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .case-nav__right {
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .case-meta,
+    .case-section,
+    .case-section--context .case-section__body,
+    .case-cta {
+      grid-template-columns: 1fr;
+    }
+
+    .proposal-flow,
+    .outcome-list {
+      grid-template-columns: 1fr;
+    }
+
+    .proposal-flow li:not(:last-child)::after {
+      top: auto;
+      right: 50%;
+      bottom: -1.35rem;
+      transform: translateX(50%) rotate(90deg);
+    }
+
+    .case-email {
+      grid-template-columns: auto minmax(0, 1fr) auto;
+    }
+
+    .case-email small {
+      grid-column: 2 / 3;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .case-nav,
+    .case-footer {
+      padding-inline: clamp(1.25rem, 5vw, 1.5rem);
+    }
+
+    .case-nav__links {
+      gap: 0.9rem;
+    }
+
+    .case-nav a,
+    .case-language button,
+    .case-language span,
+    .case-footer a,
+    .case-footer p {
+      font-size: 0.72rem;
+    }
+
+    .case-main {
+      width: min(100% - 2.5rem, 82rem);
+      padding-top: 3.25rem;
+    }
+
+    .case-hero h1 {
+      font-size: clamp(3rem, 14vw, 4.8rem);
+    }
+
+    .case-section {
+      padding-top: 4rem;
+    }
+
+    .process-list li {
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+    }
+
+    .case-email {
+      min-height: 5rem;
+      gap: 0.8rem;
+    }
+
+    .case-email small {
+      font-size: 0.8rem;
+    }
+
+    .case-footer {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>

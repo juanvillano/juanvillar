@@ -75,6 +75,15 @@ const details = [
           more confidence—while helping the business collect more complete and
           accurate data.
         </p>
+        <a
+          class="case-preview__link"
+          href="/work/kyc-update-flow/"
+          data-en="Read case study"
+          data-es="Leer caso"
+        >
+          Read case study
+          <span aria-hidden="true">→</span>
+        </a>
       </div>
 
       <dl class="case-preview__meta" aria-label="Project details">
@@ -213,6 +222,33 @@ const details = [
     font-weight: 460;
     line-height: 1.45;
     letter-spacing: -0.018em;
+  }
+
+  .case-preview__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    width: fit-content;
+    color: var(--color-blue);
+    font-family: var(--font-body);
+    font-size: clamp(0.92rem, 1vw, 1.05rem);
+    font-weight: 760;
+    line-height: 1;
+    text-decoration: none;
+    transition:
+      color 160ms ease,
+      transform 160ms ease;
+  }
+
+  .case-preview__link span {
+    font-size: 1.2em;
+    line-height: 0;
+    transform: translateY(-0.02em);
+  }
+
+  .case-preview__link:is(:hover, :focus-visible) {
+    color: var(--color-blue-dark);
+    transform: translateX(0.18rem);
   }
 
   .case-preview__meta {
