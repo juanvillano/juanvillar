@@ -153,15 +153,6 @@ const cases: WorkCase[] = [
                 >
                   {project.summary}
                 </p>
-                <a
-                  class="case-preview__link"
-                  href={project.href}
-                  data-en="Read case study"
-                  data-es="Leer caso"
-                >
-                  Read case study
-                  <span aria-hidden="true">→</span>
-                </a>
               </div>
 
               <dl class="case-preview__meta" aria-label="Project details">
@@ -188,6 +179,13 @@ const cases: WorkCase[] = [
                   </div>
                 ))}
               </dl>
+
+              <a class="case-preview__link" href={project.href}>
+                <span data-en="Read case study" data-es="Leer caso">
+                  Read case study
+                </span>
+                <img src="/icons/move-right.svg" alt="" aria-hidden="true" />
+              </a>
             </article>
 
             <div class="selected-work__visual" aria-hidden="true">
@@ -258,7 +256,7 @@ const cases: WorkCase[] = [
   .selected-work__inner {
     display: grid;
     grid-template-columns: 1fr;
-    gap: clamp(3rem, 7vw, 7rem);
+    gap: clamp(1.5rem, 3vw, 3rem);
     align-items: start;
     width: min(100%, 118rem);
     margin: 0 auto;
@@ -278,7 +276,7 @@ const cases: WorkCase[] = [
     display: grid;
     grid-template-columns: minmax(0, 0.46fr) minmax(22rem, 0.54fr);
     gap: clamp(2.5rem, 6vw, 7rem);
-    align-items: end;
+    align-items: center;
     min-width: 0;
   }
 
@@ -376,6 +374,7 @@ const cases: WorkCase[] = [
     align-items: center;
     gap: 0.55rem;
     width: fit-content;
+    margin-top: -0.2rem;
     color: var(--color-blue);
     font-family: var(--font-body);
     font-size: clamp(0.92rem, 1vw, 1.05rem);
@@ -387,9 +386,10 @@ const cases: WorkCase[] = [
       transform 160ms ease;
   }
 
-  .case-preview__link span {
-    font-size: 1.2em;
-    line-height: 0;
+  .case-preview__link img {
+    display: block;
+    width: 1.15em;
+    height: 1.15em;
     transform: translateY(-0.02em);
   }
 
@@ -481,7 +481,7 @@ const cases: WorkCase[] = [
   .selected-work__visual {
     position: relative;
     display: grid;
-    place-items: end center;
+    place-items: center center;
     min-height: clamp(24rem, 39vw, 40rem);
     overflow: visible;
   }

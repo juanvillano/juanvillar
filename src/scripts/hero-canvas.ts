@@ -42,7 +42,7 @@ const translations: Record<Language, Translation> = {
 
 const navTranslations: Record<string, { en: string; es: string }> = {
   'nav.work': { en: 'Work', es: 'Trabajo' },
-  'nav.about': { en: 'About', es: 'Sobre mi' },
+  'nav.about': { en: 'What I do', es: 'Qué hago' },
   'nav.writing': { en: 'Writing', es: 'Escritura' },
   'nav.contact': { en: 'Contact', es: 'Contacto' },
 };
