@@ -1,0 +1,811 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BrandLockup from '../../components/BrandLockup.astro';
+
+type LocalizedText = {
+  label: string;
+  labelEs: string;
+};
+
+type CaseChip = LocalizedText & {
+  nda?: boolean;
+};
+
+type CaseMetadata = LocalizedText & {
+  value: string;
+  valueEs: string;
+};
+
+const chips: CaseChip[] = [
+  { label: 'Product Design', labelEs: 'Diseño de producto' },
+  { label: 'Security UX', labelEs: 'UX de seguridad' },
+  { label: 'Authentication', labelEs: 'Autenticación' },
+  { label: 'Pilot', labelEs: 'Piloto' },
+  { label: 'NDA', labelEs: 'NDA', nda: true },
+];
+
+const metadata: CaseMetadata[] = [
+  {
+    label: 'ROLE',
+    labelEs: 'ROL',
+    value: 'Product Designer',
+    valueEs: 'Diseñador de producto',
+  },
+  {
+    label: 'FOCUS',
+    labelEs: 'ENFOQUE',
+    value: 'User flows, wireframes, stakeholder alignment',
+    valueEs: 'Flujos de usuario, wireframes, alineación con stakeholders',
+  },
+  {
+    label: 'STATUS',
+    labelEs: 'ESTADO',
+    value: 'Pilot, awaiting launch',
+    valueEs: 'Piloto, pendiente de lanzamiento',
+  },
+];
+
+const processSteps = [
+  {
+    title: 'Map the shift from static keys to app-based approval.',
+    titleEs: 'Mapear el cambio de claves estáticas a aprobación desde la app.',
+    body: 'I started by mapping where authentication happened across mobile and web, then clarified how the new experience should behave in each channel.',
+    bodyEs:
+      'Comencé mapeando dónde ocurría la autenticación en móvil y web, y luego aclaré cómo debía comportarse la nueva experiencia en cada canal.',
+  },
+  {
+    title: 'Use wireframes to align security, business, and technical teams.',
+    titleEs: 'Usar wireframes para alinear seguridad, negocio y equipos técnicos.',
+    body: 'The early user flows and wireframes helped validate the setup model, transaction approval moments, failure states, and the assisted path with stakeholders before development.',
+    bodyEs:
+      'Los flujos y wireframes iniciales ayudaron a validar el modelo de activación, los momentos de aprobación, estados de error y la ruta asistida con stakeholders antes del desarrollo.',
+  },
+  {
+    title: 'Design around identity validation constraints.',
+    titleEs: 'Diseñar alrededor de restricciones de validación de identidad.',
+    body: 'Strict identity checks shaped the experience. Eligible users could still be blocked by device, document, or validation issues, so the flow needed clear recovery paths instead of dead ends.',
+    bodyEs:
+      'Las validaciones estrictas de identidad definieron la experiencia. Usuarios elegibles podían quedar bloqueados por problemas de equipo, documento o validación, por lo que el flujo necesitaba rutas de recuperación claras.',
+  },
+  {
+    title: 'QA the interaction details with developers.',
+    titleEs: 'Validar los detalles de interacción con desarrollo.',
+    body: 'I supported development with handoff, QA, and edge-case decisions so the final flow could match the intended behavior across setup, approval, and assisted installation.',
+    bodyEs:
+      'Apoyé a desarrollo con handoff, QA y decisiones sobre casos borde para que el flujo final respondiera como estaba diseñado en activación, aprobación y configuración asistida.',
+  },
+];
+
+const proposalFlow = [
+  ['Start setup', 'Iniciar activación'],
+  ['Verify identity', 'Verificar identidad'],
+  ['Enable app approval', 'Activar aprobación desde la app'],
+  ['Approve securely', 'Aprobar de forma segura'],
+  ['Assisted setup fallback', 'Ruta asistida de soporte'],
+];
+
+const outcomes = [
+  {
+    title: 'Lower exposure to phishing and social engineering',
+    titleEs: 'Menor exposición a phishing e ingeniería social',
+    body: 'The proposed authentication model reduces dependence on static credentials that can be captured or manipulated outside the app.',
+    bodyEs:
+      'El modelo de autenticación propuesto reduce la dependencia de credenciales estáticas que pueden ser capturadas o manipuladas fuera de la app.',
+  },
+  {
+    title: 'A clearer migration path for eligible users',
+    titleEs: 'Una migración más clara para usuarios elegibles',
+    body: 'Automatic setup is supported by an assisted path for users who cannot complete strict validation on their own.',
+    bodyEs:
+      'La activación automática se complementa con una ruta asistida para usuarios que no pueden completar validaciones estrictas por su cuenta.',
+  },
+  {
+    title: 'Pilot-ready flow for launch validation',
+    titleEs: 'Flujo listo para piloto y validación de lanzamiento',
+    body: 'The work is in pilot and awaiting launch, with expected impact on safer transaction approval, adoption, and fraud-case reduction.',
+    bodyEs:
+      'El trabajo está en piloto y pendiente de lanzamiento, con impacto esperado en aprobaciones más seguras, adopción y reducción de casos de fraude.',
+  },
+];
+---
+
+<BaseLayout title="Digital Authentication Flow - Juan Villar">
+  <section class="case-study" aria-labelledby="case-title">
+    <header class="case-nav" aria-label="Case study navigation">
+      <BrandLockup href="/" />
+      <div class="case-nav__right">
+        <nav class="case-nav__links" aria-label="Primary">
+          <a href="/#work" data-en="Work" data-es="Trabajo">Work</a>
+          <a href="/#about" data-en="About" data-es="Sobre mi">About</a>
+          <a href="/#contact" data-en="Contact" data-es="Contacto">Contact</a>
+        </nav>
+        <div class="case-language" aria-label="Language">
+          <button type="button" data-lang-option="en" aria-pressed="true">EN</button>
+          <span aria-hidden="true">/</span>
+          <button type="button" data-lang-option="es" aria-pressed="false">ES</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="case-main">
+      <a class="case-back" href="/#work" data-en="← Back to work" data-es="← Volver al trabajo">
+        ← Back to work
+      </a>
+
+      <header class="case-hero">
+        <p class="case-eyebrow" data-en="CASE STUDY / 02" data-es="CASO / 02">
+          CASE STUDY / 02
+        </p>
+        <h1
+          id="case-title"
+          data-en="A safer digital authentication flow for personal banking users"
+          data-es="Un flujo de autenticación digital más seguro para usuarios de banca personal"
+        >
+          A safer digital authentication flow for personal banking users
+        </h1>
+        <p
+          class="case-subtitle"
+          data-en="Designing the user flow and wireframes for an app-based authentication experience that replaces static keys, strengthens transaction security, and supports assisted setup when automatic validation fails."
+          data-es="Diseño del flujo de usuario y wireframes para una experiencia de autenticación desde la app que reemplaza claves estáticas, fortalece la seguridad transaccional y contempla asistencia cuando la validación automática falla."
+        >
+          Designing the user flow and wireframes for an app-based authentication
+          experience that replaces static keys, strengthens transaction security,
+          and supports assisted setup when automatic validation fails.
+        </p>
+
+        <ul class="case-chips" aria-label="Project tags">
+          {
+            chips.map((chip) => (
+              <li>
+                {chip.nda && <img src="/icons/lock.svg" alt="" aria-hidden="true" />}
+                <span data-en={chip.label} data-es={chip.labelEs}>{chip.label}</span>
+              </li>
+            ))
+          }
+        </ul>
+
+        <p
+          class="case-note"
+          data-en="Details are anonymized to protect confidentiality. The process, decisions, and constraints are real. This project is in pilot and awaiting launch."
+          data-es="Los detalles están anonimizados para proteger la confidencialidad. El proceso, las decisiones y las restricciones son reales. Este proyecto está en piloto y pendiente de lanzamiento."
+        >
+          Details are anonymized to protect confidentiality. The process,
+          decisions, and constraints are real. This project is in pilot and
+          awaiting launch.
+        </p>
+
+        <dl class="case-meta" aria-label="Case study details">
+          {
+            metadata.map((item) => (
+              <div>
+                <dt data-en={item.label} data-es={item.labelEs}>{item.label}</dt>
+                <dd data-en={item.value} data-es={item.valueEs}>{item.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </header>
+
+      <section class="case-section" aria-labelledby="context-title">
+        <h2 id="context-title" data-en="Context" data-es="Contexto">Context</h2>
+        <div class="case-section__body case-section__body--split">
+          <p
+            data-en="This was a personal mobile banking app feature for retail banking clients, built around a new app-based authentication model for digital transactions. The work involved product, security, business, and technical stakeholders, with an assisted setup path for eligible users who could not complete automatic validation."
+            data-es="Esta fue una funcionalidad de banca móvil personal para clientes de banca personal, construida alrededor de un nuevo modelo de autenticación desde la app para transacciones digitales. El trabajo involucró producto, seguridad, negocio y equipos técnicos, con una ruta asistida para usuarios elegibles que no podían completar la validación automática."
+          >
+            This was a personal mobile banking app feature for retail banking
+            clients, built around a new app-based authentication model for
+            digital transactions. The work involved product, security, business,
+            and technical stakeholders, with an assisted setup path for eligible
+            users who could not complete automatic validation.
+          </p>
+          <ul class="case-facts" aria-label="Project context">
+            <li data-en="Personal banking app feature" data-es="Funcionalidad de banca móvil personal">Personal banking app feature</li>
+            <li data-en="Security and identity validation" data-es="Seguridad y validación de identidad">Security and identity validation</li>
+            <li data-en="Pilot, awaiting launch" data-es="Piloto, pendiente de lanzamiento">Pilot, awaiting launch</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="case-section" aria-labelledby="problem-title">
+        <h2 id="problem-title" data-en="Problem" data-es="Problema">Problem</h2>
+        <div class="case-section__body">
+          <p
+            data-en="Static keys increased exposure to phishing and social engineering, while strict automatic validation could block eligible users from adopting the safer method. The experience needed to improve security without creating a dead end for people who needed help."
+            data-es="Las claves estáticas aumentaban la exposición a phishing e ingeniería social, mientras las validaciones automáticas estrictas podían bloquear a usuarios elegibles. La experiencia debía mejorar la seguridad sin dejar sin salida a quienes necesitaban ayuda."
+          >
+            Static keys increased exposure to phishing and social engineering,
+            while strict automatic validation could block eligible users from
+            adopting the safer method. The experience needed to improve security
+            without creating a dead end for people who needed help.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-section" aria-labelledby="process-title">
+        <h2 id="process-title" data-en="Process" data-es="Proceso">Process</h2>
+        <div class="case-section__body">
+          <ol class="process-list">
+            {
+              processSteps.map((step, index) => (
+                <li>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <div>
+                    <h3 data-en={step.title} data-es={step.titleEs}>{step.title}</h3>
+                    <p data-en={step.body} data-es={step.bodyEs}>{step.body}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+      </section>
+
+      <section class="case-section" aria-labelledby="proposal-title">
+        <h2 id="proposal-title" data-en="Proposal" data-es="Propuesta">Proposal</h2>
+        <div class="case-section__body">
+          <p
+            data-en="The proposal combined an app-based approval experience with a fallback path for assisted setup. The goal was to make the safer method feel understandable, reachable, and operationally viable before launch."
+            data-es="La propuesta combinó una experiencia de aprobación desde la app con una ruta de soporte para configuración asistida. El objetivo era que el método más seguro se sintiera claro, alcanzable y viable operativamente antes del lanzamiento."
+          >
+            The proposal combined an app-based approval experience with a
+            fallback path for assisted setup. The goal was to make the safer
+            method feel understandable, reachable, and operationally viable
+            before launch.
+          </p>
+          <ol class="proposal-flow" aria-label="Proposed flow">
+            {
+              proposalFlow.map(([label, labelEs]) => (
+                <li data-en={label} data-es={labelEs}>{label}</li>
+              ))
+            }
+          </ol>
+        </div>
+      </section>
+
+      <section class="case-section" aria-labelledby="result-title">
+        <h2 id="result-title" data-en="Result / Outcome" data-es="Resultado">Result / Outcome</h2>
+        <div class="case-section__body">
+          <p
+            data-en="Because the project is still in pilot, final metrics are not yet available. The expected outcome is a safer transaction approval model, a clearer migration path for users, and reduced operational burden from fraud-related cases."
+            data-es="Como el proyecto sigue en piloto, las métricas finales aún no están disponibles. El resultado esperado es un modelo de aprobación más seguro, una ruta de migración más clara para usuarios y menor carga operativa en casos relacionados con fraude."
+          >
+            Because the project is still in pilot, final metrics are not yet
+            available. The expected outcome is a safer transaction approval
+            model, a clearer migration path for users, and reduced operational
+            burden from fraud-related cases.
+          </p>
+          <ul class="outcome-list">
+            {
+              outcomes.map((item) => (
+                <li>
+                  <h3 data-en={item.title} data-es={item.titleEs}>{item.title}</h3>
+                  <p data-en={item.body} data-es={item.bodyEs}>{item.body}</p>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </section>
+
+      <section class="case-cta" aria-label="Contact">
+        <a class="case-email" href="mailto:imjuanvillar@gmail.com">
+          <span aria-hidden="true">@</span>
+          <strong data-en="Email me" data-es="Escríbeme">Email me</strong>
+          <small>imjuanvillar@gmail.com</small>
+          <em aria-hidden="true">↗</em>
+        </a>
+      </section>
+    </main>
+
+    <footer class="case-footer">
+      <p>Built with Astro &amp; Code. 2026</p>
+      <a href="#case-title" data-en="Back to top ↑" data-es="Volver arriba ↑">Back to top ↑</a>
+    </footer>
+  </section>
+</BaseLayout>
+
+<script>
+  const languageButtons = Array.from(
+    document.querySelectorAll<HTMLButtonElement>('[data-lang-option]')
+  );
+  const localizedNodes = Array.from(
+    document.querySelectorAll<HTMLElement>('[data-en][data-es]')
+  );
+
+  const applyLanguage = (language: 'en' | 'es') => {
+    document.documentElement.lang = language;
+    localizedNodes.forEach((node) => {
+      node.textContent = node.dataset[language] ?? node.textContent;
+    });
+    languageButtons.forEach((button) => {
+      button.setAttribute(
+        'aria-pressed',
+        String(button.dataset.langOption === language)
+      );
+    });
+    window.localStorage.setItem('portfolio-language', language);
+  };
+
+  const storedLanguage = window.localStorage.getItem('portfolio-language');
+  applyLanguage(storedLanguage === 'es' ? 'es' : 'en');
+
+  languageButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      applyLanguage(button.dataset.langOption === 'es' ? 'es' : 'en');
+    });
+  });
+</script>
+
+<style>
+  .case-study {
+    min-height: 100vh;
+    color: var(--color-ink);
+    background: transparent;
+  }
+
+  .case-nav,
+  .case-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    padding: clamp(1.4rem, 2.5vw, 2.2rem) clamp(1.25rem, 4vw, 4.5rem);
+  }
+
+  .case-nav__right,
+  .case-nav__links,
+  .case-language {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .case-nav__right {
+    gap: clamp(1.2rem, 3vw, 3rem);
+  }
+
+  .case-nav__links {
+    gap: clamp(1rem, 2vw, 1.65rem);
+  }
+
+  .case-nav a,
+  .case-language button,
+  .case-language span,
+  .case-footer a,
+  .case-footer p {
+    color: var(--color-muted);
+    font-size: 0.78rem;
+    font-weight: 760;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .case-nav a:is(:hover, :focus-visible),
+  .case-language button[aria-pressed="true"],
+  .case-language button:is(:hover, :focus-visible),
+  .case-footer a:is(:hover, :focus-visible) {
+    color: var(--color-blue);
+  }
+
+  .case-language {
+    gap: 0.58rem;
+  }
+
+  .case-language button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .case-main {
+    width: min(100% - clamp(2.5rem, 6vw, 9rem), 82rem);
+    margin: 0 auto;
+    padding: clamp(3rem, 7vw, 6.5rem) 0 clamp(4.5rem, 8vw, 7rem);
+  }
+
+  .case-back {
+    display: inline-flex;
+    width: fit-content;
+    margin-bottom: clamp(2.25rem, 4vw, 4rem);
+    color: var(--color-blue);
+    font-size: 0.9rem;
+    font-weight: 760;
+    text-decoration: none;
+  }
+
+  .case-hero {
+    display: grid;
+    gap: clamp(1.15rem, 2vw, 1.6rem);
+    max-width: 74rem;
+  }
+
+  .case-eyebrow {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 0.82rem;
+    font-weight: 760;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .case-hero h1 {
+    max-width: 72rem;
+    margin: 0;
+    color: var(--color-ink);
+    font-family: var(--font-serif);
+    font-size: clamp(3.25rem, 6.5vw, 7rem);
+    font-weight: 760;
+    line-height: 0.98;
+    letter-spacing: -0.07em;
+  }
+
+  .case-subtitle {
+    max-width: 50rem;
+    margin: 0;
+    color: var(--color-muted);
+    font-size: clamp(1.06rem, 1.45vw, 1.35rem);
+    font-weight: 520;
+    line-height: 1.38;
+  }
+
+  .case-chips,
+  .case-facts,
+  .process-list,
+  .proposal-flow,
+  .outcome-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .case-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: clamp(0.25rem, 1vw, 0.75rem);
+  }
+
+  .case-chips li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.32rem;
+    min-height: 1.85rem;
+    padding: 0.28rem 0.75rem;
+    border: 1px solid rgb(24 136 0 / 20%);
+    border-radius: 999px;
+    color: #188800;
+    background: rgb(24 136 0 / 10%);
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .case-chips img {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+
+  .case-note {
+    max-width: 60rem;
+    margin: clamp(0.5rem, 1vw, 1rem) 0 0;
+    padding: 1rem 1.1rem;
+    border: 1px solid rgb(15 92 255 / 24%);
+    border-radius: 0.45rem;
+    color: var(--color-ink);
+    background: rgb(15 92 255 / 6%);
+    font-size: 0.95rem;
+    font-weight: 660;
+    line-height: 1.45;
+  }
+
+  .case-meta {
+    display: grid;
+    grid-template-columns: minmax(8rem, 0.5fr) minmax(16rem, 1fr) minmax(8rem, 0.42fr);
+    gap: clamp(1rem, 3vw, 4rem);
+    max-width: 72rem;
+    padding-top: clamp(1rem, 2.5vw, 2rem);
+    margin: clamp(0.5rem, 1vw, 1rem) 0 0;
+  }
+
+  .case-meta dt {
+    margin: 0 0 0.5rem;
+    color: var(--color-muted);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+  }
+
+  .case-meta dd {
+    margin: 0;
+    color: var(--color-ink);
+    font-size: 1rem;
+    font-weight: 760;
+    line-height: 1.28;
+  }
+
+  .case-section {
+    display: grid;
+    grid-template-columns: minmax(13rem, 0.34fr) minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 6rem);
+    padding-top: clamp(4.25rem, 8vw, 7rem);
+  }
+
+  .case-section h2 {
+    margin: 0;
+    color: var(--color-ink);
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 3.8vw, 4rem);
+    font-weight: 760;
+    line-height: 1.02;
+    letter-spacing: -0.06em;
+  }
+
+  .case-section__body {
+    display: grid;
+    gap: clamp(1.5rem, 3vw, 2.6rem);
+    min-width: 0;
+  }
+
+  .case-section__body > p {
+    max-width: 58rem;
+    margin: 0;
+    color: var(--color-muted);
+    font-size: clamp(1.05rem, 1.45vw, 1.34rem);
+    font-weight: 440;
+    line-height: 1.58;
+    letter-spacing: -0.018em;
+  }
+
+  .case-section__body--split {
+    grid-template-columns: minmax(0, 1fr) minmax(13rem, 0.42fr);
+    align-items: start;
+  }
+
+  .case-facts {
+    display: grid;
+    gap: 0.72rem;
+    padding-left: clamp(1rem, 2vw, 1.6rem);
+    border-left: 1px solid var(--color-line);
+    color: var(--color-muted);
+    font-size: 0.95rem;
+    font-weight: 660;
+    line-height: 1.35;
+  }
+
+  .process-list {
+    display: grid;
+    gap: 0;
+  }
+
+  .process-list li {
+    display: grid;
+    grid-template-columns: 3.2rem minmax(0, 1fr);
+    gap: clamp(1rem, 2vw, 1.75rem);
+    padding: 1.45rem 0;
+    border-top: 1px solid rgb(199 208 214 / 70%);
+  }
+
+  .process-list li:last-child {
+    border-bottom: 1px solid rgb(199 208 214 / 70%);
+  }
+
+  .process-list span {
+    color: var(--color-blue);
+    font-weight: 820;
+    letter-spacing: 0.05em;
+  }
+
+  .process-list h3,
+  .outcome-list h3 {
+    margin: 0 0 0.45rem;
+    color: var(--color-ink);
+    font-size: clamp(1.08rem, 1.45vw, 1.35rem);
+    font-weight: 820;
+    line-height: 1.18;
+  }
+
+  .process-list p,
+  .outcome-list p {
+    max-width: 48rem;
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 1rem;
+    font-weight: 440;
+    line-height: 1.55;
+  }
+
+  .proposal-flow {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1.6rem;
+  }
+
+  .proposal-flow li {
+    position: relative;
+    display: grid;
+    min-height: 4.6rem;
+    place-items: center;
+    padding: 1rem;
+    border: 1px solid var(--color-line);
+    border-radius: 0.45rem;
+    background: rgb(255 255 255 / 52%);
+    color: var(--color-ink);
+    font-size: 0.86rem;
+    font-weight: 760;
+    text-align: center;
+  }
+
+  .proposal-flow li:not(:last-child)::after {
+    position: absolute;
+    top: 50%;
+    right: -1.25rem;
+    color: var(--color-muted);
+    content: "→";
+    transform: translateY(-50%);
+  }
+
+  .outcome-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .outcome-list li {
+    padding: clamp(1.15rem, 2vw, 1.45rem);
+    border: 1px solid rgb(15 92 255 / 20%);
+    border-radius: 0.5rem;
+    background: rgb(15 92 255 / 5%);
+  }
+
+  .case-cta {
+    padding-top: clamp(4.5rem, 8vw, 7rem);
+  }
+
+  .case-email {
+    display: grid;
+    grid-template-columns: auto minmax(8rem, 0.42fr) minmax(12rem, 1fr) auto;
+    gap: clamp(0.8rem, 2vw, 2rem);
+    align-items: center;
+    min-height: clamp(5rem, 8vw, 7rem);
+    padding: 1rem clamp(1rem, 2.5vw, 2rem);
+    border: 1px solid var(--color-line);
+    background: rgb(255 255 255 / 42%);
+    color: var(--color-ink);
+    text-decoration: none;
+    transition:
+      border-color 160ms ease,
+      box-shadow 160ms ease,
+      transform 160ms ease;
+  }
+
+  .case-email > span,
+  .case-email em {
+    color: var(--color-blue);
+    font-size: clamp(2rem, 3.5vw, 3.8rem);
+    font-style: normal;
+    font-weight: 760;
+    line-height: 1;
+  }
+
+  .case-email strong {
+    font-size: clamp(1.6rem, 2.6vw, 3rem);
+    font-weight: 860;
+    line-height: 1;
+  }
+
+  .case-email small {
+    color: var(--color-muted);
+    font-size: 0.92rem;
+    font-weight: 500;
+  }
+
+  .case-email:is(:hover, :focus-visible) {
+    border-color: rgb(15 92 255 / 42%);
+    box-shadow: 0 18px 42px rgb(15 92 255 / 10%);
+    transform: translateY(-0.12rem);
+  }
+
+  .case-footer {
+    padding-top: clamp(2.5rem, 4vw, 3.5rem);
+    padding-bottom: clamp(2rem, 4vw, 3rem);
+  }
+
+  .case-footer p {
+    margin: 0;
+    text-align: center;
+    text-transform: none;
+  }
+
+  @media (max-width: 900px) {
+    .case-nav {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .case-nav__right {
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .case-meta,
+    .case-section,
+    .case-section__body--split,
+    .proposal-flow,
+    .outcome-list {
+      grid-template-columns: 1fr;
+    }
+
+    .case-facts {
+      padding-left: 0;
+      border-left: 0;
+    }
+
+    .proposal-flow li:not(:last-child)::after {
+      top: auto;
+      right: 50%;
+      bottom: -1.35rem;
+      transform: translateX(50%) rotate(90deg);
+    }
+
+    .case-email {
+      grid-template-columns: auto minmax(0, 1fr) auto;
+    }
+
+    .case-email small {
+      grid-column: 2 / 3;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .case-nav,
+    .case-footer {
+      padding-inline: clamp(1.25rem, 5vw, 1.5rem);
+    }
+
+    .case-nav__links {
+      gap: 0.9rem;
+    }
+
+    .case-nav a,
+    .case-language button,
+    .case-language span,
+    .case-footer a,
+    .case-footer p {
+      font-size: 0.72rem;
+    }
+
+    .case-main {
+      width: min(100% - 2.5rem, 82rem);
+      padding-top: 3.25rem;
+    }
+
+    .case-hero h1 {
+      font-size: clamp(3rem, 14vw, 4.8rem);
+    }
+
+    .case-section {
+      padding-top: 4rem;
+    }
+
+    .process-list li {
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+    }
+
+    .case-email {
+      min-height: 5rem;
+      gap: 0.8rem;
+    }
+
+    .case-email small {
+      font-size: 0.8rem;
+    }
+
+    .case-footer {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>

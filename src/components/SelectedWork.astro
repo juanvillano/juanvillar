@@ -1,30 +1,110 @@
 ---
-const chips = [
-  { label: "Product Design", labelEs: "Diseño de producto" },
-  { label: "Banking UX", labelEs: "UX bancaria" },
-  { label: "KYC", labelEs: "KYC" },
-  { label: "Shipped", labelEs: "Lanzado" },
-  { label: "NDA", labelEs: "NDA", nda: true },
-];
+type WorkChip = {
+  label: string;
+  labelEs: string;
+  nda?: boolean;
+};
 
-const details = [
+type WorkDetail = {
+  label: string;
+  labelEs: string;
+  value: string;
+  valueEs: string;
+  live?: boolean;
+};
+
+type WorkCase = {
+  label: string;
+  chips: WorkChip[];
+  title: string;
+  titleEs: string;
+  summary: string;
+  summaryEs: string;
+  href: string;
+  details: WorkDetail[];
+  image?: string;
+  diagram?: boolean;
+};
+
+const cases: WorkCase[] = [
   {
-    label: "ROLE",
-    labelEs: "ROL",
-    value: "Product Designer",
-    valueEs: "Diseñador de producto",
+    label: "KYC Update flow case preview",
+    chips: [
+      { label: "Product Design", labelEs: "Diseño de producto" },
+      { label: "Banking UX", labelEs: "UX bancaria" },
+      { label: "KYC", labelEs: "KYC" },
+      { label: "Shipped", labelEs: "Lanzado" },
+      { label: "NDA", labelEs: "NDA", nda: true },
+    ],
+    title: "A clearer KYC update flow for clients and the business",
+    titleEs: "Un flujo de actualización KYC más claro para clientes y negocio",
+    summary:
+      "Redesigning a regulated data update flow so clients can review and change sensitive information with less friction, clearer guidance, and more confidence—while helping the business collect more complete and accurate data.",
+    summaryEs:
+      "Rediseño de un flujo regulado de actualización de datos para que los clientes puedan revisar y cambiar información sensible con menos fricción, orientación más clara y más confianza, mientras el negocio obtiene datos más completos y precisos.",
+    href: "/work/kyc-update-flow/",
+    details: [
+      {
+        label: "ROLE",
+        labelEs: "ROL",
+        value: "Product Designer",
+        valueEs: "Diseñador de producto",
+      },
+      {
+        label: "FOCUS",
+        labelEs: "ENFOQUE",
+        value: "User flows, information architecture, content design",
+        valueEs:
+          "Flujos de usuario, arquitectura de información, diseño de contenido",
+      },
+      {
+        label: "STATUS",
+        labelEs: "ESTADO",
+        value: "Live",
+        valueEs: "En vivo",
+        live: true,
+      },
+    ],
+    image: "/images/work/kyc-flow-preview.png",
   },
   {
-    label: "FOCUS",
-    labelEs: "ENFOQUE",
-    value: "User flows, information architecture, content design",
-    valueEs: "Flujos de usuario, arquitectura de información, diseño de contenido",
-  },
-  {
-    label: "STATUS",
-    labelEs: "ESTADO",
-    value: "Live",
-    valueEs: "En vivo",
+    label: "Digital authentication flow case preview",
+    chips: [
+      { label: "Product Design", labelEs: "Diseño de producto" },
+      { label: "Security UX", labelEs: "UX de seguridad" },
+      { label: "Authentication", labelEs: "Autenticación" },
+      { label: "Pilot", labelEs: "Piloto" },
+      { label: "NDA", labelEs: "NDA", nda: true },
+    ],
+    title: "A safer digital authentication flow for personal banking users",
+    titleEs:
+      "Un flujo de autenticación digital más seguro para usuarios de banca personal",
+    summary:
+      "Designing the user flow and wireframes for an app-based authentication experience that replaces static keys, strengthens transaction security, and supports assisted setup when automatic validation fails.",
+    summaryEs:
+      "Diseño del flujo de usuario y wireframes para una experiencia de autenticación desde la app que reemplaza claves estáticas, fortalece la seguridad transaccional y contempla asistencia cuando la validación automática falla.",
+    href: "/work/digital-authentication-flow/",
+    details: [
+      {
+        label: "ROLE",
+        labelEs: "ROL",
+        value: "Product Designer",
+        valueEs: "Diseñador de producto",
+      },
+      {
+        label: "FOCUS",
+        labelEs: "ENFOQUE",
+        value: "User flows, wireframes, stakeholder alignment",
+        valueEs: "Flujos de usuario, wireframes, alineación con stakeholders",
+      },
+      {
+        label: "STATUS",
+        labelEs: "ESTADO",
+        value: "Pilot",
+        valueEs: "Piloto",
+      },
+    ],
+    diagram: true,
   },
 ];
 ---
@@ -44,73 +124,124 @@ const details = [
       </p>
     </header>
 
-    <article class="case-preview" aria-label="KYC Update flow case preview">
-      <ul class="case-preview__chips" aria-label="Project tags">
-        {
-          chips.map((chip) => (
-            <li class:list={{ "case-preview__chip--nda": chip.nda }}>
-              {chip.nda && (
-                <img src="/icons/lock.svg" alt="" aria-hidden="true" />
+    <div class="selected-work__cases">
+      {
+        cases.map((project) => (
+          <div class="selected-work__item">
+            <article class="case-preview" aria-label={project.label}>
+              <ul class="case-preview__chips" aria-label="Project tags">
+                {project.chips.map((chip) => (
+                  <li class:list={{ "case-preview__chip--nda": chip.nda }}>
+                    {chip.nda && (
+                      <img src="/icons/lock.svg" alt="" aria-hidden="true" />
+                    )}
+                    <span data-en={chip.label} data-es={chip.labelEs}>
+                      {chip.label}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+
+              <div class="case-preview__body">
+                <h3 data-en={project.title} data-es={project.titleEs}>
+                  {project.title}
+                </h3>
+                <p
+                  class="case-preview__summary"
+                  data-en={project.summary}
+                  data-es={project.summaryEs}
+                >
+                  {project.summary}
+                </p>
+                <a
+                  class="case-preview__link"
+                  href={project.href}
+                  data-en="Read case study"
+                  data-es="Leer caso"
+                >
+                  Read case study
+                  <span aria-hidden="true">→</span>
+                </a>
+              </div>
+
+              <dl class="case-preview__meta" aria-label="Project details">
+                {project.details.map((item) => (
+                  <div>
+                    <dt data-en={item.label} data-es={item.labelEs}>
+                      {item.label}
+                    </dt>
+                    <dd
+                      class:list={{
+                        "case-preview__status": item.label === "STATUS",
+                      }}
+                    >
+                      {item.live && (
+                        <span
+                          class="case-preview__status-dot"
+                          aria-hidden="true"
+                        />
+                      )}
+                      <span data-en={item.value} data-es={item.valueEs}>
+                        {item.value}
+                      </span>
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </article>
+
+            <div class="selected-work__visual" aria-hidden="true">
+              {project.image ? (
+                <img
+                  class="selected-work__screens"
+                  src={project.image}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <div class="selected-work__auth-map">
+                  <span
+                    data-node="secure"
+                    data-en="App-based auth"
+                    data-es="Autenticación desde la app"
+                  >
+                    App-based auth
+                  </span>
+                  <span
+                    data-node="approve"
+                    data-en="Secure approval"
+                    data-es="Aprobación segura"
+                  >
+                    Secure approval
+                  </span>
+                  <span
+                    data-node="assist"
+                    data-en="Assisted setup"
+                    data-es="Configuración asistida"
+                  >
+                    Assisted setup
+                  </span>
+                  <span
+                    data-node="validate"
+                    data-en="Identity validation"
+                    data-es="Validación de identidad"
+                  >
+                    Identity validation
+                  </span>
+                  <span
+                    data-node="fallback"
+                    data-en="Fallback path"
+                    data-es="Ruta alternativa"
+                  >
+                    Fallback path
+                  </span>
+                </div>
               )}
-              <span data-en={chip.label} data-es={chip.labelEs}>{chip.label}</span>
-            </li>
-          ))
-        }
-      </ul>
-
-      <div class="case-preview__body">
-        <h3
-          data-en="A clearer KYC update flow for clients and the business"
-          data-es="Un flujo de actualización KYC más claro para clientes y negocio"
-        >
-          A clearer KYC update flow for clients and the business
-        </h3>
-        <p
-          class="case-preview__summary"
-          data-en="Redesigning a regulated data update flow so clients can review and change sensitive information with less friction, clearer guidance, and more confidence—while helping the business collect more complete and accurate data."
-          data-es="Rediseño de un flujo regulado de actualización de datos para que los clientes puedan revisar y cambiar información sensible con menos fricción, orientación más clara y más confianza, mientras el negocio obtiene datos más completos y precisos."
-        >
-          Redesigning a regulated data update flow so clients can review and
-          change sensitive information with less friction, clearer guidance, and
-          more confidence—while helping the business collect more complete and
-          accurate data.
-        </p>
-        <a
-          class="case-preview__link"
-          href="/work/kyc-update-flow/"
-          data-en="Read case study"
-          data-es="Leer caso"
-        >
-          Read case study
-          <span aria-hidden="true">→</span>
-        </a>
-      </div>
-
-      <dl class="case-preview__meta" aria-label="Project details">
-        {
-          details.map((item) => (
-            <div>
-              <dt data-en={item.label} data-es={item.labelEs}>{item.label}</dt>
-              <dd class:list={{ "case-preview__status": item.label === "STATUS" }}>
-                {item.label === "STATUS" && (
-                  <span class="case-preview__status-dot" aria-hidden="true" />
-                )}
-                <span data-en={item.value} data-es={item.valueEs}>{item.value}</span>
-              </dd>
             </div>
-          ))
-        }
-      </dl>
-    </article>
-
-    <div class="selected-work__visual" aria-hidden="true">
-      <img
-        class="selected-work__screens"
-        src="/images/work/kyc-flow-preview.png"
-        alt=""
-        loading="lazy"
-        decoding="async"
-      />
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>
@@ -126,17 +257,33 @@ const details = [
 
   .selected-work__inner {
     display: grid;
-    grid-template-columns: minmax(0, 0.46fr) minmax(22rem, 0.54fr);
-    gap: clamp(2.5rem, 6vw, 7rem);
-    align-items: end;
+    grid-template-columns: 1fr;
+    gap: clamp(3rem, 7vw, 7rem);
+    align-items: start;
     width: min(100%, 118rem);
     margin: 0 auto;
   }
 
   .selected-work__intro {
-    grid-column: 1 / -1;
     padding-bottom: clamp(2.5rem, 5vw, 4.25rem);
     border-bottom: 1px solid var(--color-line);
+  }
+
+  .selected-work__cases {
+    display: grid;
+    gap: clamp(4rem, 8vw, 7.5rem);
+  }
+
+  .selected-work__item {
+    display: grid;
+    grid-template-columns: minmax(0, 0.46fr) minmax(22rem, 0.54fr);
+    gap: clamp(2.5rem, 6vw, 7rem);
+    align-items: end;
+    min-width: 0;
+  }
+
+  .selected-work__item + .selected-work__item {
+    padding-top: clamp(2rem, 4vw, 3.5rem);
   }
 
   .selected-work h2 {
@@ -348,8 +495,72 @@ const details = [
     transform: translateY(clamp(1rem, 4vw, 4.5rem));
   }
 
+  .selected-work__auth-map {
+    position: relative;
+    width: min(100%, clamp(30rem, 47vw, 58rem));
+    aspect-ratio: 1.46;
+    filter: drop-shadow(0 26px 46px rgb(15 92 255 / 8%));
+  }
+
+  .selected-work__auth-map::before {
+    position: absolute;
+    inset: 14% 10% 12%;
+    background:
+      linear-gradient(90deg, transparent 0 16%, #c7d0d6 16% 17%, transparent 17% 48%, #c7d0d6 48% 49%, transparent 49% 82%, #c7d0d6 82% 83%, transparent 83%),
+      linear-gradient(0deg, transparent 0 23%, #c7d0d6 23% 24%, transparent 24% 51%, #c7d0d6 51% 52%, transparent 52% 80%, #c7d0d6 80% 81%, transparent 81%);
+    border-radius: 2rem;
+    content: "";
+    opacity: 0.72;
+  }
+
+  .selected-work__auth-map span {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    min-height: clamp(3.4rem, 5vw, 4.8rem);
+    padding: 0.9rem clamp(1rem, 2vw, 1.55rem);
+    border: 1px solid rgb(199 208 214 / 76%);
+    border-radius: 0.65rem;
+    background: rgb(255 255 255 / 86%);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: clamp(0.98rem, 1.35vw, 1.55rem);
+    font-weight: 820;
+    line-height: 1;
+    letter-spacing: -0.035em;
+    box-shadow: 0 18px 36px rgb(13 13 89 / 8%);
+    white-space: nowrap;
+  }
+
+  .selected-work__auth-map [data-node="secure"] {
+    top: 6%;
+    left: 24%;
+  }
+
+  .selected-work__auth-map [data-node="approve"] {
+    top: 30%;
+    right: 0;
+  }
+
+  .selected-work__auth-map [data-node="assist"] {
+    top: 44%;
+    left: 0;
+  }
+
+  .selected-work__auth-map [data-node="validate"] {
+    right: 10%;
+    bottom: 9%;
+  }
+
+  .selected-work__auth-map [data-node="fallback"] {
+    bottom: 0;
+    left: 28%;
+    color: var(--color-blue);
+    box-shadow: 0 20px 46px rgb(15 92 255 / 12%);
+  }
+
   @media (max-width: 1050px) {
-    .selected-work__inner {
+    .selected-work__item {
       grid-template-columns: 1fr;
       gap: clamp(2rem, 6vw, 4rem);
       align-items: start;
@@ -368,6 +579,10 @@ const details = [
     .selected-work__screens {
       width: min(44rem, 116vw);
       transform: translateY(0);
+    }
+
+    .selected-work__auth-map {
+      width: min(44rem, 116vw);
     }
   }
 
@@ -409,6 +624,15 @@ const details = [
     .case-preview__meta {
       grid-template-columns: 1fr;
       gap: 1rem;
+    }
+
+    .selected-work__auth-map {
+      aspect-ratio: 1 / 0.9;
+    }
+
+    .selected-work__auth-map span {
+      min-height: 2.75rem;
+      font-size: 0.9rem;
     }
   }
 </style>
