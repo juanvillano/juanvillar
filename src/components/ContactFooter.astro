@@ -3,6 +3,7 @@ import BrandLockup from "./BrandLockup.astro";
 
 const emailHref = "mailto:imjuanvillar@gmail.com";
 const linkedinHref = "https://www.linkedin.com/in/juan-villar-guillen-79b64735";
+const githubHref = "https://github.com/juanvillano";
 ---
 
 <section class="contact-close" id="contact" aria-labelledby="contact-title">
@@ -67,6 +68,34 @@ const linkedinHref = "https://www.linkedin.com/in/juan-villar-guillen-79b64735";
           <strong>LinkedIn</strong>
           <span data-en="Profile / connect" data-es="Perfil / conectar">
             Profile / connect
+          </span>
+        </span>
+        <span class="contact-action__arrow" aria-hidden="true">
+          <svg viewBox="0 0 28 28">
+            <path d="M7 21 21 7"></path>
+            <path d="M9 7h12v12"></path>
+          </svg>
+        </span>
+      </a>
+
+      <a
+        class="contact-action"
+        href={githubHref}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <span class="contact-action__icon" aria-hidden="true">
+          <img
+            src="/icons/github.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
+        </span>
+        <span class="contact-action__content">
+          <strong>GitHub</strong>
+          <span data-en="Profile / code" data-es="Perfil / código">
+            Profile / code
           </span>
         </span>
         <span class="contact-action__arrow" aria-hidden="true">
